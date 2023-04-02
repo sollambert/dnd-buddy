@@ -1,6 +1,5 @@
-import logo from "./logo.svg";
 import "./App.css";
-import CharacterForm from "./Components/CharCreator/CharacterForm.tsx";
+import {CharacterForm} from "./Components/CharCreator/CharacterForm.tsx";
 
 function App() {
   return (

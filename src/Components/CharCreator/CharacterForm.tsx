@@ -1,6 +1,5 @@
-import React, { useState, useEffect, ReactEventHandler } from "react";
-
-type AppProps = {};
+import React, { useState } from "react";
+import FormInput from "./FormInput.tsx";
 
 class InputBuffer {
   name: string;
@@ -40,7 +39,8 @@ class InputBuffer {
   }
 }
 
-function CharacterForm({}: AppProps): JSX.Element {
+function CharacterForm() : JSX.Element {
+
   const [inputBuffer, setInputBuffer] = useState<InputBuffer>(
     new InputBuffer("", 1, "", "", 0, 0, 0, 0, 0, 0)
   );
@@ -48,8 +48,8 @@ function CharacterForm({}: AppProps): JSX.Element {
   const [result, setResult] = useState<string>("");
 
   function handleInput(event: any, key: string) {
-    if (key == "level") {
-        event.target.value = Math.max(1, Math.min(event.target.value, 20));
+    if (key === "level") {
+      event.target.value = Math.max(1, Math.min(event.target.value, 20));
     }
     const inputKey = key as keyof typeof inputBuffer;
     setInputBuffer({ ...inputBuffer, [inputKey]: event.target.value });
@@ -79,74 +79,77 @@ function CharacterForm({}: AppProps): JSX.Element {
         ></input>
       </div>
       <div>
-        <label htmlFor="class">Class: </label>
-        <input
+        <FormInput
           name="class"
-          type="text"
-          onChange={(e) => handleInput(e, "profession")}
-          value={inputBuffer.profession}
-          placeholder="Enter class..."
-        ></input>
+          display="Class"
+          handler={handleInput}
+          value={inputBuffer.class}
+          type={''}
+        />
       </div>
       <div>
-        <label htmlFor="level">Level: </label>
-        <input
+        <FormInput
+          type="number"
           name="level"
-          type="number"
-          min="1"
-          max="20"
-          onChange={(e) => handleInput(e, "level")}
+          display="Level"
+          handler={handleInput}
           value={inputBuffer.level}
-        ></input>
+        />
       </div>
       <div>
-        <label htmlFor="str">Strength: </label>
-        <input
+        <FormInput
+          type="number"
           name="str"
-          type="number"
-          onChange={(e) => handleInput(e, "str")}
+          display="Strength"
+          handler={handleInput}
           value={inputBuffer.str}
-        ></input>
-        <label htmlFor="dex">Dexterity: </label>
-        <input
+        />
+        <FormInput
+          type="number"
           name="dex"
-          type="number"
-          onChange={(e) => handleInput(e, "dex")}
+          display="Dexterity"
+          handler={handleInput}
           value={inputBuffer.dex}
-        ></input>
-        <label htmlFor="con">Constitution: </label>
-        <input
+        />
+        <FormInput
+          type="number"
           name="con"
-          type="number"
-          onChange={(e) => handleInput(e, "con")}
-          value={inputBuffer.con}
-        ></input>
-        <label htmlFor="int">Intelligence: </label>
-        <input
-          name="int"
-          type="number"
-          onChange={(e) => handleInput(e, "int")}
-          value={inputBuffer.int}
-        ></input>
-        <label htmlFor="wis">Wisdom: </label>
-        <input
-          name="wis"
-          type="number"
-          onChange={(e) => handleInput(e, "wis")}
-          value={inputBuffer.wis}
-        ></input>
-        <label htmlFor="cha">Charisma: </label>
-        <input
-          name="cha"
-          type="number"
-          onChange={(e) => handleInput(e, "cha")}
+          display="Constitution"
+          handler={handleInput}
           value={inputBuffer.cha}
-        ></input>
+        />
+        <FormInput
+          type="number"
+          name="int"
+          display="Intelligence"
+          handler={handleInput}
+          value={inputBuffer.cha}
+        />
+        <FormInput
+          type="number"
+          name="wis"
+          display="Wisdom"
+          handler={handleInput}
+          value={inputBuffer.cha}
+        />
+        <FormInput
+          type="number"
+          name="cha"
+          display="Charisma"
+          handler={handleInput}
+          value={inputBuffer.cha}
+        />
       </div>
-      <button onClick={() => {setResult(JSON.stringify(inputBuffer))}}>SHOW</button>
+      <button
+        onClick={() => {
+          setResult(JSON.stringify(inputBuffer));
+        }}
+      >
+        SHOW
+      </button>
       {result}
     </>
   );
 }
 
-export default CharacterForm;
+export { CharacterForm, InputBuffer };
