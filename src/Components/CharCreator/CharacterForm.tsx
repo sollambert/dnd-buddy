@@ -1,17 +1,23 @@
 import React, { useState } from "react";
 import FormInput from "./FormInput.tsx";
+import { useDispatch } from "react-redux";
+import { addCharacter } from "../../Redux/ActionCreators/character.action.creators.ts";
 
-class InputBuffer {
+enum Race {}
+
+enum Profession {}
+
+class Character {
   name: string;
   level: number;
   race: string;
   profession: string;
-  str: number;
-  dex: number;
-  con: number;
-  int: number;
-  wis: number;
-  cha: number;
+  str: number | undefined;
+  dex: number | undefined;
+  con: number | undefined;
+  int: number | undefined;
+  wis: number | undefined;
+  cha: number | undefined;
   [key: string]: any;
 
   constructor(
@@ -19,12 +25,12 @@ class InputBuffer {
     level: number,
     race: string,
     profession: string,
-    str: number,
-    dex: number,
-    con: number,
-    int: number,
-    wis: number,
-    cha: number
+    str: number | undefined,
+    dex: number | undefined,
+    con: number | undefined,
+    int: number | undefined,
+    wis: number | undefined,
+    cha: number | undefined
   ) {
     this.name = name;
     this.level = level;
@@ -39,52 +45,61 @@ class InputBuffer {
   }
 }
 
-function CharacterForm() : JSX.Element {
-
-  const [inputBuffer, setInputBuffer] = useState<InputBuffer>(
-    new InputBuffer("", 1, "", "", 0, 0, 0, 0, 0, 0)
+function CharacterForm(): JSX.Element {
+  const [character, setCharacter] = useState<Character>(
+    new Character(
+      "",
+      1,
+      "",
+      "",
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      undefined
+    )
   );
 
+  const dispatch = useDispatch();
   const [result, setResult] = useState<string>("");
 
   function handleInput(event: any, key: string) {
     if (key === "level") {
       event.target.value = Math.max(1, Math.min(event.target.value, 20));
     }
-    const inputKey = key as keyof typeof inputBuffer;
-    setInputBuffer({ ...inputBuffer, [inputKey]: event.target.value });
+    const inputKey = key as keyof typeof character;
+    setCharacter({ ...character, [inputKey]: event.target.value });
   }
+
+  const handleSubmit = (): void => {
+    dispatch(addCharacter(character));
+  };
 
   return (
     <>
-      <h1>I'm a typescript component</h1>
       <div>
-        <label htmlFor="name">Name: </label>
-        <input
+        <FormInput
           name="name"
-          type="text"
-          onChange={(e) => handleInput(e, "name")}
-          value={inputBuffer.name}
-          placeholder="Enter name..."
-        ></input>
-      </div>
-      <div>
-        <label htmlFor="name">Race: </label>
-        <input
-          name="race"
-          type="text"
-          onChange={(e) => handleInput(e, "race")}
-          value={inputBuffer.race}
-          placeholder="Enter race..."
-        ></input>
+          display="Name"
+          handler={handleInput}
+          value={character.name}
+        />
       </div>
       <div>
         <FormInput
-          name="class"
+          name="race"
+          display="Race"
+          handler={handleInput}
+          value={character.race}
+        />
+      </div>
+      <div>
+        <FormInput
+          name="profession"
           display="Class"
           handler={handleInput}
-          value={inputBuffer.class}
-          type={''}
+          value={character.profession}
         />
       </div>
       <div>
@@ -93,7 +108,7 @@ function CharacterForm() : JSX.Element {
           name="level"
           display="Level"
           handler={handleInput}
-          value={inputBuffer.level}
+          value={character.level}
         />
       </div>
       <div>
@@ -102,47 +117,48 @@ function CharacterForm() : JSX.Element {
           name="str"
           display="Strength"
           handler={handleInput}
-          value={inputBuffer.str}
+          value={character.str}
         />
         <FormInput
           type="number"
           name="dex"
           display="Dexterity"
           handler={handleInput}
-          value={inputBuffer.dex}
+          value={character.dex}
         />
         <FormInput
           type="number"
           name="con"
           display="Constitution"
           handler={handleInput}
-          value={inputBuffer.cha}
+          value={character.con}
         />
         <FormInput
           type="number"
           name="int"
           display="Intelligence"
           handler={handleInput}
-          value={inputBuffer.cha}
+          value={character.int}
         />
         <FormInput
           type="number"
           name="wis"
           display="Wisdom"
           handler={handleInput}
-          value={inputBuffer.cha}
+          value={character.wis}
         />
         <FormInput
           type="number"
           name="cha"
           display="Charisma"
           handler={handleInput}
-          value={inputBuffer.cha}
+          value={character.cha}
         />
       </div>
       <button
         onClick={() => {
-          setResult(JSON.stringify(inputBuffer));
+          // setResult(JSON.stringify(character));
+          handleSubmit();
         }}
       >
         SHOW
@@ -152,4 +168,4 @@ function CharacterForm() : JSX.Element {
   );
 }
 
-export { CharacterForm, InputBuffer };
+export { CharacterForm, Character };
