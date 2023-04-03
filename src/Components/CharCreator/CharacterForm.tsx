@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import FormInput from "./FormInput.tsx";
 import { useDispatch } from "react-redux";
 import { addCharacter } from "../../Redux/ActionCreators/character.action.creators.ts";
-import Character from '../../Character/Character.ts'
+import Character, {Race, Profession} from '../../Character/Character.ts'
 
 function CharacterForm(): JSX.Element {
   const [character, setCharacter] = useState<Character>(
-    new Character("",1,"","",0,0,0,0,0,0)
+    new Character("",1, Race.HUMAN, Profession.FIGHTER,0,0,0,0,0,0)
   );
 
   const dispatch = useDispatch();
@@ -21,9 +21,12 @@ function CharacterForm(): JSX.Element {
   }
 
   const handleSubmit = (): void => {
-    dispatch(addCharacter(character, () => setCharacter(new Character("",1,"","",0,0,0,0,0,0))
-    ));
-  };
+    if (character.name !== "") {
+      dispatch(addCharacter(character, () => setCharacter(new Character("",1, Race.HUMAN, Profession.FIGHTER,0,0,0,0,0,0))));
+    } else {
+      alert("Add a name dingus!");
+    }
+};
 
   return (
     <>
@@ -35,22 +38,47 @@ function CharacterForm(): JSX.Element {
           value={character.name}
         />
       </div>
-      <div>
+      {/* <div>
         <FormInput
           name="race"
           display="Race"
           handler={handleInput}
           value={character.race}
         />
-      </div>
-      <div>
+      </div> */}
+      <select
+      onChange={(e: any) => handleInput(e, "race")}
+      value={character.race}>
+        {(Object.values(Race).filter(value => typeof value === 'string') as string[])
+        .map((race: string, i: number) => {
+          if (typeof race === "string") {
+            return (
+              <option value={race} key={i}>{race}</option>
+            )
+          }
+        })}
+      </select>
+      <select
+      onChange={(e: any) => handleInput(e, "profession")}
+      value={character.profession}>
+        {(Object.values(Profession).filter(value => typeof value === 'string') as string[])
+        .map((profession: string, i: number) => {
+          if (typeof profession === "string") {
+            return (
+              <option value={profession} key={i}>{profession}</option>
+            )
+          }
+        })}
+      </select>
+      {/* <div>
         <FormInput
           name="profession"
+          type="select"
           display="Class"
           handler={handleInput}
           value={character.profession}
         />
-      </div>
+      </div> */}
       <div>
         <FormInput
           type="number"

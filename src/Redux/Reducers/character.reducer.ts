@@ -1,13 +1,11 @@
-import { Character } from "../../Components/CharCreator/CharacterForm";
+import Character, {Race, Profession} from "../../Character/Character";
 import * as ActionTypes from "../ActionTypes/character.action.types";
-import * as ActionCreators from "../ActionCreators/character.action.creators";
-import { Action } from "redux";
 
 const initialState: Character = {
   name: "",
   level: 0,
-  race: "",
-  profession: "",
+  race: Race.HUMAN,
+  profession: Profession.FIGHTER,
   str: 0,
   dex: 0,
   con: 0,

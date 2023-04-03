@@ -53,7 +53,6 @@ namespace dnd_weekend_project.Models
             {
                 byte roll = (byte)random.NextInt64(1, 7);
                 rolls.Add(roll);
-                Console.WriteLine(roll);
             }
             rolls.Sort();
             byte stat = (byte)(rolls[2] + rolls[3] + rolls[4]);
