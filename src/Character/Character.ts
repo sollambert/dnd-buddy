@@ -1,13 +1,13 @@
 
-enum Race {}
+export enum Race { HUMAN, ELF, DWARF, GNOME, HALFLING, HALF_ORC, HALF_ELF }
 
-enum Profession {}
+export enum Profession { BARD, CLERIC, DRUID, FIGHTER, RANGER, WIZARD, SORCEROR, PALADIN }
 
 export default class Character {
   name: string;
   level: number;
-  race: string;
-  profession: string;
+  race: Race;
+  profession: Profession;
   str: number | undefined;
   dex: number | undefined;
   con: number | undefined;
@@ -19,8 +19,8 @@ export default class Character {
   constructor(
     name: string,
     level: number,
-    race: string,
-    profession: string,
+    race: Race,
+    profession: Profession,
     str: number | undefined,
     dex: number | undefined,
     con: number | undefined,
