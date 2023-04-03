@@ -3,20 +3,7 @@ import * as ActionTypes from "../ActionTypes/character.action.types";
 import * as ActionCreators from "../ActionCreators/character.action.creators";
 import { Action } from "redux";
 
-export interface CharacterState {
-  name: string;
-  level: number;
-  race: string;
-  profession: string;
-  str: number | undefined;
-  dex: number | undefined;
-  con: number | undefined;
-  int: number | undefined;
-  wis: number | undefined;
-  cha: number | undefined;
-}
-
-const initialState: CharacterState = {
+const initialState: Character = {
   name: "",
   level: 0,
   race: "",
@@ -29,7 +16,21 @@ const initialState: CharacterState = {
   cha: 0,
 };
 
-const characterReducer = (
+export const charactersReducer = (
+  state: Array<Character> = [],
+  action: ActionTypes.CharacterAction
+) => {
+  switch (action.type) {
+    case ActionTypes.SET_CHARACTERS:
+      return action.payload;
+    case ActionTypes.CLEAR_CHARACTERS:
+      return [];
+    default:
+      return state;
+  }
+}
+
+export const characterReducer = (
   state: Character = initialState,
   action: ActionTypes.CharacterAction
 ) => {
@@ -42,5 +43,3 @@ const characterReducer = (
       return state;
   }
 };
-
-export default characterReducer;

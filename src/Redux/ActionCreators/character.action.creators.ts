@@ -8,10 +8,18 @@ export function setCharacter(payload: Character): actions.SetCharacterAction {
   };
 }
 
-export function addCharacter(payload: Character): actions.AddCharacterAction {
+export function setCharacters(payload: Array<Character>): actions.SetCharactersAction {
+  return {
+    type: actions.SET_CHARACTERS,
+    payload,
+  };
+}
+
+export function addCharacter(payload: Character, callback?: () => void): actions.AddCharacterAction {
   return {
     type: actions.ADD_CHARACTER,
     payload,
+    callback
   };
 }
 

@@ -1,9 +1,9 @@
 import { SagaIterator } from 'redux-saga';
-import { all, call } from 'redux-saga/effects'
+import { all, call, fork } from 'redux-saga/effects'
 import characterSaga from './character.saga';
 
-export default function* rootSaga() : SagaIterator {
+export default function* rootSaga() {
     yield all([
-        call(()=> characterSaga)
+        fork(characterSaga)
     ]);
 }

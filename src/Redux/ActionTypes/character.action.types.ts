@@ -20,6 +20,13 @@ export interface SetCharacterAction {
   callback?: () => void;
 }
 
+export const SET_CHARACTERS = "character/SET_CHARACTERS";
+export interface SetCharactersAction {
+  type: typeof SET_CHARACTERS;
+  payload: Array<Character>;
+  callback?: () => void;
+}
+
 export const ADD_CHARACTER = "character/ADD_CHARACTER";
 export interface AddCharacterAction {
   type: typeof ADD_CHARACTER;
@@ -30,6 +37,12 @@ export interface AddCharacterAction {
 export const CLEAR_CHARACTER = "character/CLEAR_CHARACTER";
 export interface ClearCharacterAction {
     type: typeof CLEAR_CHARACTER;
+    callback?: () => void;
+}
+
+export const CLEAR_CHARACTERS = "character/CLEAR_CHARACTERS";
+export interface ClearCharactersAction {
+    type: typeof CLEAR_CHARACTERS;
     callback?: () => void;
 }
 
@@ -46,5 +59,7 @@ export type CharacterAction =
   | GetCharacterAction
   | GetCharactersAction
   | SetCharacterAction
+  | SetCharactersAction
   | DeleteCharacterAction
-  | ClearCharacterAction;
+  | ClearCharacterAction
+  | ClearCharactersAction;
