@@ -8,9 +8,9 @@ namespace dnd_weekend_project.Models
 {
 
     [JsonConverter(typeof(JsonStringEnumConverter))]
-    public enum Race { HUMAN, ELF, DWARF, GNOME, HALFLING, HALF_ORC, HALF_ELF }
+    public enum Races { HUMAN, ELF, DWARF, GNOME, HALFLING, HALF_ORC, HALF_ELF }
     [JsonConverter(typeof(JsonStringEnumConverter))]
-    public enum Profession { BARD, CLERIC, DRUID, FIGHTER, RANGER, WIZARD, SORCEROR, PALADIN }
+    public enum Professions { BARD, CLERIC, DRUID, FIGHTER, RANGER, WIZARD, SORCEROR, PALADIN }
 
 
     public class Character
@@ -28,34 +28,15 @@ namespace dnd_weekend_project.Models
         public byte Charisma { get; set; }
 
         [Required]
-        public Race PlayerRace { get; set; }
+        public Races Race { get; set; }
         [Required]
-        public Profession PlayerProfession { get; set; }
+        public Professions Profession { get; set; }
 
         public Character() {
             this.Name = "";
-            this.Level = 0;
-            this.PlayerProfession = Profession.FIGHTER;
-            this.PlayerRace = Race.HUMAN;
-            this.Strength = 0;
-            this.Dexterity = 0;
-            this.Constitution = 0;
-            this.Intelligence = 0;
-            this.Wisdom = 0;
-            this.Charisma = 0;
-        }
-
-        public Character(
-            string Name,
-            byte Level,
-            Race PlayerRace,
-            Profession PlayerProfession
-        )
-        {
-            this.Name = Name;
-            this.Level = Level;
-            this.PlayerRace = PlayerRace;
-            this.PlayerProfession = PlayerProfession;
+            this.Level = 1;
+            this.Profession = Professions.FIGHTER;
+            this.Race = Races.HUMAN;
             this.Strength = RollStat();
             this.Dexterity = RollStat();
             this.Constitution = RollStat();
@@ -63,32 +44,6 @@ namespace dnd_weekend_project.Models
             this.Wisdom = RollStat();
             this.Charisma = RollStat();
         }
-
-        public Character(
-            string Name,
-            byte Level,
-            Race PlayerRace,
-            Profession PlayerProfession,
-            byte Strength,
-            byte Dexterity,
-            byte Constitution,
-            byte Intelligence,
-            byte Wisdom,
-            byte Charisma)
-        {
-            this.Name = Name;
-            this.Level = Level;
-            this.PlayerProfession = PlayerProfession;
-            this.PlayerRace = PlayerRace;
-            this.Strength = Strength;
-            this.Dexterity = Dexterity;
-            this.Constitution = Constitution;
-            this.Intelligence = Intelligence;
-            this.Wisdom = Wisdom;
-            this.Charisma = Charisma;
-        }
-
-
 
         public byte RollStat()
         {

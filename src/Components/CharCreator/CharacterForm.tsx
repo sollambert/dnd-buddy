@@ -2,63 +2,11 @@ import React, { useState } from "react";
 import FormInput from "./FormInput.tsx";
 import { useDispatch } from "react-redux";
 import { addCharacter } from "../../Redux/ActionCreators/character.action.creators.ts";
-
-enum Race {}
-
-enum Profession {}
-
-class Character {
-  name: string;
-  level: number;
-  race: string;
-  profession: string;
-  str: number | undefined;
-  dex: number | undefined;
-  con: number | undefined;
-  int: number | undefined;
-  wis: number | undefined;
-  cha: number | undefined;
-  [key: string]: any;
-
-  constructor(
-    name: string,
-    level: number,
-    race: string,
-    profession: string,
-    str: number | undefined,
-    dex: number | undefined,
-    con: number | undefined,
-    int: number | undefined,
-    wis: number | undefined,
-    cha: number | undefined
-  ) {
-    this.name = name;
-    this.level = level;
-    this.race = race;
-    this.profession = profession;
-    this.str = str;
-    this.dex = dex;
-    this.con = con;
-    this.int = int;
-    this.wis = wis;
-    this.cha = cha;
-  }
-}
+import Character from '../../Character/Character.ts'
 
 function CharacterForm(): JSX.Element {
   const [character, setCharacter] = useState<Character>(
-    new Character(
-      "",
-      1,
-      "",
-      "",
-      undefined,
-      undefined,
-      undefined,
-      undefined,
-      undefined,
-      undefined
-    )
+    new Character("",1,"","",0,0,0,0,0,0)
   );
 
   const dispatch = useDispatch();
@@ -111,53 +59,8 @@ function CharacterForm(): JSX.Element {
           value={character.level}
         />
       </div>
-      <div>
-        <FormInput
-          type="number"
-          name="str"
-          display="Strength"
-          handler={handleInput}
-          value={character.str}
-        />
-        <FormInput
-          type="number"
-          name="dex"
-          display="Dexterity"
-          handler={handleInput}
-          value={character.dex}
-        />
-        <FormInput
-          type="number"
-          name="con"
-          display="Constitution"
-          handler={handleInput}
-          value={character.con}
-        />
-        <FormInput
-          type="number"
-          name="int"
-          display="Intelligence"
-          handler={handleInput}
-          value={character.int}
-        />
-        <FormInput
-          type="number"
-          name="wis"
-          display="Wisdom"
-          handler={handleInput}
-          value={character.wis}
-        />
-        <FormInput
-          type="number"
-          name="cha"
-          display="Charisma"
-          handler={handleInput}
-          value={character.cha}
-        />
-      </div>
       <button
         onClick={() => {
-          // setResult(JSON.stringify(character));
           handleSubmit();
         }}
       >

@@ -15,16 +15,16 @@ export function addCharacter(payload: Character): actions.AddCharacterAction {
   };
 }
 
-export function getCharacter(payload: number): actions.GetCharacterAction {
+export function getCharacter(): actions.GetCharacterAction {
   return {
     type: actions.GET_CHARACTER,
-    payload,
   };
 }
 
-export function getCharacters(): actions.GetCharactersAction {
+export function getCharacters(payload: number): actions.GetCharactersAction {
   return {
     type: actions.GET_CHARACTERS,
+    payload,
   };
 }
 

@@ -3,13 +3,13 @@ import { Character } from "../../Components/CharCreator/CharacterForm";
 export const GET_CHARACTER = "character/GET_CHARACTER";
 export interface GetCharacterAction {
   type: typeof GET_CHARACTER;
-  payload: number,
   callback?: () => void;
 }
 
 export const GET_CHARACTERS = "character/GET_CHARACTERS";
 export interface GetCharactersAction {
   type: typeof GET_CHARACTERS;
+  payload: number,
   callback?: () => void;
 }
 

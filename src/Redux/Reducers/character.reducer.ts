@@ -3,20 +3,7 @@ import * as ActionTypes from "../ActionTypes/character.action.types";
 import * as ActionCreators from "../ActionCreators/character.action.creators";
 import { Action } from "redux";
 
-export interface CharacterState {
-  name: string;
-  level: number;
-  race: string;
-  profession: string;
-  str: number | undefined;
-  dex: number | undefined;
-  con: number | undefined;
-  int: number | undefined;
-  wis: number | undefined;
-  cha: number | undefined;
-}
-
-const initialState: CharacterState = {
+const initialState: Character = {
   name: "",
   level: 0,
   race: "",
