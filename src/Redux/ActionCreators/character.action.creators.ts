@@ -15,10 +15,11 @@ export function setCharacters(payload: Array<Character>): actions.SetCharactersA
   };
 }
 
-export function addCharacter(payload: Character): actions.AddCharacterAction {
+export function addCharacter(payload: Character, callback?: () => void): actions.AddCharacterAction {
   return {
     type: actions.ADD_CHARACTER,
     payload,
+    callback
   };
 }
 

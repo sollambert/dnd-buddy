@@ -7,7 +7,7 @@ function* addCharacter({ payload, callback }: ActionTypes.AddCharacterAction) {
   try {
     let { data } = yield call (postCharacter, payload);
     yield put(ActionCreators.setCharacter(data));
-    yield console.log(data);
+    yield put(ActionCreators.getCharacters());
   } catch (error) {
     console.error(error);
   } finally {
@@ -19,7 +19,6 @@ function* getAllCharacters({ callback }: ActionTypes.GetCharactersAction) {
   try {
     let { data } = yield call (getCharacters);
     yield put(ActionCreators.setCharacters(data));
-    yield console.log(data);
   } catch (error) {
     console.error(error);
   } finally {

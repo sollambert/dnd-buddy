@@ -21,7 +21,8 @@ function CharacterForm(): JSX.Element {
   }
 
   const handleSubmit = (): void => {
-    dispatch(addCharacter(character));
+    dispatch(addCharacter(character, () => setCharacter(new Character("",1,"","",0,0,0,0,0,0))
+    ));
   };
 
   return (
