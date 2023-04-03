@@ -1,22 +1,28 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { getCharacter } from "../../Redux/ActionCreators/character.action.creators.ts";
+import { getCharacters } from "../../Redux/ActionCreators/character.action.creators.ts";
 import { useSelector } from 'react-redux';
 import { RootState } from '../../Redux/store.ts';
+import { Character } from '../CharCreator/CharacterForm.tsx';
 
-function CharacterTable() : JSX.Element {
+function CharacterTable(): JSX.Element {
 
     const dispatch = useDispatch();
-    const character = useSelector((store : RootState) => store.characterReducer);
+    const characters = useSelector((store: RootState) => store.charactersReducer);
 
     useEffect(() => {
-        dispatch(getCharacter());
-    }, []); 
+        dispatch(getCharacters());
+    }, []);
 
     return (
-        <>
-        {JSON.stringify(character)}
-        </>
+        <ul>
+            {characters?.map((character: Character, i: number) => {
+                return (
+                <li key={i}>
+                    {JSON.stringify(character)}
+                </li>)
+            })}
+        </ul>
     )
 }
 

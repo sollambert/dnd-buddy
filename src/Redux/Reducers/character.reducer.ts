@@ -16,7 +16,21 @@ const initialState: Character = {
   cha: 0,
 };
 
-const characterReducer = (
+export const charactersReducer = (
+  state: Array<Character> = [],
+  action: ActionTypes.CharacterAction
+) => {
+  switch (action.type) {
+    case ActionTypes.SET_CHARACTERS:
+      return action.payload;
+    case ActionTypes.CLEAR_CHARACTERS:
+      return [];
+    default:
+      return state;
+  }
+}
+
+export const characterReducer = (
   state: Character = initialState,
   action: ActionTypes.CharacterAction
 ) => {
@@ -29,5 +43,3 @@ const characterReducer = (
       return state;
   }
 };
-
-export default characterReducer;

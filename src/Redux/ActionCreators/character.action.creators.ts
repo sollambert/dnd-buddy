@@ -8,6 +8,13 @@ export function setCharacter(payload: Character): actions.SetCharacterAction {
   };
 }
 
+export function setCharacters(payload: Array<Character>): actions.SetCharactersAction {
+  return {
+    type: actions.SET_CHARACTERS,
+    payload,
+  };
+}
+
 export function addCharacter(payload: Character): actions.AddCharacterAction {
   return {
     type: actions.ADD_CHARACTER,
@@ -15,16 +22,16 @@ export function addCharacter(payload: Character): actions.AddCharacterAction {
   };
 }
 
-export function getCharacter(): actions.GetCharacterAction {
+export function getCharacter(payload: number): actions.GetCharacterAction {
   return {
     type: actions.GET_CHARACTER,
+    payload,
   };
 }
 
-export function getCharacters(payload: number): actions.GetCharactersAction {
+export function getCharacters(): actions.GetCharactersAction {
   return {
     type: actions.GET_CHARACTERS,
-    payload,
   };
 }
 

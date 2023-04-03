@@ -3,13 +3,13 @@ import { Character } from "../../Components/CharCreator/CharacterForm";
 export const GET_CHARACTER = "character/GET_CHARACTER";
 export interface GetCharacterAction {
   type: typeof GET_CHARACTER;
+  payload: number,
   callback?: () => void;
 }
 
 export const GET_CHARACTERS = "character/GET_CHARACTERS";
 export interface GetCharactersAction {
   type: typeof GET_CHARACTERS;
-  payload: number,
   callback?: () => void;
 }
 
@@ -17,6 +17,13 @@ export const SET_CHARACTER = "character/SET_CHARACTER";
 export interface SetCharacterAction {
   type: typeof SET_CHARACTER;
   payload: Character;
+  callback?: () => void;
+}
+
+export const SET_CHARACTERS = "character/SET_CHARACTERS";
+export interface SetCharactersAction {
+  type: typeof SET_CHARACTERS;
+  payload: Array<Character>;
   callback?: () => void;
 }
 
@@ -33,6 +40,12 @@ export interface ClearCharacterAction {
     callback?: () => void;
 }
 
+export const CLEAR_CHARACTERS = "character/CLEAR_CHARACTERS";
+export interface ClearCharactersAction {
+    type: typeof CLEAR_CHARACTERS;
+    callback?: () => void;
+}
+
 
 export const DELETE_CHARACTER = "character/DELETE_CHARACTER";
 export interface DeleteCharacterAction {
@@ -46,5 +59,7 @@ export type CharacterAction =
   | GetCharacterAction
   | GetCharactersAction
   | SetCharacterAction
+  | SetCharactersAction
   | DeleteCharacterAction
-  | ClearCharacterAction;
+  | ClearCharacterAction
+  | ClearCharactersAction;
