@@ -2,6 +2,7 @@ import Character, {Race, Profession} from "../../Character/Character";
 import * as ActionTypes from "../ActionTypes/character.action.types";
 
 const initialState: Character = {
+  id: 0,
   name: "",
   level: 0,
   race: Race.HUMAN,

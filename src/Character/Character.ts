@@ -4,6 +4,7 @@ export enum Race { HUMAN, ELF, DWARF, GNOME, HALFLING, HALF_ORC, HALF_ELF }
 export enum Profession { BARD, CLERIC, DRUID, FIGHTER, RANGER, WIZARD, SORCEROR, PALADIN }
 
 export default class Character {
+  id: number;
   name: string;
   level: number;
   race: Race;
@@ -17,6 +18,7 @@ export default class Character {
   [key: string]: any;
 
   constructor(
+    id: number,
     name: string,
     level: number,
     race: Race,
@@ -28,6 +30,7 @@ export default class Character {
     wis: number | undefined,
     cha: number | undefined
   ) {
+    this.id = id;
     this.name = name;
     this.level = level;
     this.race = race;
