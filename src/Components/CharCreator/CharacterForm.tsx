@@ -6,7 +6,7 @@ import Character, {Race, Profession} from '../../Character/Character.ts'
 
 function CharacterForm(): JSX.Element {
   const [character, setCharacter] = useState<Character>(
-    new Character("",1, Race.HUMAN, Profession.FIGHTER,0,0,0,0,0,0)
+    new Character(0,"",1, Race.HUMAN, Profession.FIGHTER,0,0,0,0,0,0)
   );
 
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ function CharacterForm(): JSX.Element {
 
   const handleSubmit = (): void => {
     if (character.name !== "") {
-      dispatch(addCharacter(character, () => setCharacter(new Character("",1, Race.HUMAN, Profession.FIGHTER,0,0,0,0,0,0))));
+      dispatch(addCharacter(character, () => setCharacter(new Character(0,"",1, Race.HUMAN, Profession.FIGHTER,0,0,0,0,0,0))));
     } else {
       alert("Add a name dingus!");
     }
@@ -38,14 +38,6 @@ function CharacterForm(): JSX.Element {
           value={character.name}
         />
       </div>
-      {/* <div>
-        <FormInput
-          name="race"
-          display="Race"
-          handler={handleInput}
-          value={character.race}
-        />
-      </div> */}
       <select
       onChange={(e: any) => handleInput(e, "race")}
       value={character.race}>
@@ -70,15 +62,6 @@ function CharacterForm(): JSX.Element {
           }
         })}
       </select>
-      {/* <div>
-        <FormInput
-          name="profession"
-          type="select"
-          display="Class"
-          handler={handleInput}
-          value={character.profession}
-        />
-      </div> */}
       <div>
         <FormInput
           type="number"
