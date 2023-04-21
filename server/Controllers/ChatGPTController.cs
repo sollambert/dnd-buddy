@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using dnd_weekend_project.Models;
 
 namespace dnd_weekend_project.Controllers
@@ -57,16 +58,21 @@ namespace dnd_weekend_project.Controllers
 
             _context.Add(deserialized);
             _context.SaveChanges();
-            return CreatedAtAction(nameof(GetResponseById), deserialized);
+            return CreatedAtAction(nameof(GetResponseById), deserialized.choices);
         }
 
-        [HttpGet("/request/{id}")]
+        [HttpGet("request")]
+        public IEnumerable<ChatGPTRequest> GetRequests() {
+            return _context.ChatGPTRequests;
+        }
+
+        [HttpGet("request/{id}")]
         public ChatGPTRequest GetRequestById(int id)
         {
             return _context.ChatGPTRequests.Find(id);
         }
 
-        [HttpGet("/response/{id}")]
+        [HttpGet("response/{id}")]
         public ChatGPTResponse GetResponseById(int id)
         {
             return _context.ChatGPTResponses.Find(id);

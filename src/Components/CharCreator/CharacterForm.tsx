@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import FormInput from "./FormInput.tsx";
 import { useDispatch } from "react-redux";
 import { addCharacter } from "../../Redux/ActionCreators/character.action.creators.ts";
-import Character, {Race, Profession} from '../../Character/Character.ts'
+import Character, {Race, Profession} from '../../Types/Character/Character.ts'
 
 function CharacterForm(): JSX.Element {
   const [character, setCharacter] = useState<Character>(
