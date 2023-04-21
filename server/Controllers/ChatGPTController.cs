@@ -24,7 +24,6 @@ namespace dnd_weekend_project.Controllers
         [HttpPost]
         public async Task<IActionResult> SendPrompt([FromBody] ChatGPTRequest request)
         {
-            _context.Add(request);
             string apiKey = Environment.GetEnvironmentVariable("OPENAI_API_KEY");
             string apiUrl = "https://api.openai.com/v1/chat/completions";
 
@@ -48,7 +47,6 @@ namespace dnd_weekend_project.Controllers
             StringContent content = new StringContent(requestBodyJson, Encoding.UTF8, "application/json");
             HttpResponseMessage response = await httpClient.PostAsync(apiUrl, content);
             string responseContent = await response.Content.ReadAsStringAsync();
-            // JsonSerializerSettings jsonSettings = new JsonSerializerSettings(){ ContractResolver = new IgnorePropertiesResolver(new[] { "Prop1", "Prop2" }) };
 
             // Read the response content as a string
             ChatGPTResponse deserialized = JsonConvert.DeserializeObject<ChatGPTResponse>(responseContent);
@@ -56,9 +54,11 @@ namespace dnd_weekend_project.Controllers
             // Print the response content to the console
             Console.WriteLine(deserialized);
 
+            _context.Add(request);
             _context.Add(deserialized);
             _context.SaveChanges();
-            return CreatedAtAction(nameof(GetResponseById), deserialized.choices);
+            
+            return CreatedAtAction(nameof(GetResponseChoicesById), deserialized.choices);
         }
 
         [HttpGet("request")]
@@ -70,6 +70,19 @@ namespace dnd_weekend_project.Controllers
         public ChatGPTRequest GetRequestById(int id)
         {
             return _context.ChatGPTRequests.Find(id);
+        }
+
+        [HttpGet("request/choice/{id}")]
+        public List<ChatGPTResponse.Choice>  GetResponseChoicesById(int id)
+        {
+            Console.WriteLine(id);
+            ChatGPTResponse response = _context.ChatGPTResponses.Find(id);
+            return response.choices;
+        }
+
+        [HttpGet("response")]
+        public IEnumerable<ChatGPTResponse> GetResponses() {
+            return _context.ChatGPTResponses;
         }
 
         [HttpGet("response/{id}")]

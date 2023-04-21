@@ -1,9 +1,11 @@
 using System.ComponentModel.DataAnnotations;
+using Newtonsoft.Json;
 
 namespace dnd_weekend_project.Models
 {
     public class ChatGPTRequest
     {
+        [Key]
         public int Id {get; set;}
         [Required]
         public string Prompt {get; set;}

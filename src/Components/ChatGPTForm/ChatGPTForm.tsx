@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import ChatGPTRequest from '../../Types/ChatGPT/ChatGPTRequest/ChatGPTRequest';
-import { sendPrompt } from '../../Redux/ActionCreators/chatgpt.action.creators';
+import { sendPrompt, getPrompts } from '../../Redux/ActionCreators/chatgpt.action.creators';
 import FormInput from '../FormInput';
 
 function ChatGPTForm(): JSX.Element {
@@ -23,6 +23,11 @@ function ChatGPTForm(): JSX.Element {
     };
 
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getPrompts());
+    }, [])
+
     return (
         <div>
             <FormInput

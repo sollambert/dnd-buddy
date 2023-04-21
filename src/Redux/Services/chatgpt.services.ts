@@ -7,7 +7,7 @@ interface chatGPTResponse {
 }
 
 export async function getChatGPTResponses() : Promise<chatGPTResponse> {
-    return await axios.get('/api/chatgpt');
+    return await axios.get('/api/chatgpt/response');
 }
 
 export async function postChatGPTResponse(

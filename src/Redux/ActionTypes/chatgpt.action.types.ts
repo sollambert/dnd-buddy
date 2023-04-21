@@ -1,4 +1,5 @@
 import ChatGPTRequest from "../../Types/ChatGPT/ChatGPTRequest/ChatGPTRequest";
+import ChatGPTResponse from "../../Types/ChatGPT/ChatGPTResponse/ChatGPTResponse";
 
 export const SEND_PROMPT = "gpt/SEND_PROMPT";
 export interface SendPromptAction {
@@ -13,6 +14,29 @@ export interface GetPromptsAction {
     callback?: () => void;
 }
 
+export const ADD_PROMPT = "gpt/ADD_PROMPT";
+export interface AddPromptAction {
+    type: typeof ADD_PROMPT;
+    payload: ChatGPTResponse;
+    callback?: () => void;
+}
+
+export const SET_PROMPTS = "gpt/SET_PROMPTS";
+export interface SetPromptAction {
+    type: typeof SET_PROMPTS;
+    payload: Array<ChatGPTResponse>;
+    callback?: () => void;
+}
+
+export const CLEAR_PROMPTS = "gpt/CLEAR_PROMPTS";
+export interface ClearPromptsAction {
+    type: typeof CLEAR_PROMPTS;
+    callback?: () => void;
+}
+
 export type ChatGPTAction =
 | SendPromptAction
 | GetPromptsAction
+| AddPromptAction
+| SetPromptAction
+| ClearPromptsAction

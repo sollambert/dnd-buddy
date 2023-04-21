@@ -6,7 +6,7 @@ import { getChatGPTResponses, postChatGPTResponse } from '../Services/chatgpt.se
 function* getPrompts({ callback }: ActionTypes.GetPromptsAction) {
     try {
         let { data } = yield call(getChatGPTResponses);
-        //   yield put(ActionCreators.setPrompts(data));
+        yield put(ActionCreators.setPrompts(data));
         console.log(data);
     } catch (error) {
         console.error(error);
@@ -18,7 +18,7 @@ function* getPrompts({ callback }: ActionTypes.GetPromptsAction) {
 function* sendPrompt({ payload, callback }: ActionTypes.SendPromptAction) {
     try {
         let { data } = yield call(postChatGPTResponse, payload);
-        yield put(ActionCreators.sendPrompt(data));
+        console.log(data);
         yield put(ActionCreators.getPrompts());
     } catch (error) {
         console.error(error);
