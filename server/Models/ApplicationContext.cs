@@ -7,5 +7,7 @@ namespace dnd_weekend_project.Models
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options) {}
 
         public DbSet<Character> Characters { get; set;}
+        public DbSet<ChatGPTResponse> ChatGPTResponses {get; set;}
+        public DbSet<ChatGPTRequest> ChatGPTRequests {get; set;}
     }
 }
