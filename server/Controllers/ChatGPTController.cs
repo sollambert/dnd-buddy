@@ -26,7 +26,7 @@ namespace dnd_weekend_project.Controllers
         {
             _context.Add(request);
             string apiKey = Environment.GetEnvironmentVariable("OPENAI_API_KEY");
-            var apiUrl = "https://api.openai.com/v1/chat/completions";
+            string apiUrl = "https://api.openai.com/v1/chat/completions";
 
             var messages = new[]
                 {

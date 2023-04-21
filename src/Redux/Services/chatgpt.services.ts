@@ -3,11 +3,11 @@ import ChatGPTResponse from "../../Types/ChatGPT/ChatGPTResponse/ChatGPTResponse
 import axios from 'axios';
 
 interface chatGPTResponse {
-    character: ChatGPTResponse;
+    response: ChatGPTResponse;
 }
 
 export async function getChatGPTResponses() : Promise<chatGPTResponse> {
-    return await axios.get('/api/character');
+    return await axios.get('/api/chatgpt');
 }
 
 export async function postChatGPTResponse(

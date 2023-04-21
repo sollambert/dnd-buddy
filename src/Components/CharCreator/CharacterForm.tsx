@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import FormInput from "./FormInput.tsx";
+import FormInput from "../FormInput.tsx";
 import { useDispatch } from "react-redux";
 import { addCharacter } from "../../Redux/ActionCreators/character.action.creators.ts";
 import Character, {Race, Profession} from '../../Types/Character/Character.ts'
