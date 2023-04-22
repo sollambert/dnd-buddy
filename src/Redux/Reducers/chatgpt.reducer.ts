@@ -1,5 +1,6 @@
 import ChatGPTResponse from "../../Types/ChatGPT/ChatGPTResponse/ChatGPTResponse";
 import * as ActionTypes from "../ActionTypes/chatgpt.action.types";
+
 export const characterReducer = (
     state: Array<ChatGPTResponse> = new Array<ChatGPTResponse>(),
     action: ActionTypes.ChatGPTAction
