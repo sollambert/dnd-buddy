@@ -12,7 +12,7 @@ export default class ChatGPTResponse {
     }
 }
 
-class Message {
+export class Message {
     id: number;
     role: string;
     content: string;

@@ -1,7 +1,8 @@
-import ChatGPTResponse from "../../Types/ChatGPT/ChatGPTResponse/ChatGPTResponse";
+import { Action } from "redux";
+import ChatGPTResponse, {Message} from "../../Types/ChatGPT/ChatGPTResponse/ChatGPTResponse";
 import * as ActionTypes from "../ActionTypes/chatgpt.action.types";
 
-export const characterReducer = (
+export const responseReducer = (
     state: Array<ChatGPTResponse> = new Array<ChatGPTResponse>(),
     action: ActionTypes.ChatGPTAction
 ) => {
@@ -16,3 +17,15 @@ export const characterReducer = (
             return state;
     }
 };
+
+export const messageReducer = (
+    state: Array<Message> = new Array<Message>(),
+    action: ActionTypes.ChatGPTAction
+) => {
+    switch (action.type) {
+        case ActionTypes.SET_MESSAGES:
+            return action.payload;
+        default:
+            return state;
+    }
+}

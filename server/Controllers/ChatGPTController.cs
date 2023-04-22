@@ -37,6 +37,7 @@ namespace dnd_weekend_project.Controllers
                     new {   role = "system", content = "You are a DND dungeon master."},
                     new {   role = "user",  content = request.Prompt}
                 };
+
             // Create request body
             var requestBody = new
             {

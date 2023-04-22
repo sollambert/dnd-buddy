@@ -1,5 +1,5 @@
 import ChatGPTRequest from "../../Types/ChatGPT/ChatGPTRequest/ChatGPTRequest";
-import ChatGPTResponse from "../../Types/ChatGPT/ChatGPTResponse/ChatGPTResponse";
+import ChatGPTResponse, { Message } from "../../Types/ChatGPT/ChatGPTResponse/ChatGPTResponse";
 import * as actions from "../ActionTypes/chatgpt.action.types";
 
 export function sendPrompt(payload: ChatGPTRequest, callback?: () => void): actions.SendPromptAction {
@@ -23,4 +23,19 @@ export function setPrompts(payload: Array<ChatGPTResponse>, callback?: () => voi
         payload,
         callback
     };
+}
+
+export function getMessages(callback?: () => void): actions.GetMessages {
+    return {
+        type: actions.GET_MESSAGES,
+        callback
+    };
+}
+
+export function setMessages(payload: Array<Message>, callback?: () => void): actions.SetMessages {
+    return {
+        type: actions.SET_MESSAGES,
+        payload,
+        callback
+    }
 }

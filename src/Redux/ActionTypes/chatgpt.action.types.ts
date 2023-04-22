@@ -1,10 +1,23 @@
 import ChatGPTRequest from "../../Types/ChatGPT/ChatGPTRequest/ChatGPTRequest";
-import ChatGPTResponse from "../../Types/ChatGPT/ChatGPTResponse/ChatGPTResponse";
+import ChatGPTResponse, {Message} from "../../Types/ChatGPT/ChatGPTResponse/ChatGPTResponse";
 
 export const SEND_PROMPT = "gpt/SEND_PROMPT";
 export interface SendPromptAction {
     type: typeof SEND_PROMPT;
     payload: ChatGPTRequest;
+    callback?: () => void;
+}
+
+export const GET_MESSAGES = "gpt/GET_MESSAGES";
+export interface GetMessages {
+    type: typeof GET_MESSAGES;
+    callback?: () => void;
+}
+
+export const SET_MESSAGES = "gpt/SET_MESSAGES";
+export interface SetMessages {
+    type: typeof SET_MESSAGES;
+    payload: Array<Message>;
     callback?: () => void;
 }
 
@@ -40,3 +53,5 @@ export type ChatGPTAction =
 | AddPromptAction
 | SetPromptAction
 | ClearPromptsAction
+| GetMessages
+| SetMessages
