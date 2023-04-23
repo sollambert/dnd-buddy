@@ -20,8 +20,9 @@ function ChatGPTTable(): JSX.Element {
                 console.log(message)
                 return (
                 <div key={i} style={{textAlign: "left", margin: "1em"}}>
-                    {message.content};
-                </div>)
+                    {message.content}
+                </div>
+                )
             })}
         </>
     )

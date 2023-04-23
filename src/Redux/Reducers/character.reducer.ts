@@ -7,12 +7,12 @@ const initialState: Character = {
   level: 0,
   race: Race.HUMAN,
   profession: Profession.FIGHTER,
-  str: 0,
-  dex: 0,
-  con: 0,
-  int: 0,
-  wis: 0,
-  cha: 0,
+  strength: 0,
+  dexterity: 0,
+  constitution: 0,
+  intelligence: 0,
+  wisdom: 0,
+  charisma: 0,
 };
 
 export const charactersReducer = (

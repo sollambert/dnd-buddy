@@ -6,16 +6,14 @@ import Character, {
   Race,
   Profession,
 } from "../../Types/Character/Character.ts";
-import ChatGPTForm from "../ChatGPT/ChatGPTForm/ChatGPTForm.tsx";
-import ChatGPTTable from "../ChatGPT/ChatGPTTable/ChatGPTTable.tsx";
+import ChatGPTForm from "../ChatGPT/ChatGPTForm/ChatGPTForm";
 
 function CharacterForm(): JSX.Element {
   const [character, setCharacter] = useState<Character>(
-    new Character(0, "", 1, Race.HUMAN, Profession.FIGHTER, 0, 0, 0, 0, 0, 0)
+    new Character(0, "", 1, Race.HUMAN, Profession.FIGHTER)
   );
 
   const dispatch = useDispatch();
-  const [result, setResult] = useState<string>("");
 
   function handleInput(event: any, key: string) {
     if (key === "level") {
@@ -36,12 +34,6 @@ function CharacterForm(): JSX.Element {
               1,
               Race.HUMAN,
               Profession.FIGHTER,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0
             )
           )
         )
@@ -120,7 +112,6 @@ function CharacterForm(): JSX.Element {
         </button>
         <ChatGPTForm width="40vw" />
       </div>
-      <ChatGPTTable />
     </> 
   );
 }

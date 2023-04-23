@@ -9,7 +9,7 @@ namespace dnd_weekend_project.Models
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum Races { HUMAN, ELF, DWARF, GNOME, HALFLING, HALF_ORC, HALF_ELF }
     [JsonConverter(typeof(JsonStringEnumConverter))]
-    public enum Professions { BARD, CLERIC, DRUID, FIGHTER, RANGER, WIZARD, SORCEROR, PALADIN }
+    public enum Professions { BARD, CLERIC, DRUID, FIGHTER, RANGER, ROGUE, WIZARD, SORCEROR, PALADIN }
 
 
     public class Character

@@ -28,8 +28,8 @@ function Nav({}: Props): JSX.Element {
       <Link to="/campaigns" className="nav-button">
         CAMPAIGNS
       </Link>
-      <Link to="/monsters" className="nav-button">
-        MONSTERS
+      <Link to="/resources" className="nav-button">
+        RESOURCES
       </Link>
     </div>
   );
