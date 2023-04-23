@@ -7,7 +7,11 @@ import FormInput from '../../FormInput';
 import ChatGPTRequest from '../../../Types/ChatGPT/ChatGPTRequest/ChatGPTRequest';
 import { Message } from '../../../Types/ChatGPT/ChatGPTResponse/ChatGPTResponse';
 
-function ChatGPTForm(): JSX.Element {
+type Props = {
+    width?: string;
+};
+
+function ChatGPTForm({width}: Props): JSX.Element {
     const [request, setRequest] = useState<ChatGPTRequest>(
         new ChatGPTRequest('', 1.0)
     );
@@ -39,6 +43,7 @@ function ChatGPTForm(): JSX.Element {
                 display="Prompt"
                 handler={handleInput}
                 value={request.prompt}
+                width={width ? width : "80vw"}
             />
             <button
                 onClick={() => {

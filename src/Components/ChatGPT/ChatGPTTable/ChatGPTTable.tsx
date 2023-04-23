@@ -15,14 +15,15 @@ function ChatGPTTable(): JSX.Element {
     }, []);
 
     return (
-        <ul>
+        <>
             {messages?.map((message: Message, i: number) => {
+                console.log(message)
                 return (
-                <li key={i}>
-                    {JSON.stringify(message)}
-                </li>)
+                <div key={i} style={{textAlign: "left", margin: "1em"}}>
+                    {message.content};
+                </div>)
             })}
-        </ul>
+        </>
     )
 }
 

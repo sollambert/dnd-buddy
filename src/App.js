@@ -1,16 +1,37 @@
 import "./App.css";
-import {CharacterForm} from "./Components/CharCreator/CharacterForm.tsx";
-import CharacterTable from "./Components/CharacterTable/CharacterTable.tsx";
-import ChatGPTForm from "./Components/ChatGPT/ChatGPTForm/ChatGPTForm.tsx";
-import ChatGPTTable from "./Components/ChatGPT/ChatGPTTable/ChatGPTTable";
+import {
+  HashRouter as Router,
+  Redirect,
+  Switch,
+  Route,
+} from "react-router-dom";
+
+import Nav from "./Components/Nav/Nav";
+import Home from "./Components/Views/Home/Home"
+import Characters from "./Components/Views/Characters/Characters"
 
 function App() {
   return (
     <div className="App">
-        <CharacterForm />
-        <CharacterTable />
-        <ChatGPTForm />
-        <ChatGPTTable />
+      <Router>
+        <Switch>
+          <Route path="/" exact>
+            <Redirect to="/home" />
+          </Route>
+          <Route path="/home" exact>
+            <Nav />
+            <Home />
+          </Route>
+          <Route path="/characters" exact>
+            <Nav />
+            <Characters />
+          </Route>
+          <Route>
+            <Nav />
+            <h1>404</h1>
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
