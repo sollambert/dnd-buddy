@@ -9,6 +9,7 @@ import {
 import Nav from "./Components/Nav/Nav";
 import Home from "./Components/Views/Home/Home"
 import Characters from "./Components/Views/Characters/Characters"
+import Resources from "./Components/Views/Resources/Resources"
 
 function App() {
   return (
@@ -25,6 +26,18 @@ function App() {
           <Route path="/characters" exact>
             <Nav />
             <Characters />
+          </Route>
+          <Route path="/resources" exact>
+            <Nav />
+            <Resources />
+          </Route>
+          <Route path="/resources/:endpoint" exact>
+            <Nav />
+            <Resources />
+          </Route>
+          <Route path="/resources/:endpoint/:id" exact>
+            <Nav />
+            <Resources />
           </Route>
           <Route>
             <Nav />
