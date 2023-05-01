@@ -13,11 +13,12 @@ type Props = {
 type Details = { [key: string]: any };
 
 function ResourceDetails({ details, direction, changeTitle }: Props): JSX.Element {
+  // Init history hook
   const history = useHistory();
 
   useEffect(() => {
+    // Update page title to reflect current object user is looking at
     if (changeTitle && details?.name) {
-      // console.log(details)
       document.title = details.name;
       return () => {
         document.title = 'D&D Buddy';
@@ -37,20 +38,27 @@ function ResourceDetails({ details, direction, changeTitle }: Props): JSX.Elemen
           flexWrap: 'wrap'
         }}
       >
+        {/* Add image if it exists */}
         {details.image ? <img style={{ width: "20vw" }} src={`https://www.dnd5eapi.co${details.image}`} alt="" /> : ''}
+        {/* Iterate through details object and display the inner content */}
         {Object.keys(details).map((detail, i) => {
+          // Filter keys that need to be displayed as links
           if (detail == 'spells') {
             return <ResourceLink key={i} label="SPELLS" path={details[detail].replace('/api/', '')}/>
           } else if (detail == 'class_levels') {
             return <ResourceLink key={i} label="CLASS-LEVELS" path={details[detail].replace('/api/', '')}/>
-          } else if (detail != 'url'){
+          }
+          // Display value of current key if it does not match a key that does not need to be displayed
+          else if (detail != 'url'){
             return (
               <div key={i}>
                 {details[detail] && (details[detail].length == undefined || details[detail].length != 0) ? (
                   <div style={{ display: "flex", flexDirection: "row" }}>
+                    {/* Prevent array index from displaying */}
                     {Array.isArray(details) ? (
                       ""
                     ) : (
+                      // Display current key
                       <div
                         style={{ border: "1px solid #000000", padding: ".25em" }}
                       >
@@ -60,13 +68,15 @@ function ResourceDetails({ details, direction, changeTitle }: Props): JSX.Elemen
                     <div
                       style={{ border: "1px solid #000000", padding: ".25em" }}
                     >
+                      {/* Determine if current value is an object to continue recursion or exit recursive component calls */}
                       {typeof details[detail] === "object" ? (
                         <>
+                        {/* Check if key and value should be displayed as ResourceItem component or as recursive ResourceDetails component */}
                           {Object.keys(details[detail]).length === 3
-                            // && details[detail].index
                             && details[detail].name
                             && details[detail].url ? <ResourceItem result={details[detail]} /> :
                             <ResourceDetails details={details[detail]} direction={
+                              // Determine which keys to display inline
                               detail === 'options'
                                 || detail === 'equipment'
                                 || detail === 'proficiencies'
@@ -91,12 +101,15 @@ function ResourceDetails({ details, direction, changeTitle }: Props): JSX.Elemen
                         </>
                       ) : (
                         <>
+                          {/* Add click listeners for urls */}
                           {detail === "url" ?
+                            // Middle mouse button handler
                             <div onAuxClick={(e) => {
                               if (e.button === 1) {
                                 window.open(details[detail].replace('/api/', '/resources/'));
                               }
                             }}
+                            // Click listener to open new API url
                               onClick={() => {
                                 history.push(details[detail].replace('/api/', '/resources/'));
                               }}>
