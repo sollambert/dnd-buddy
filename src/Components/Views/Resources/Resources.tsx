@@ -5,6 +5,7 @@ import axios from "axios";
 import { useParams, useHistory } from "react-router-dom";
 import ResourceLink from "./ResourceLink";
 import ResourceItem from "./ResourceItem";
+import ResourceDetails from "./ResourceDetails";
 
 type Props = {};
 
@@ -27,6 +28,7 @@ function Resources({}: Props): JSX.Element {
   const [result, setResult] = useState<ApiResponse | undefined>({
     results: [],
   });
+  const [details, setDetails] = useState({});
 
   const params: Params = useParams();
 
@@ -35,7 +37,8 @@ function Resources({}: Props): JSX.Element {
       axios
         .get(`/srdapi/${params.endpoint}/${params.index}`)
         .then((response) => {
-          setResult(response.data);
+          setDetails(response.data);
+          setResult(undefined)
         })
         .catch((err) => {
           console.error(err);
@@ -45,15 +48,14 @@ function Resources({}: Props): JSX.Element {
         .get(`/srdapi/${params.endpoint}`)
         .then((response) => {
           setResult(response.data);
-          // console.log(response);
         })
         .catch((err) => {
           console.error(err);
         });
     }
-  }, [params.endpoint]);
+  }, [params]);
 
-  console.log(params);
+  console.log(result);
 
   return (
     <>
@@ -80,9 +82,12 @@ function Resources({}: Props): JSX.Element {
         </div>
       ) : (
         <>
-          {result?.results.map((result, i) => {
-            return <ResourceItem result={result} key={i} />;
-          })}
+          {result?.results
+            ? result.results.map((result, i) => {
+                return <ResourceItem result={result} key={i} />;
+              })
+            : 
+            <ResourceDetails details={details}/>}
         </>
       )}
     </>

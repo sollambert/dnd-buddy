@@ -35,7 +35,7 @@ function App() {
             <Nav />
             <Resources />
           </Route>
-          <Route path="/resources/:endpoint/:id" exact>
+          <Route path="/resources/:endpoint/:index" exact>
             <Nav />
             <Resources />
           </Route>
