@@ -30,6 +30,7 @@ function Resources({ }: Props): JSX.Element {
     results: [],
   });
   const [details, setDetails] = useState({});
+  const [search, setSearch] = useState('');
 
   const params: Params = useParams();
 
@@ -64,6 +65,11 @@ function Resources({ }: Props): JSX.Element {
           console.error(err);
         });
     }
+    return () => {
+      setDetails({});
+      setSearch('');
+      setResult(undefined);
+    }
   }, [params]);
 
   return (
@@ -96,13 +102,24 @@ function Resources({ }: Props): JSX.Element {
         <>
           {result?.results
             ?
-            <div style={{display:"flex", flexDirection:"row", flexWrap:"wrap" }}>{
-              result.results.map((result, i) => {
-                return <ResourceItem result={result} key={i} />
-              })}
-            </div>
+            <>
+              <input
+                style={{ width: "20vw", height: "2em" }}
+                type="text"
+                placeholder="Search..."
+                value={search}
+                onChange={(e) => { setSearch(e.target.value) }} />
+              <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>{
+                result.results.map((result, i) => {
+                  if (search == ''
+                    || (result.name && result.name.toLocaleLowerCase().includes(search.toLowerCase()))) {
+                    return <ResourceItem result={result} key={i} />
+                  }
+                })}
+              </div>
+            </>
             :
-            <ResourceDetails details={details} changeTitle={true}/>}
+            <ResourceDetails details={details} changeTitle={true} />}
         </>
       )}
     </>

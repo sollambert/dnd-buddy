@@ -22,4 +22,6 @@ ENV ASPNETCORE_URLS=https://*:8080
 WORKDIR /app
 COPY --from=publish /app/publish .
 
+RUN npm start
+
 ENTRYPOINT ["dotnet", "dnd-buddy.dll"]

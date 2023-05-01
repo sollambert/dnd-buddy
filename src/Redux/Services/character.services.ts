@@ -15,7 +15,7 @@ interface charactersResponse {
 export async function postCharacter(
     payload: Character
 ) : Promise<characterResponse> {
-    console.log(payload);
+    // console.log(payload);
     return await axios.post('/api/character', payload)
 }
 

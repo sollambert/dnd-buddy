@@ -7,7 +7,7 @@ function* getPrompts({ callback }: ActionTypes.GetPromptsAction) {
     try {
         let { data } = yield call(getChatGPTResponses);
         yield put(ActionCreators.setPrompts(data));
-        console.log(data);
+        // console.log(data);
     } catch (error) {
         console.error(error);
     } finally {
