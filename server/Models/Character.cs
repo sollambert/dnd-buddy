@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System;
 using System.Collections.Generic;
 
-namespace dnd_weekend_project.Models
+namespace dnd_buddy.Models
 {
 
     [JsonConverter(typeof(JsonStringEnumConverter))]

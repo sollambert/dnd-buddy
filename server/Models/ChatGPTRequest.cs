@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
 
-namespace dnd_weekend_project.Models
+namespace dnd_buddy.Models
 {
     public class ChatGPTRequest
     {

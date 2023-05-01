@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using dnd_weekend_project.Models;
+using dnd_buddy.Models;
 
-namespace dnd_weekend_project.Migrations
+namespace dnd_buddy.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
     [Migration("20230401200853_TestingNewChanges")]
@@ -20,7 +20,7 @@ namespace dnd_weekend_project.Migrations
                 .HasAnnotation("ProductVersion", "5.0.8")
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-            modelBuilder.Entity("dnd_weekend_project.Models.Character", b =>
+            modelBuilder.Entity("dnd_buddy.Models.Character", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

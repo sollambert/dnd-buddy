@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using dnd_weekend_project.Models;
+using dnd_buddy.Models;
 
 #nullable disable
 
-namespace dnd_weekend_project.Migrations
+namespace dnd_buddy.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
     [Migration("20230423024328_AddedRogueToProfessions")]
@@ -25,7 +25,7 @@ namespace dnd_weekend_project.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("dnd_weekend_project.Models.Character", b =>
+            modelBuilder.Entity("dnd_buddy.Models.Character", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -69,7 +69,7 @@ namespace dnd_weekend_project.Migrations
                     b.ToTable("Characters");
                 });
 
-            modelBuilder.Entity("dnd_weekend_project.Models.ChatGPTRequest", b =>
+            modelBuilder.Entity("dnd_buddy.Models.ChatGPTRequest", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -89,7 +89,7 @@ namespace dnd_weekend_project.Migrations
                     b.ToTable("ChatGPTRequests");
                 });
 
-            modelBuilder.Entity("dnd_weekend_project.Models.ChatGPTResponse", b =>
+            modelBuilder.Entity("dnd_buddy.Models.ChatGPTResponse", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -119,7 +119,7 @@ namespace dnd_weekend_project.Migrations
                     b.ToTable("ChatGPTResponses");
                 });
 
-            modelBuilder.Entity("dnd_weekend_project.Models.ChatGPTResponse+Choice", b =>
+            modelBuilder.Entity("dnd_buddy.Models.ChatGPTResponse+Choice", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -148,7 +148,7 @@ namespace dnd_weekend_project.Migrations
                     b.ToTable("Choice");
                 });
 
-            modelBuilder.Entity("dnd_weekend_project.Models.ChatGPTResponse+Message", b =>
+            modelBuilder.Entity("dnd_buddy.Models.ChatGPTResponse+Message", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -167,7 +167,7 @@ namespace dnd_weekend_project.Migrations
                     b.ToTable("Message");
                 });
 
-            modelBuilder.Entity("dnd_weekend_project.Models.ChatGPTResponse+Usage", b =>
+            modelBuilder.Entity("dnd_buddy.Models.ChatGPTResponse+Usage", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -189,29 +189,29 @@ namespace dnd_weekend_project.Migrations
                     b.ToTable("Usage");
                 });
 
-            modelBuilder.Entity("dnd_weekend_project.Models.ChatGPTResponse", b =>
+            modelBuilder.Entity("dnd_buddy.Models.ChatGPTResponse", b =>
                 {
-                    b.HasOne("dnd_weekend_project.Models.ChatGPTResponse+Usage", "usage")
+                    b.HasOne("dnd_buddy.Models.ChatGPTResponse+Usage", "usage")
                         .WithMany()
                         .HasForeignKey("usageId");
 
                     b.Navigation("usage");
                 });
 
-            modelBuilder.Entity("dnd_weekend_project.Models.ChatGPTResponse+Choice", b =>
+            modelBuilder.Entity("dnd_buddy.Models.ChatGPTResponse+Choice", b =>
                 {
-                    b.HasOne("dnd_weekend_project.Models.ChatGPTResponse", null)
+                    b.HasOne("dnd_buddy.Models.ChatGPTResponse", null)
                         .WithMany("choices")
                         .HasForeignKey("ChatGPTResponseId");
 
-                    b.HasOne("dnd_weekend_project.Models.ChatGPTResponse+Message", "message")
+                    b.HasOne("dnd_buddy.Models.ChatGPTResponse+Message", "message")
                         .WithMany()
                         .HasForeignKey("messageId");
 
                     b.Navigation("message");
                 });
 
-            modelBuilder.Entity("dnd_weekend_project.Models.ChatGPTResponse", b =>
+            modelBuilder.Entity("dnd_buddy.Models.ChatGPTResponse", b =>
                 {
                     b.Navigation("choices");
                 });

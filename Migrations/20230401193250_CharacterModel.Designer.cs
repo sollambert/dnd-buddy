@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using dnd_weekend_project.Models;
+using dnd_buddy.Models;
 
 #nullable disable
 
-namespace dnd_weekend_project.Migrations
+namespace dnd_buddy.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
     [Migration("20230401193250_CharacterModel")]
@@ -24,7 +24,7 @@ namespace dnd_weekend_project.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("dnd_weekend_project.Models.Character", b =>
+            modelBuilder.Entity("dnd_buddy.Models.Character", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

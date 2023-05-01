@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace dnd_weekend_project.Models
+namespace dnd_buddy.Models
 {
     public class ApplicationContext : DbContext
     {

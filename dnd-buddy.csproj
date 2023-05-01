@@ -6,7 +6,7 @@
     <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
     <IsPackable>false</IsPackable>
     <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
-    <RootNamespace>dnd_weekend_project</RootNamespace>
+    <RootNamespace>dnd_buddy</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using Newtonsoft.Json;
 
-namespace dnd_weekend_project.Models
+namespace dnd_buddy.Models
 {
     public class ChatGPTResponse
     {

@@ -7,7 +7,7 @@ using Newtonsoft.Json.Linq;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
-namespace dnd_weekend_project.Controllers
+namespace dnd_buddy.Controllers
 {
     [ApiController]
     [Route("[controller]")]

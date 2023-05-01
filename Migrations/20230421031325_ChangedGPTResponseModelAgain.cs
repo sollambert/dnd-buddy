@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace dnd_weekend_project.Migrations
+namespace dnd_buddy.Migrations
 {
     /// <inheritdoc />
     public partial class ChangedGPTResponseModelAgain : Migration

@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using dnd_weekend_project.Models;
+using dnd_buddy.Models;
 
 #nullable disable
 
-namespace dnd_weekend_project.Migrations
+namespace dnd_buddy.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
     [Migration("20230421014950_CreateGPTClasses")]
@@ -26,7 +26,7 @@ namespace dnd_weekend_project.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("dnd_weekend_project.Models.Character", b =>
+            modelBuilder.Entity("dnd_buddy.Models.Character", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -70,7 +70,7 @@ namespace dnd_weekend_project.Migrations
                     b.ToTable("Characters");
                 });
 
-            modelBuilder.Entity("dnd_weekend_project.Models.ChatGPTRequest", b =>
+            modelBuilder.Entity("dnd_buddy.Models.ChatGPTRequest", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -90,7 +90,7 @@ namespace dnd_weekend_project.Migrations
                     b.ToTable("ChatGPTRequests");
                 });
 
-            modelBuilder.Entity("dnd_weekend_project.Models.ChatGPTResponse", b =>
+            modelBuilder.Entity("dnd_buddy.Models.ChatGPTResponse", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

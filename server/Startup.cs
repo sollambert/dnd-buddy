@@ -6,10 +6,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
-using dnd_weekend_project.Models;
+using dnd_buddy.Models;
 using System;
 
-namespace dnd_weekend_project
+namespace dnd_buddy
 {
     public class Startup
     {

@@ -3,7 +3,7 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.IO;
 
-namespace dnd_weekend_project
+namespace dnd_buddy
 {
     public class Program
     {

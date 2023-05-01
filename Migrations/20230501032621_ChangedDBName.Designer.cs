@@ -12,15 +12,15 @@ using dnd_buddy.Models;
 namespace dnd_buddy.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20230421185411_CreatedForeignKeyForMessage")]
-    partial class CreatedForeignKeyForMessage
+    [Migration("20230501032621_ChangedDBName")]
+    partial class ChangedDBName
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.4")
+                .HasAnnotation("ProductVersion", "7.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
