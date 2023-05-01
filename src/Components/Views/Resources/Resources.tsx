@@ -78,13 +78,16 @@ function Resources({}: Props): JSX.Element {
           <ResourceLink path="feats" />
           <ResourceLink path="languages" />
           <ResourceLink path="proficiencies" />
-          <ResourceLink path="spells" />
+          <ResourceLink path="conditions" />
+          <ResourceLink path="damage-types" />
+          <ResourceLink path="magic-schools" />
+          <ResourceLink path="equipment" />
         </div>
       ) : (
         <>
           {result?.results
             ? result.results.map((result, i) => {
-                return <ResourceItem result={result} key={i} />;
+                return <ResourceItem result={result} key={i} />
               })
             : 
             <ResourceDetails details={details}/>}
