@@ -5,7 +5,7 @@ import { addCharacter } from "../../Redux/ActionCreators/character.action.creato
 import Character, {
   Race,
   Profession,
-} from "../../Types/Character/Character.ts";
+} from "../../Classes/Character/Character.ts";
 import ChatGPTForm from "../ChatGPT/ChatGPTForm/ChatGPTForm";
 
 function CharacterForm(): JSX.Element {

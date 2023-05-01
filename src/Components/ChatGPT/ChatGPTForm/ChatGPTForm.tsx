@@ -4,8 +4,8 @@ import { sendPrompt, getPrompts, getMessages } from '../../../Redux/ActionCreato
 import FormInput from '../../FormInput';
 
 // ChatGPT types
-import ChatGPTRequest from '../../../Types/ChatGPT/ChatGPTRequest/ChatGPTRequest';
-import { Message } from '../../../Types/ChatGPT/ChatGPTResponse/ChatGPTResponse';
+import ChatGPTRequest from '../../../Classes/ChatGPT/ChatGPTRequest/ChatGPTRequest';
+import { Message } from '../../../Classes/ChatGPT/ChatGPTResponse/ChatGPTResponse';
 
 type Props = {
     width?: string;

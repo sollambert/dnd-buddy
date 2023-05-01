@@ -1,4 +1,4 @@
-import Character, {Race, Profession} from "../../Types/Character/Character";
+import Character, {Race, Profession} from "../../Classes/Character/Character";
 import * as ActionTypes from "../ActionTypes/character.action.types";
 
 const initialState: Character = {

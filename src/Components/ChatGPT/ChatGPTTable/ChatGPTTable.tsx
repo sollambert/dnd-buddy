@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { getMessages } from '../../../Redux/ActionCreators/chatgpt.action.creators';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../Redux/store';
-import { Message } from '../../../Types/ChatGPT/ChatGPTResponse/ChatGPTResponse';
+import { Message } from '../../../Classes/ChatGPT/ChatGPTResponse/ChatGPTResponse';
 
 function ChatGPTTable(): JSX.Element {
 
