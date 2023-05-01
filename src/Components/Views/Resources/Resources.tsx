@@ -12,6 +12,7 @@ type Props = {};
 type Params = {
   endpoint?: string;
   index?: string;
+  subindex?: string;
 };
 
 type ApiResponse = {
@@ -24,7 +25,7 @@ type ApiResult = {
   url: string;
 };
 
-function Resources({}: Props): JSX.Element {
+function Resources({ }: Props): JSX.Element {
   const [result, setResult] = useState<ApiResponse | undefined>({
     results: [],
   });
@@ -33,7 +34,17 @@ function Resources({}: Props): JSX.Element {
   const params: Params = useParams();
 
   useEffect(() => {
-    if (params.endpoint != undefined && params.index != undefined) {
+    if (params.endpoint != undefined && params.index != undefined && params.subindex != undefined) {
+      axios
+        .get(`/srdapi/${params.endpoint}/${params.index}/${params.subindex}`)
+        .then((response) => {
+          setDetails(response.data);
+          setResult(undefined)
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    } else if (params.endpoint != undefined && params.index != undefined) {
       axios
         .get(`/srdapi/${params.endpoint}/${params.index}`)
         .then((response) => {
@@ -55,8 +66,6 @@ function Resources({}: Props): JSX.Element {
     }
   }, [params]);
 
-  console.log(result);
-
   return (
     <>
       {params.endpoint == undefined ? (
@@ -67,30 +76,33 @@ function Resources({}: Props): JSX.Element {
             justifyContent: "space-evenly",
           }}
         >
-          <ResourceLink path="spells" />
-          <ResourceLink path="races" />
-          <ResourceLink path="monsters" />
           <ResourceLink path="ability-scores" label="ABILITIES" />
-          <ResourceLink path="classes" />
           <ResourceLink path="alignments" />
           <ResourceLink path="backgrounds" />
-          <ResourceLink path="traits" />
-          <ResourceLink path="feats" />
-          <ResourceLink path="languages" />
-          <ResourceLink path="proficiencies" />
+          <ResourceLink path="classes" />
           <ResourceLink path="conditions" />
           <ResourceLink path="damage-types" />
+          <ResourceLink path="equipment-categories" />
+          <ResourceLink path="feats" />
+          <ResourceLink path="languages" />
           <ResourceLink path="magic-schools" />
-          <ResourceLink path="equipment" />
+          <ResourceLink path="monsters" />
+          <ResourceLink path="proficiencies" />
+          <ResourceLink path="races" />
+          <ResourceLink path="spells" />
+          <ResourceLink path="traits" />
         </div>
       ) : (
         <>
           {result?.results
-            ? result.results.map((result, i) => {
+            ?
+            <div style={{display:"flex", flexDirection:"row", flexWrap:"wrap" }}>{
+              result.results.map((result, i) => {
                 return <ResourceItem result={result} key={i} />
-              })
-            : 
-            <ResourceDetails details={details}/>}
+              })}
+            </div>
+            :
+            <ResourceDetails details={details} changeTitle={true}/>}
         </>
       )}
     </>

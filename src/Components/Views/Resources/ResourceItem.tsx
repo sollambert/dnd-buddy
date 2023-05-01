@@ -11,9 +11,14 @@ function ResourceItem({ result }: Props): JSX.Element {
 
   return (
     <>
-      <div onClick={() => {
-        history.push(result.url.replace('/api/', '/resources/'))
-      }}>{result.name}</div>
+      <div className="resource-redirect" style={{ border: "1px solid #000000", padding: ".25em" }} onAuxClick={(e) => {
+        if (e.button === 1) {
+          window.open(result.url.replace('/api/', '/resources/'));
+        }
+      }}
+        onClick={() => {
+          history.push(result.url.replace('/api/', '/resources/'));
+        }}>{result.name}</div>
     </>
   );
 }

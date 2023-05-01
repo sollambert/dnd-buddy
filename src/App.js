@@ -1,6 +1,6 @@
 import "./App.css";
 import {
-  HashRouter as Router,
+  BrowserRouter as Router,
   Redirect,
   Switch,
   Route,
@@ -36,6 +36,10 @@ function App() {
             <Resources />
           </Route>
           <Route path="/resources/:endpoint/:index" exact>
+            <Nav />
+            <Resources />
+          </Route>
+          <Route path="/resources/:endpoint/:index/:subindex" exact>
             <Nav />
             <Resources />
           </Route>
