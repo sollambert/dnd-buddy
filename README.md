@@ -75,8 +75,7 @@ D&D Buddy was designed to alleviate the stress of running a campaign for the ave
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+Follow these steps to get your deployment working on a local machine!
 
 ### Prerequisites
 
