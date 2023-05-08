@@ -3,12 +3,12 @@ import { useDispatch } from 'react-redux';
 import { getMessages } from '../../../Redux/ActionCreators/chatgpt.action.creators';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../Redux/store';
-import { Message } from '../../../Classes/ChatGPT/ChatGPTResponse/ChatGPTResponse';
+import ChatGPTResponse from '../../../Classes/ChatGPT/ChatGPTResponse/ChatGPTResponse';
 
 function ChatGPTTable(): JSX.Element {
 
     const dispatch = useDispatch();
-    const messages = useSelector((store: RootState) => store.messageReducer);
+    const responses = useSelector((store: RootState) => store.responseReducer);
 
     useEffect(() => {
         dispatch(getMessages());
@@ -16,12 +16,19 @@ function ChatGPTTable(): JSX.Element {
 
     return (
         <>
-            {messages?.map((message: Message, i: number) => {
-                console.log(message)
+            {responses?.map((response: ChatGPTResponse, i: number) => {
+                console.log(response)
                 return (
-                <div key={i} style={{textAlign: "left", margin: "1em"}}>
-                    {message.content}
-                </div>
+                    <div key={i} style={{ textAlign: "left", margin: "1em" }}>
+                        <div>
+                            <p>Id: {response.id}</p>
+                            <p>Prompt: {response.request.prompt}</p>
+                            <p>Response: {response.choices.map((choice) => {
+                                    return (choice.message.content)
+                                })}
+                            </p>
+                        </div>
+                    </div>
                 )
             })}
         </>

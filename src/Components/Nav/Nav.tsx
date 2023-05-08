@@ -19,6 +19,9 @@ function Nav({}: Props): JSX.Element {
       <Link to="/home" className="nav-button">
         HOME
       </Link>
+      <Link to="/gpt" className="nav-button">
+        GPT
+      </Link>
       <Link to="/characters" className="nav-button">
         CHARACTERS
       </Link>

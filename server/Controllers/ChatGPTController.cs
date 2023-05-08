@@ -91,8 +91,9 @@ namespace dnd_buddy.Controllers
         {
             // Return responses from database after attaching choices and messages
             return _context.ChatGPTResponses
-            .Include(prop => prop.choices)
-            .ThenInclude(prop => prop.message);
+            .Include(response => response.request)
+            .Include(response => response.choices)
+            .ThenInclude(choice => choice.message);
         }
 
         [HttpGet("response/messages")]

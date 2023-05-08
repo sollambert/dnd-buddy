@@ -26,11 +26,15 @@ function ResourceDetails({ details, direction, changeTitle, searchBar }: Props):
         document.title = 'D&D Buddy';
       }
     }
+    return () => {
+      setSearch('');
+    }
   }, [details])
 
   // console.log(details)
   return (
     <>
+      {/* Display search bar if enabled through props */}
       {searchBar ?
         <input
           style={{ width: "20vw", height: "2em" }}
@@ -51,6 +55,7 @@ function ResourceDetails({ details, direction, changeTitle, searchBar }: Props):
         {details.image ? <img style={{ width: "20vw" }} src={`https://www.dnd5eapi.co${details.image}`} alt="" /> : ''}
         {/* Iterate through details object and display the inner content */}
         {Object.keys(details).map((detail, i) => {
+          // Display further details if search is empty or detail is included within search
           if (search == '' || detail.includes(search)) {
             // Filter keys that need to be displayed as links
             if (detail == 'spells') {

@@ -13,7 +13,6 @@ function Characters({
   <>
     <CharacterForm />
     <CharacterTable />
-    <ChatGPTTable />
   </>);
 }
 

@@ -8,6 +8,7 @@ import {
 
 import Nav from "./Components/Nav/Nav";
 import Home from "./Components/Views/Home/Home"
+import GPTHome from "./Components/Views/GPT/GPTHome"
 import Characters from "./Components/Views/Characters/Characters"
 import Resources from "./Components/Views/Resources/Resources"
 
@@ -22,6 +23,10 @@ function App() {
           <Route path="/home" exact>
             <Nav />
             <Home />
+          </Route>
+          <Route path="/gpt" exact>
+            <Nav />
+            <GPTHome />
           </Route>
           <Route path="/characters" exact>
             <Nav />
