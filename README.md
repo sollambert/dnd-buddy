@@ -75,8 +75,7 @@ D&D Buddy was designed to alleviate the stress of running a campaign for the ave
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+Follow these steps to get your deployment working on a local machine!
 
 ### Prerequisites
 
@@ -107,15 +106,19 @@ To install the dependencies, make sure you're running at least version 18 of Nod
    ```sh
    dotnet ef database update
    ```
-6. Run the server
+6. Create a .env file in the root directory containing your api key for OpenAI's GPT API
+   ```
+   OPENAI_API_KEY=<insert key here>
+   ```
+7. Run the server
    ```sh
    dotnet run
    ```
-7. Run the client
+8. Run the client
    ```sh
    npm start
    ```
-8. Connect to the local site with a web browser at [localhost](http://localhost:3000)
+9. Connect to the local site with a web browser at [localhost](http://localhost:3000)
     
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
