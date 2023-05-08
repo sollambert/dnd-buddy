@@ -119,7 +119,7 @@ function Resources({ }: Props): JSX.Element {
               </div>
             </>
             :
-            <ResourceDetails details={details} changeTitle={true} />}
+            <ResourceDetails details={details} changeTitle={true} searchBar={true}/>}
         </>
       )}
     </>

@@ -21,6 +21,9 @@ namespace dnd_buddy.Models
         public virtual Usage usage { get; set; }
         [ForeignKey("ChatGPTResponseId")]
         public virtual List<Choice> choices { get; set; }
+        [ForeignKey("ChatGPTRequestId")]
+        public virtual ChatGPTRequest request {get; set; }
+
         public class Choice
         {
             public int Id { get; set; }

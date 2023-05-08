@@ -17,7 +17,7 @@ function ChatGPTTable(): JSX.Element {
     return (
         <>
             {messages?.map((message: Message, i: number) => {
-                // console.log(message)
+                console.log(message)
                 return (
                 <div key={i} style={{textAlign: "left", margin: "1em"}}>
                     {message.content}

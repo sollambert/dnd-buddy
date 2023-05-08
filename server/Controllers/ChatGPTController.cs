@@ -58,9 +58,10 @@ namespace dnd_buddy.Controllers
 
             // Read the response content as a string
             ChatGPTResponse deserialized = JsonConvert.DeserializeObject<ChatGPTResponse>(responseContent);
+            deserialized.request = request;
 
             // Print the response content to the console
-            Console.WriteLine(deserialized);
+            Console.WriteLine(deserialized.ToString());
 
             // Add request and deserialized response to context and save changes
             _context.Add(request);
