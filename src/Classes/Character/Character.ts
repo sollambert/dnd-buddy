@@ -1,7 +1,7 @@
 
-export enum Race { HUMAN, ELF, DWARF, GNOME, HALFLING, HALF_ORC, HALF_ELF }
+export enum Race { DWARF, ELF, GNOME, HALF_ORC, HALF_ELF, HALFLING, HUMAN, TIEFLING }
 
-export enum Profession { BARD, CLERIC, DRUID, FIGHTER, RANGER, ROGUE, WIZARD, SORCEROR, PALADIN }
+export enum Profession {BARBARIAN, BARD, CLERIC, DRUID, FIGHTER, MONK, PALADIN, RANGER, ROGUE, SORCEROR, WARLOCK, WIZARD }
 
 export default class Character {
   id: number;
@@ -15,6 +15,7 @@ export default class Character {
   intelligence: number | undefined;
   wisdom: number | undefined;
   charisma: number | undefined;
+  background: string | undefined;
   [key: string]: any;
 
   constructor(
@@ -28,7 +29,8 @@ export default class Character {
     constitution?: number | undefined,
     intelligence?: number | undefined,
     wisdom?: number | undefined,
-    charisma?: number | undefined
+    charisma?: number | undefined,
+    background?: string | undefined
   ) {
     this.id = id;
     this.name = name;
@@ -41,5 +43,6 @@ export default class Character {
     this.intelligence = intelligence;
     this.wisdom = wisdom;
     this.charisma = charisma;
+    this.background = background ? background : ''
   }
 }

@@ -7,9 +7,9 @@ namespace dnd_buddy.Models
 {
 
     [JsonConverter(typeof(JsonStringEnumConverter))]
-    public enum Races { HUMAN, ELF, DWARF, GNOME, HALFLING, HALF_ORC, HALF_ELF }
+    public enum Races { DWARF, ELF, GNOME, HALF_ORC, HALF_ELF, HALFLING, HUMAN, TIEFLING }
     [JsonConverter(typeof(JsonStringEnumConverter))]
-    public enum Professions { BARD, CLERIC, DRUID, FIGHTER, RANGER, ROGUE, WIZARD, SORCEROR, PALADIN }
+    public enum Professions {BARBARIAN, BARD, CLERIC, DRUID, FIGHTER, MONK, PALADIN, RANGER, ROGUE, SORCEROR, WARLOCK, WIZARD }
 
 
     public class Character
@@ -25,6 +25,7 @@ namespace dnd_buddy.Models
         public byte Intelligence { get; set; }
         public byte Wisdom { get; set; }
         public byte Charisma { get; set; }
+        public string Background {get; set; }
 
         [Required]
         public Races Race { get; set; }
@@ -42,6 +43,7 @@ namespace dnd_buddy.Models
             this.Intelligence = RollStat();
             this.Wisdom = RollStat();
             this.Charisma = RollStat();
+            this.Background = "";
         }
 
         public byte RollStat()

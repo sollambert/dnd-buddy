@@ -19,11 +19,12 @@ function FormInput({
 }: Props): JSX.Element {
   return (
     <>
-      <label htmlFor={name}>{display}: </label>
+      <label htmlFor={name}>{display}</label>
       <input
         style={{width}}
         name={name}
         type={type}
+        // defaultValue={type == 'number' ? 0 : ''}
         onChange={(e) => handler(e, name)}
         value={value}
         placeholder={type ? value : `Enter ${name}...`}

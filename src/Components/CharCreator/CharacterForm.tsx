@@ -9,9 +9,9 @@ import Character, {
 import ChatGPTForm from "../ChatGPT/ChatGPTForm/ChatGPTForm";
 
 function CharacterForm(): JSX.Element {
-  const [character, setCharacter] = useState<Character>(
-    new Character(0, "", 1, Race.HUMAN, Profession.FIGHTER)
-  );
+  // const initCharacter = new Character(0, "", 1, Race.DWARF, Profession.BARBARIAN,0,0,0,0,0,0);
+  const initCharacter = new Character(0, "", 1, Race.DWARF, Profession.BARBARIAN);
+  const [character, setCharacter] = useState<Character>(initCharacter);
 
   const dispatch = useDispatch();
 
@@ -27,15 +27,7 @@ function CharacterForm(): JSX.Element {
     if (character.name !== "") {
       dispatch(
         addCharacter(character, () =>
-          setCharacter(
-            new Character(
-              0,
-              "",
-              1,
-              Race.HUMAN,
-              Profession.FIGHTER,
-            )
-          )
+          setCharacter(initCharacter)
         )
       );
     } else {
@@ -48,71 +40,150 @@ function CharacterForm(): JSX.Element {
       <div style={{
         display: "flex",
         flexDirection: "row",
-        justifyContent: "space-evenly"
+        alignItems: "flex-start"
       }}>
-        <div>
-          <FormInput
-            name="name"
-            display="Name"
-            handler={handleInput}
-            value={character.name}
-          />
+        <div style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-evenly",
+        }}>
+          <div>
+            <FormInput
+              name="name"
+              display="Name"
+              handler={handleInput}
+              value={character.name}
+            />
+          </div>
+          <div style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-evenly",
+          }}>
+            <select
+              onChange={(e: any) => handleInput(e, "race")}
+              value={character.race}
+            >
+              {(
+                Object.values(Race).filter(
+                  (value) => typeof value === "string"
+                ) as string[]
+              ).map((race: string, i: number) => {
+                if (typeof race === "string") {
+                  return (
+                    <option value={race} key={i}>
+                      {race}
+                    </option>
+                  );
+                }
+              })}
+            </select>
+            <select
+              onChange={(e: any) => handleInput(e, "profession")}
+              value={character.profession}
+            >
+              {(
+                Object.values(Profession).filter(
+                  (value) => typeof value === "string"
+                ) as string[]
+              ).map((profession: string, i: number) => {
+                if (typeof profession === "string") {
+                  return (
+                    <option value={profession} key={i}>
+                      {profession}
+                    </option>
+                  );
+                }
+              })}
+            </select>
+          </div>
+          <div>
+            <FormInput
+              type="number"
+              name="level"
+              display="Level"
+              handler={handleInput}
+              value={character.level}
+            />
+          </div>
+          <button
+            onClick={() => {
+              handleSubmit();
+            }}
+          >
+            CREATE
+          </button>
         </div>
-        <select
-          onChange={(e: any) => handleInput(e, "race")}
-          value={character.race}
-        >
-          {(
-            Object.values(Race).filter(
-              (value) => typeof value === "string"
-            ) as string[]
-          ).map((race: string, i: number) => {
-            if (typeof race === "string") {
-              return (
-                <option value={race} key={i}>
-                  {race}
-                </option>
-              );
-            }
-          })}
-        </select>
-        <select
-          onChange={(e: any) => handleInput(e, "profession")}
-          value={character.profession}
-        >
-          {(
-            Object.values(Profession).filter(
-              (value) => typeof value === "string"
-            ) as string[]
-          ).map((profession: string, i: number) => {
-            if (typeof profession === "string") {
-              return (
-                <option value={profession} key={i}>
-                  {profession}
-                </option>
-              );
-            }
-          })}
-        </select>
-        <div>
+        <div style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-evenly",
+        }}>
           <FormInput
             type="number"
-            name="level"
-            display="Level"
+            name="strength"
+            display="Strength"
             handler={handleInput}
-            value={character.level}
+            value={character.strength}
+          />
+          <FormInput
+            type="number"
+            name="dexterity"
+            display="Dexterity"
+            handler={handleInput}
+            value={character.dexterity}
+          />
+          <FormInput
+            type="number"
+            name="constitution"
+            display="Constitution"
+            handler={handleInput}
+            value={character.constitution}
           />
         </div>
-        <button
-          onClick={() => {
-            handleSubmit();
-          }}
-        >
-          SHOW
-        </button>
-        <ChatGPTForm width="40vw" />
+        <div style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-evenly",
+        }}>
+          <FormInput
+            type="number"
+            name="intelligence"
+            display="Intelligence"
+            handler={handleInput}
+            value={character.intelligence}
+          />
+          <FormInput
+            type="number"
+            name="wisdom"
+            display="Wisdom"
+            handler={handleInput}
+            value={character.wisdom}
+          />
+          <FormInput
+            type="number"
+            name="charisma"
+            display="Charisma"
+            handler={handleInput}
+            value={character.charisma}
+          />
+        </div>
+        <div style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-evenly",
+          width: '100%', height: '100%'
+        }}>
+          <label htmlFor={'notes'}>Notes</label>
+          <textarea
+            value={character.background}
+            onChange={(e) => handleInput(e, 'background')}
+            rows={6}
+            style={{ width: 'stretch', resize: 'none'}}
+          />
+        </div>
       </div>
-    </> 
+    </>
   );
 }
 

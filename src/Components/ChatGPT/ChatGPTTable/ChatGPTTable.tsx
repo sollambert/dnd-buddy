@@ -22,11 +22,12 @@ function ChatGPTTable(): JSX.Element {
                     <div key={i} style={{ textAlign: "left", margin: "1em" }}>
                         <div>
                             <p>Id: {response.id}</p>
-                            <p>Prompt: {response.request.prompt}</p>
-                            <p>Response: {response.choices.map((choice) => {
+                            <p>{response.request.prompt}</p>
+                            <pre>
+                                {response.choices.map((choice) => {
                                     return (choice.message.content)
                                 })}
-                            </p>
+                            </pre>
                         </div>
                     </div>
                 )
