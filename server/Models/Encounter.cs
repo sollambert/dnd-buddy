@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 namespace dnd_buddy.Models
 {
-
     public class Encounter
     {
         [Key]

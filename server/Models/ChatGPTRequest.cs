@@ -11,12 +11,10 @@ namespace dnd_buddy.Models
         public string Prompt {get; set;}
         [Required]
         public double Temperature {get; set;}
-
         public ChatGPTRequest() {
             this.Prompt = "Tell me a story with a maximum of 100 characters.";
             this.Temperature = 1.0;
         }
-
         public ChatGPTRequest(string Prompt, float Temperature) {
             this.Prompt = Prompt;
             this.Temperature = Temperature;

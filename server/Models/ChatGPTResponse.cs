@@ -11,7 +11,6 @@ namespace dnd_buddy.Models
         [Key]
         [JsonIgnore]
         public int Id { get; set; }
-
         [JsonProperty("id")]
         public string gptId {get;set;}
         public string @object { get; set; }
@@ -23,7 +22,6 @@ namespace dnd_buddy.Models
         public virtual List<Choice> choices { get; set; }
         [ForeignKey("ChatGPTRequestId")]
         public virtual ChatGPTRequest request {get; set; }
-
         public class Choice
         {
             public int Id { get; set; }
@@ -32,14 +30,12 @@ namespace dnd_buddy.Models
             public string finish_reason { get; set; }
             public int index { get; set; }
         }
-
         public class Message
         {
             public int Id { get; set; }
             public string role { get; set; }
             public string content { get; set; }
         }
-
         public class Usage
         {
             public int Id { get; set; }

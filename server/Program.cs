@@ -21,14 +21,12 @@ namespace dnd_buddy
                     }
                 }
             }
-
             // Use the environment variables in your application
             string apiKey = Environment.GetEnvironmentVariable("OPENAI_API_KEY");
 
             Console.WriteLine($"API key: {apiKey}");
             CreateHostBuilder(args).Build().Run();
         }
-
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>

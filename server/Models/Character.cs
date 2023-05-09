@@ -5,13 +5,10 @@ using System.Collections.Generic;
 
 namespace dnd_buddy.Models
 {
-
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum Races { DWARF, ELF, GNOME, HALF_ORC, HALF_ELF, HALFLING, HUMAN, TIEFLING }
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum Professions {BARBARIAN, BARD, CLERIC, DRUID, FIGHTER, MONK, PALADIN, RANGER, ROGUE, SORCEROR, WARLOCK, WIZARD }
-
-
     public class Character
     {
         public int Id { get; set; }
@@ -26,12 +23,10 @@ namespace dnd_buddy.Models
         public byte Wisdom { get; set; }
         public byte Charisma { get; set; }
         public string Background {get; set; }
-
         [Required]
         public Races Race { get; set; }
         [Required]
         public Professions Profession { get; set; }
-
         public Character() {
             this.Name = "";
             this.Level = 1;
@@ -45,7 +40,6 @@ namespace dnd_buddy.Models
             this.Charisma = RollStat();
             this.Background = "";
         }
-
         public byte RollStat()
         {
             Random random = new Random();
@@ -59,6 +53,5 @@ namespace dnd_buddy.Models
             byte stat = (byte)(rolls[2] + rolls[3] + rolls[4]);
             return stat;
         }
-
     }
 }
