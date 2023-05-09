@@ -1,11 +1,19 @@
-import Encounter from "../../Classes/Encounter/Encounter";
+import Encounter, {Entity, Item} from "../../Classes/Encounter/Encounter";
 import * as ActionTypes from "../ActionTypes/encounter.action.types";
 
 const initialState: Encounter = {
-
+    id: 0,
+    entities: new Array<Entity>(),
+    items: new Array<Item>(),
+    notes: new Array<string>(),
+    cr: 0,
+    exp: 0,
+    name: '',
+    description: '',
+    imageUrl: ''
 }
 
-export const charactersReducer = (
+export const encountersReducer = (
     state: Array<Encounter> = [],
     action: ActionTypes.EncounterAction
 ) => {
@@ -19,7 +27,7 @@ export const charactersReducer = (
     }
 }
 
-export const characterReducer = (
+export const encounterReducer = (
     state: Encounter = initialState,
     action: ActionTypes.EncounterAction
 ) => {

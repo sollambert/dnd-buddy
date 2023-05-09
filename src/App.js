@@ -11,6 +11,8 @@ import Home from "./Components/Views/Home/Home"
 import GPTHome from "./Components/Views/GPT/GPTHome"
 import Characters from "./Components/Views/Characters/Characters"
 import Resources from "./Components/Views/Resources/Resources"
+import Campaigns from "./Components/Views/Campaigns/Campaigns"
+import Encounters from "./Components/Views/Encounters/Encounters"
 
 function App() {
   return (
@@ -27,6 +29,14 @@ function App() {
           <Route path="/gpt" exact>
             <Nav />
             <GPTHome />
+          </Route>
+          <Route path="/campaigns" exact>
+            <Nav />
+            <Campaigns />
+          </Route>
+          <Route path="/encounters" exact>
+            <Nav />
+            <Encounters />
           </Route>
           <Route path="/characters" exact>
             <Nav />

@@ -24,7 +24,7 @@ export default class Encounter {
     }
 }
 
-class Entity {
+export class Entity {
     id: number;
     name: string;
     description: string;
@@ -38,7 +38,7 @@ class Entity {
     }
 }
 
-class Item {
+export class Item {
     id: number;
     name: string;
     description: string;

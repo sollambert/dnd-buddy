@@ -1,11 +1,18 @@
 import Campaign from "../../Classes/Campaign/Campaign";
+import Character from "../../Classes/Character/Character";
+import Encounter from "../../Classes/Encounter/Encounter";
 import * as ActionTypes from "../ActionTypes/campaign.action.types";
 
 const initialState: Campaign = {
-
+    id: 0,
+    name: '',
+    description: '',
+    notes: new Array<string>(),
+    encounters: new Array<Encounter>(),
+    characters: new Array<Character>()
 }
 
-export const charactersReducer = (
+export const campaignsReducer = (
     state: Array<Campaign> = [],
     action: ActionTypes.CampaignAction
 ) => {
@@ -19,7 +26,7 @@ export const charactersReducer = (
     }
 }
 
-export const characterReducer = (
+export const campaignReducer = (
     state: Campaign = initialState,
     action: ActionTypes.CampaignAction
 ) => {
