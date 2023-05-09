@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import FormInput from "../FormInput.tsx";
+import FormInput from "../../FormInput.tsx";
 import { useDispatch } from "react-redux";
-import { addCharacter } from "../../Redux/ActionCreators/character.action.creators.ts";
+import { addCharacter } from "../../../Redux/ActionCreators/character.action.creators.ts";
 import Character, {
   Race,
   Profession,
-} from "../../Classes/Character/Character.ts";
+} from "../../../Classes/Character/Character.ts";
 
 function CharacterForm(): JSX.Element {
   // const initCharacter = new Character(0, "", 1, Race.DWARF, Profession.BARBARIAN,0,0,0,0,0,0);
@@ -186,4 +186,4 @@ function CharacterForm(): JSX.Element {
   );
 }
 
-export { CharacterForm, Character };
+export default CharacterForm;

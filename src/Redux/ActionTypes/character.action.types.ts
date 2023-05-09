@@ -1,4 +1,4 @@
-import { Character } from "../../Components/CharCreator/CharacterForm";
+import { Character } from "../../Components/Views/Characters/CharacterForm";
 
 export const GET_CHARACTER = "character/GET_CHARACTER";
 export interface GetCharacterAction {

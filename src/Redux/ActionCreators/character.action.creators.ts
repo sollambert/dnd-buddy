@@ -1,4 +1,4 @@
-import { Character } from "../../Components/CharCreator/CharacterForm";
+import { Character } from "../../Components/Views/Characters/CharacterForm";
 import * as actions from "../ActionTypes/character.action.types";
 
 export function setCharacter(payload: Character): actions.SetCharacterAction {
