@@ -4,6 +4,7 @@ import axios from "axios";
 interface characterResponse {
     character: Character;
 }
+
 interface deleteResponse {
     payload: number;
 }

@@ -4,6 +4,7 @@ import axios from "axios";
 interface campaignResponse {
     campaign: Campaign;
 }
+
 interface deleteResponse {
     payload: number;
 }
