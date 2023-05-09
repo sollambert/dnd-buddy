@@ -6,7 +6,6 @@ import Character, {
   Race,
   Profession,
 } from "../../Classes/Character/Character.ts";
-import ChatGPTForm from "../ChatGPT/ChatGPTForm/ChatGPTForm";
 
 function CharacterForm(): JSX.Element {
   // const initCharacter = new Character(0, "", 1, Race.DWARF, Profession.BARBARIAN,0,0,0,0,0,0);
@@ -75,7 +74,7 @@ function CharacterForm(): JSX.Element {
                       {race}
                     </option>
                   );
-                }
+                } return null;
               })}
             </select>
             <select
@@ -93,7 +92,7 @@ function CharacterForm(): JSX.Element {
                       {profession}
                     </option>
                   );
-                }
+                } return null;
               })}
             </select>
           </div>

@@ -12,7 +12,7 @@ function ChatGPTTable(): JSX.Element {
 
     useEffect(() => {
         dispatch(getMessages());
-    }, []);
+    }, [dispatch]);
 
     return (
         <>

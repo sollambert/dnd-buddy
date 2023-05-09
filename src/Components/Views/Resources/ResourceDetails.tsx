@@ -29,7 +29,7 @@ function ResourceDetails({ details, direction, changeTitle, searchBar }: Props):
     return () => {
       setSearch('');
     }
-  }, [details])
+  }, [details, changeTitle])
 
   // console.log(details)
   return (
@@ -56,18 +56,20 @@ function ResourceDetails({ details, direction, changeTitle, searchBar }: Props):
         {/* Iterate through details object and display the inner content */}
         {Object.keys(details).map((detail, i) => {
           // Display further details if search is empty or detail is included within search
-          if (search == '' || detail.includes(search)) {
+          if (search === '' || detail.includes(search)) {
             // Filter keys that need to be displayed as links
-            if (detail == 'spells') {
+            if (detail === 'spells') {
               return <ResourceLink key={i} label="SPELLS" path={details[detail].replace('/api/', '')} />
-            } else if (detail == 'class_levels') {
+            } else if (detail === 'class_levels') {
               return <ResourceLink key={i} label="CLASS-LEVELS" path={details[detail].replace('/api/', '')} />
             }
             // Display value of current key if it does not match a key that does not need to be displayed
-            else if (detail != 'url') {
+            else if (detail !== 'url') {
               return (
                 <div key={i}>
-                  {details[detail] && (details[detail].length == undefined || details[detail].length != 0) ? (
+                  {details[detail]
+                  && (details[detail].length === undefined
+                    || details[detail].length !== 0) ? (
                     <div style={{ display: "flex", flexDirection: "row" }}>
                       {/* Prevent array index from displaying */}
                       {Array.isArray(details) ? (
@@ -142,7 +144,7 @@ function ResourceDetails({ details, direction, changeTitle, searchBar }: Props):
               )
 
             }
-          }
+          } return null
         })}
       </div>
     </>

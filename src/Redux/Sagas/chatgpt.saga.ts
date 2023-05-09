@@ -1,4 +1,4 @@
-import { call, put, takeLatest, fork, all } from "redux-saga/effects";
+import { call, put, takeLatest } from "redux-saga/effects";
 import * as ActionTypes from "../ActionTypes/chatgpt.action.types.ts";
 import * as ActionCreators from "../ActionCreators/chatgpt.action.creators.ts";
 import { getChatGPTResponses, postChatGPTRequest, getChatGPTMessages } from '../Services/chatgpt.services.ts';

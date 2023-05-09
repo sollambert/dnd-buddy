@@ -1,8 +1,6 @@
 import React from "react";
 
-type Props = {};
-
-function Home({}: Props): JSX.Element {
+function Home(): JSX.Element {
   return (
     <>
     </>

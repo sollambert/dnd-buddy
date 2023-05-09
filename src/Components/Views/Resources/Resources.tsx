@@ -1,13 +1,10 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import ResourceLink from "./ResourceLink";
 import ResourceItem from "./ResourceItem";
 import ResourceDetails from "./ResourceDetails";
-
-type Props = {};
 
 type Params = {
   endpoint?: string;
@@ -25,7 +22,7 @@ type ApiResult = {
   url: string;
 };
 
-function Resources({ }: Props): JSX.Element {
+function Resources(): JSX.Element {
   const [result, setResult] = useState<ApiResponse | undefined>({
     results: [],
   });
@@ -35,7 +32,9 @@ function Resources({ }: Props): JSX.Element {
   const params: Params = useParams();
 
   useEffect(() => {
-    if (params.endpoint != undefined && params.index != undefined && params.subindex != undefined) {
+    if (params.endpoint !== undefined
+      && params.index !== undefined
+      && params.subindex !== undefined) {
       axios
         .get(`/srdapi/${params.endpoint}/${params.index}/${params.subindex}`)
         .then((response) => {
@@ -45,7 +44,8 @@ function Resources({ }: Props): JSX.Element {
         .catch((err) => {
           console.error(err);
         });
-    } else if (params.endpoint != undefined && params.index != undefined) {
+    } else if (params.endpoint !== undefined
+      && params.index !== undefined) {
       axios
         .get(`/srdapi/${params.endpoint}/${params.index}`)
         .then((response) => {
@@ -55,7 +55,8 @@ function Resources({ }: Props): JSX.Element {
         .catch((err) => {
           console.error(err);
         });
-    } else if (params.endpoint != undefined) {
+    } else if (params.endpoint !==
+      undefined) {
       axios
         .get(`/srdapi/${params.endpoint}`)
         .then((response) => {
@@ -74,7 +75,7 @@ function Resources({ }: Props): JSX.Element {
 
   return (
     <>
-      {params.endpoint == undefined ? (
+      {params.endpoint === undefined ? (
         <div
           style={{
             display: "flex",
@@ -111,10 +112,10 @@ function Resources({ }: Props): JSX.Element {
                 onChange={(e) => { setSearch(e.target.value) }} />
               <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>{
                 result.results.map((result, i) => {
-                  if (search == ''
+                  if (search === ''
                     || (result.name && result.name.toLocaleLowerCase().includes(search.toLowerCase()))) {
                     return <ResourceItem result={result} key={i} />
-                  }
+                  } return null
                 })}
               </div>
             </>

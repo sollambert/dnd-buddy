@@ -12,9 +12,10 @@ function CharacterTable(): JSX.Element {
   const dispatch = useDispatch();
   const characters = useSelector((store: RootState) => store.charactersReducer);
   const [detailsId, setDetailsId] = useState(0);
+
   useEffect(() => {
     dispatch(getCharacters());
-  }, []);
+  }, [dispatch]);
 
   const handleDelete = (e: any, id: number) => {
     dispatch(deleteCharacter(id));
@@ -40,7 +41,7 @@ function CharacterTable(): JSX.Element {
         {characters?.map((character: Character, i: number) => {
           return (
             <React.Fragment key={i} >
-              <tr onClick={() => detailsId != i ? setDetailsId(i) : setDetailsId(0)}>
+              <tr onClick={() => detailsId !== i ? setDetailsId(i) : setDetailsId(0)}>
                 <td>{character.name}</td>
                 <td>{character.level}</td>
                 <td>{character.race}</td>
@@ -61,7 +62,7 @@ function CharacterTable(): JSX.Element {
                   </button>
                 </td>
               </tr>
-              {detailsId == i && character.background ?
+              {detailsId === i && character.background ?
                 <tr>
                   <td colSpan={11}>
                     <p>
