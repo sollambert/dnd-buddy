@@ -9,6 +9,7 @@ namespace dnd_buddy.Models
         [Key]
         public int Id { get; set; }
         public List<Entity> Entities { get; set; }
+        public List<Item> Items {get; set;}
         public List<string> Notes { get; set; }
         public int CR { get; set; }
         public int Exp { get; set; }
