@@ -13,6 +13,8 @@ const initialState: Character = {
   intelligence: 0,
   wisdom: 0,
   charisma: 0,
+  background: "",
+  campaignId: undefined
 };
 
 export const charactersReducer = (
