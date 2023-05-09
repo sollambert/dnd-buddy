@@ -21,7 +21,7 @@ function CharacterTable(): JSX.Element {
   };
 
   return (
-    <table style={{width: '100%'}}>
+    <table style={{ width: '100%' }}>
       <thead>
         <tr>
           <th>Name</th>
@@ -39,8 +39,8 @@ function CharacterTable(): JSX.Element {
       <tbody>
         {characters?.map((character: Character, i: number) => {
           return (
-            <>
-              <tr key={i} onClick={() => detailsId != i ? setDetailsId(i) : setDetailsId(0)}>
+            <React.Fragment key={i} >
+              <tr onClick={() => detailsId != i ? setDetailsId(i) : setDetailsId(0)}>
                 <td>{character.name}</td>
                 <td>{character.level}</td>
                 <td>{character.race}</td>
@@ -61,16 +61,16 @@ function CharacterTable(): JSX.Element {
                   </button>
                 </td>
               </tr>
-              {detailsId == i && character.background ? 
-              <tr>
-                <td colSpan={11}>
-                  <p>
-                    {character.background}
-                  </p>
-                </td>
-              </tr>
-              : <></>}
-            </>
+              {detailsId == i && character.background ?
+                <tr>
+                  <td colSpan={11}>
+                    <p>
+                      {character.background}
+                    </p>
+                  </td>
+                </tr>
+                : <></>}
+            </React.Fragment>
           );
         })}
       </tbody>

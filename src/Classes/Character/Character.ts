@@ -16,6 +16,7 @@ export default class Character {
   wisdom: number | undefined;
   charisma: number | undefined;
   background: string | undefined;
+  campaignId: number | undefined;
   [key: string]: any;
 
   constructor(
@@ -30,7 +31,8 @@ export default class Character {
     intelligence?: number | undefined,
     wisdom?: number | undefined,
     charisma?: number | undefined,
-    background?: string | undefined
+    background?: string | undefined,
+    campaignId?: number | undefined
   ) {
     this.id = id;
     this.name = name;
@@ -43,6 +45,7 @@ export default class Character {
     this.intelligence = intelligence;
     this.wisdom = wisdom;
     this.charisma = charisma;
-    this.background = background ? background : ''
+    this.background = background ? background : '';
+    this.campaignId = campaignId;
   }
 }
