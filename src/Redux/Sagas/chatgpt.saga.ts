@@ -1,7 +1,7 @@
 import { call, put, takeLatest, fork, all } from "redux-saga/effects";
 import * as ActionTypes from "../ActionTypes/chatgpt.action.types.ts";
 import * as ActionCreators from "../ActionCreators/chatgpt.action.creators.ts";
-import { getChatGPTResponses, postChatGPTResponse, getChatGPTMessages } from '../Services/chatgpt.services.ts';
+import { getChatGPTResponses, postChatGPTRequest, getChatGPTMessages } from '../Services/chatgpt.services.ts';
 
 function* getPrompts({ callback }: ActionTypes.GetPromptsAction) {
     try {
@@ -18,6 +18,7 @@ function* getPrompts({ callback }: ActionTypes.GetPromptsAction) {
 function* getMessages({ callback } : ActionTypes.GetMessages) {
     try {
         let { data } = yield call(getChatGPTMessages);
+        // console.log('getting messages')
         yield put(ActionCreators.setMessages(data));
     } catch (error) {
         console.error(error);
@@ -28,7 +29,8 @@ function* getMessages({ callback } : ActionTypes.GetMessages) {
 
 function* sendPrompt({ payload, callback }: ActionTypes.SendPromptAction) {
     try {
-        yield call(postChatGPTResponse, payload);
+        yield call(postChatGPTRequest, payload);
+        // console.log('sent prompt')
         yield put(ActionCreators.getMessages());
     } catch (error) {
         console.error(error);

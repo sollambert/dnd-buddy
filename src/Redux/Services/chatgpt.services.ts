@@ -18,7 +18,7 @@ export async function getChatGPTResponses(): Promise<chatGPTResponse> {
     return await axios.get('/api/chatgpt/response');
 }
 
-export async function postChatGPTResponse(
+export async function postChatGPTRequest(
     payload: ChatGPTRequest
 ): Promise<chatGPTResponse> {
     // console.log(payload);

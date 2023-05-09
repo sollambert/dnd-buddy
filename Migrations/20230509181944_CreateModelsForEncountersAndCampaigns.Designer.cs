@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using dnd_buddy.Models;
@@ -12,9 +13,11 @@ using dnd_buddy.Models;
 namespace dnd_buddy.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20230509181944_CreateModelsForEncountersAndCampaigns")]
+    partial class CreateModelsForEncountersAndCampaigns
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,9 +40,6 @@ namespace dnd_buddy.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("text");
 
-                    b.Property<List<string>>("Notes")
-                        .HasColumnType("text[]");
-
                     b.HasKey("Id");
 
                     b.ToTable("Campaigns");
@@ -56,7 +56,7 @@ namespace dnd_buddy.Migrations
                     b.Property<string>("Background")
                         .HasColumnType("text");
 
-                    b.Property<int?>("CampaignId")
+                    b.Property<int?>("CharacterId")
                         .HasColumnType("integer");
 
                     b.Property<byte>("Charisma")
@@ -92,7 +92,7 @@ namespace dnd_buddy.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CampaignId");
+                    b.HasIndex("CharacterId");
 
                     b.ToTable("Characters");
                 });
@@ -233,11 +233,11 @@ namespace dnd_buddy.Migrations
                     b.Property<int>("CR")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("CampaignId")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Description")
                         .HasColumnType("text");
+
+                    b.Property<int?>("EncounterId")
+                        .HasColumnType("integer");
 
                     b.Property<int>("Exp")
                         .HasColumnType("integer");
@@ -253,7 +253,7 @@ namespace dnd_buddy.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CampaignId");
+                    b.HasIndex("EncounterId");
 
                     b.ToTable("Encounters");
                 });
@@ -289,7 +289,7 @@ namespace dnd_buddy.Migrations
                 {
                     b.HasOne("dnd_buddy.Models.Campaign", null)
                         .WithMany("Characters")
-                        .HasForeignKey("CampaignId");
+                        .HasForeignKey("CharacterId");
                 });
 
             modelBuilder.Entity("dnd_buddy.Models.ChatGPTResponse", b =>
@@ -324,7 +324,7 @@ namespace dnd_buddy.Migrations
                 {
                     b.HasOne("dnd_buddy.Models.Campaign", null)
                         .WithMany("Encounters")
-                        .HasForeignKey("CampaignId");
+                        .HasForeignKey("EncounterId");
                 });
 
             modelBuilder.Entity("dnd_buddy.Models.Encounter+Entity", b =>
