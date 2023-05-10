@@ -40,7 +40,6 @@ namespace dnd_buddy.Controllers
         {
             _context.Add(encounter);
             _context.SaveChanges();
-
             return CreatedAtAction(nameof(GetEncounterById), new { id = encounter.Id }, encounter);
         }
 

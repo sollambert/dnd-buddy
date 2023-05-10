@@ -38,7 +38,6 @@ namespace dnd_buddy.Controllers
         {
             _context.Add(campaign);
             _context.SaveChanges();
-
             return CreatedAtAction(nameof(GetCampaignById), new { id = campaign.Id }, campaign);
         }
 

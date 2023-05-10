@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { getMessages } from '../../../../Redux/ActionCreators/chatgpt.action.creators';
+import { getPrompts } from '../../../../Redux/ActionCreators/chatgpt.action.creators';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../Redux/store';
 import ChatGPTResponse from '../../../../Classes/ChatGPT/ChatGPTResponse/ChatGPTResponse';
@@ -11,7 +11,8 @@ function ChatGPTTable(): JSX.Element {
     const responses = useSelector((store: RootState) => store.responseReducer);
 
     useEffect(() => {
-        dispatch(getMessages());
+        // dispatch(getMessages());
+        dispatch(getPrompts());
     }, [dispatch]);
 
     return (

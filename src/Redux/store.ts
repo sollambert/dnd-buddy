@@ -10,7 +10,7 @@ const sagaMiddleware : SagaMiddleware = createSagaMiddleware();
 const middlewareList =
   process.env.NODE_ENV === "development"
     ? [sagaMiddleware,
-      // logger
+      logger
     ]
     : [sagaMiddleware];
 

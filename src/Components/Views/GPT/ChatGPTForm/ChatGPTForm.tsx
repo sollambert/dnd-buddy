@@ -30,11 +30,6 @@ function ChatGPTForm({width}: Props): JSX.Element {
 
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(getMessages());
-        dispatch(getPrompts());
-    }, [dispatch])
-
     return (
         <div>
             <FormInput

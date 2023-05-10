@@ -31,7 +31,6 @@ namespace dnd_buddy.Controllers
         {
             _context.Add(character);
             _context.SaveChanges();
-
             return CreatedAtAction(nameof(GetCharacterById), new { id = character.Id }, character);
         }
 
