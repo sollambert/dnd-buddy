@@ -13,6 +13,7 @@ import Characters from "./Components/Views/Characters/Characters"
 import Resources from "./Components/Views/Resources/Resources"
 import Campaigns from "./Components/Views/Campaigns/Campaigns"
 import Encounters from "./Components/Views/Encounters/Encounters"
+import CharacterDetails from "./Components/Views/Characters/CharacterDetails";
 
 function App() {
   return (
@@ -41,6 +42,10 @@ function App() {
           <Route path="/characters" exact>
             <Nav />
             <Characters />
+          </Route>
+          <Route path="/characters/:id" exact>
+            <Nav />
+            <CharacterDetails />
           </Route>
           <Route path="/resources" exact>
             <Nav />

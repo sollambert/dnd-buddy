@@ -7,11 +7,13 @@ import {
 import { useSelector } from "react-redux";
 import { RootState } from "../../../Redux/store.ts";
 import Character from "../../../Classes/Character/Character.ts";
+import CharacterDetails from "./CharacterDetails.tsx";
+import { useHistory } from "react-router-dom";
 
 function CharacterTable(): JSX.Element {
   const dispatch = useDispatch();
   const characters = useSelector((store: RootState) => store.charactersReducer);
-  const [detailsId, setDetailsId] = useState(0);
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(getCharacters());
@@ -41,7 +43,7 @@ function CharacterTable(): JSX.Element {
         {characters?.map((character: Character, i: number) => {
           return (
             <React.Fragment key={i} >
-              <tr onClick={() => detailsId !== i ? setDetailsId(i) : setDetailsId(0)}>
+              <tr onClick={() => history.push(`characters/${character.id}`)}>
                 <td>{character.name}</td>
                 <td>{character.level}</td>
                 <td>{character.race}</td>
@@ -62,15 +64,6 @@ function CharacterTable(): JSX.Element {
                   </button>
                 </td>
               </tr>
-              {detailsId === i && character.background ?
-                <tr>
-                  <td colSpan={11}>
-                    <p>
-                      {character.background}
-                    </p>
-                  </td>
-                </tr>
-                : <></>}
             </React.Fragment>
           );
         })}

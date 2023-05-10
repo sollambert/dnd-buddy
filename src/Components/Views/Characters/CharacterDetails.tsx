@@ -1,11 +1,22 @@
-import React from "react";
-import Character from "../../../Classes/Character/Character";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getCharacter } from "../../../Redux/ActionCreators/character.action.creators";
+import { RootState } from "../../../Redux/store";
+import { useParams } from "react-router-dom";
 
-type Props = {
-    character: Character;
+type Params = {
+    id?: string;
 }
 
-function CharacterDetails({character} : Props): JSX.Element {
+function CharacterDetails(): JSX.Element {
+    const dispatch = useDispatch();
+    const character = useSelector((store: RootState) => store.characterReducer);
+    const params : Params = useParams();
+
+    useEffect(() => {
+        dispatch(getCharacter(Number(params.id)))
+    }, [dispatch])
+
     return (
         <>
             {JSON.stringify(character)}

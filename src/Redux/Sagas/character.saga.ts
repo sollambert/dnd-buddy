@@ -1,11 +1,11 @@
 import { call, put, takeLatest, fork, all } from "redux-saga/effects";
 import * as ActionTypes from "../ActionTypes/character.action.types";
 import * as ActionCreators from "../ActionCreators/character.action.creators";
-import {postCharacter, getCharacters, deleteCharacter } from '../Services/character.services.ts';
+import CharacterServices from '../Services/character.services.ts';
 
 function* addCharacter({ payload, callback }: ActionTypes.AddCharacterAction) {
   try {
-    let { data } = yield call (postCharacter, payload);
+    let { data } = yield call (CharacterServices.postCharacter, payload);
     yield put(ActionCreators.setCharacter(data));
     yield put(ActionCreators.getCharacters());
   } catch (error) {
@@ -17,7 +17,7 @@ function* addCharacter({ payload, callback }: ActionTypes.AddCharacterAction) {
 
 function* getAllCharacters({ callback }: ActionTypes.GetCharactersAction) {
   try {
-    let { data } = yield call (getCharacters);
+    let { data } = yield call (CharacterServices.getCharacters);
     yield put(ActionCreators.setCharacters(data));
   } catch (error) {
     console.error(error);
@@ -26,11 +26,20 @@ function* getAllCharacters({ callback }: ActionTypes.GetCharactersAction) {
   }
 }
 
-function* getCharacter() {}
+function* getCharacter({payload, callback }: ActionTypes.GetCharacterAction) {
+  try {
+    let { data } = yield call (CharacterServices.getCharacter, payload);
+    yield put(ActionCreators.setCharacter(data));
+  } catch (error) {
+    console.error(error);
+  } finally {
+    yield call(() => callback?.());
+  }
+}
 
 function* deleteCharacterById({payload, callback}: ActionTypes.DeleteCharacterAction) {
     try {
-        let {data} = yield call(deleteCharacter, payload);
+        let {data} = yield call(CharacterServices.deleteCharacter, payload);
         yield put(ActionCreators.getCharacters());
     } catch (error) {
         console.error(error);
