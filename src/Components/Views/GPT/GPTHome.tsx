@@ -1,7 +1,7 @@
 import React from "react";
 
-import ChatGPTForm from "../../ChatGPT/ChatGPTForm/ChatGPTForm";
-import ChatGPTTable from "../../ChatGPT/ChatGPTTable/ChatGPTTable";
+import ChatGPTForm from "./ChatGPTForm/ChatGPTForm";
+import ChatGPTTable from "./ChatGPTTable/ChatGPTTable";
 
 function GPTHome(): JSX.Element {
   return (

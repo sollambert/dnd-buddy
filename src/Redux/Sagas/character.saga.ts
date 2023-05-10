@@ -1,11 +1,11 @@
-import { call, put, takeLatest, fork, all } from "redux-saga/effects";
+import { call, put, takeLatest } from "redux-saga/effects";
 import * as ActionTypes from "../ActionTypes/character.action.types";
 import * as ActionCreators from "../ActionCreators/character.action.creators";
-import CharacterServices from '../Services/character.services.ts';
+import {postCharacter, putCharacter, getCharacter, getCharacters, deleteCharacter} from '../Services/character.services.ts';
 
 function* addCharacter({ payload, callback }: ActionTypes.AddCharacterAction) {
   try {
-    let { data } = yield call (CharacterServices.postCharacter, payload);
+    let { data } = yield call (postCharacter, payload);
     yield put(ActionCreators.setCharacter(data));
     yield put(ActionCreators.getCharacters());
   } catch (error) {
@@ -17,7 +17,7 @@ function* addCharacter({ payload, callback }: ActionTypes.AddCharacterAction) {
 
 function* updateCharacter({ payload, callback }: ActionTypes.UpdateCharacterAction) {
   try {
-    let { data } = yield call (CharacterServices.updateCharacter, payload);
+    let { data } = yield call (putCharacter, payload);
     yield put(ActionCreators.setCharacter(data));
     yield put(ActionCreators.getCharacters());
   } catch (error) {
@@ -29,7 +29,7 @@ function* updateCharacter({ payload, callback }: ActionTypes.UpdateCharacterActi
 
 function* getAllCharacters({ callback }: ActionTypes.GetCharactersAction) {
   try {
-    let { data } = yield call (CharacterServices.getCharacters);
+    let { data } = yield call (getCharacters);
     yield put(ActionCreators.setCharacters(data));
   } catch (error) {
     console.error(error);
@@ -38,9 +38,9 @@ function* getAllCharacters({ callback }: ActionTypes.GetCharactersAction) {
   }
 }
 
-function* getCharacter({payload, callback }: ActionTypes.GetCharacterAction) {
+function* getCharacterById({payload, callback }: ActionTypes.GetCharacterAction) {
   try {
-    let { data } = yield call (CharacterServices.getCharacter, payload);
+    let { data } = yield call (getCharacter, payload);
     yield put(ActionCreators.setCharacter(data));
   } catch (error) {
     console.error(error);
@@ -51,7 +51,7 @@ function* getCharacter({payload, callback }: ActionTypes.GetCharacterAction) {
 
 function* deleteCharacterById({payload, callback}: ActionTypes.DeleteCharacterAction) {
     try {
-        let {data} = yield call(CharacterServices.deleteCharacter, payload);
+        yield call(deleteCharacter, payload);
         yield put(ActionCreators.getCharacters());
     } catch (error) {
         console.error(error);
@@ -63,7 +63,7 @@ function* deleteCharacterById({payload, callback}: ActionTypes.DeleteCharacterAc
 function* watcherSaga() {
   yield takeLatest(ActionTypes.ADD_CHARACTER, addCharacter);
   yield takeLatest(ActionTypes.UPDATE_CHARACTER, updateCharacter);
-  yield takeLatest(ActionTypes.GET_CHARACTER, getCharacter);
+  yield takeLatest(ActionTypes.GET_CHARACTER, getCharacterById);
   yield takeLatest(ActionTypes.GET_CHARACTERS, getAllCharacters);
   yield takeLatest(ActionTypes.DELETE_CHARACTER, deleteCharacterById);
 }

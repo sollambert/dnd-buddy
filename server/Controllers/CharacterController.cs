@@ -35,10 +35,9 @@ namespace dnd_buddy.Controllers
             return CreatedAtAction(nameof(GetCharacterById), new { id = character.Id }, character);
         }
 
-        [HttpPut("{id}")]
-        public IActionResult UpdateCharacter(Character character, int id)
+        [HttpPut]
+        public IActionResult UpdateCharacter(Character character)
         {
-            character.Id = id;
             _context.Update(character);
             _context.SaveChanges();
             return Ok(character);

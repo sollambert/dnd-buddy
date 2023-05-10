@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import {
   getCharacters,
@@ -7,7 +7,6 @@ import {
 import { useSelector } from "react-redux";
 import { RootState } from "../../../Redux/store.ts";
 import Character from "../../../Classes/Character/Character.ts";
-import CharacterDetails from "./CharacterDetails.tsx";
 import { useHistory } from "react-router-dom";
 
 function CharacterTable(): JSX.Element {
@@ -24,9 +23,9 @@ function CharacterTable(): JSX.Element {
   };
 
   return (
-    <table style={{ width: '100%' }}>
+    <table style={{ width: '100%', border: "1px solid black", borderCollapse: "collapse"}}>
       <thead>
-        <tr>
+        <tr style={{ width: '100%', border: "1px solid black"}}>
           <th>Name</th>
           <th>Level</th>
           <th>Race</th>
@@ -43,7 +42,7 @@ function CharacterTable(): JSX.Element {
         {characters?.map((character: Character, i: number) => {
           return (
             <React.Fragment key={i} >
-              <tr onClick={() => history.push(`characters/${character.id}`)}>
+              <tr>
                 <td>{character.name}</td>
                 <td>{character.level}</td>
                 <td>{character.race}</td>
@@ -55,13 +54,10 @@ function CharacterTable(): JSX.Element {
                 <td>{character.wisdom}</td>
                 <td>{character.charisma}</td>
                 <td>
-                  <button
-                    onClick={(e) => {
-                      handleDelete(e, character.id);
-                    }}
-                  >
-                    DELETE
-                  </button>
+                  <button onClick={() => history.push(`characters/${character.id}`)}>DETAILS</button>
+                </td>
+                <td>
+                  <button onClick={(e) => {handleDelete(e, character.id)}}>DELETE</button>
                 </td>
               </tr>
             </React.Fragment>

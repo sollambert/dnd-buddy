@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCharacter, deleteCharacter } from "../../../Redux/ActionCreators/character.action.creators";
 import { RootState } from "../../../Redux/store";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import Character from "../../../Classes/Character/Character";
 import CharacterForm from "./CharacterForm";
 
@@ -15,11 +15,13 @@ function CharacterDetails(): JSX.Element {
     const character: Character = useSelector((store: RootState) => store.characterReducer);
     const params: Params = useParams();
 
+    const history = useHistory();
+
     const [editing, setEditing] = useState(false);
 
     useEffect(() => {
         dispatch(getCharacter(Number(params.id)))
-    }, [dispatch])
+    }, [dispatch, params])
 
     const handleEdit = () : void => {
         setEditing(!editing);
@@ -31,10 +33,11 @@ function CharacterDetails(): JSX.Element {
 
     return (
         <>
+            <button onClick={() => history.push('/characters')}>BACK</button>
             {editing ?
             <CharacterForm editCharacter={character} editing={true} editHandler={handleEdit} />
             :
-            <table style={{ width: '100%' }}>
+            <table style={{ width: '100%', border: "1px solid black" }}>
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -81,7 +84,7 @@ function CharacterDetails(): JSX.Element {
                         </td>
                     </tr>
                     <tr>
-                        <td colSpan={11}>
+                        <td colSpan={12}>
                             {character.background}
                         </td>
                     </tr>

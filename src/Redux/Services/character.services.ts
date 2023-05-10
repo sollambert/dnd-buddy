@@ -13,32 +13,30 @@ interface charactersResponse {
     characters: Array<Character>;
 }
 
-async function postCharacter(
+export async function postCharacter(
     payload: Character
 ) : Promise<characterResponse> {
     return await axios.post('/api/character', payload)
 }
 
-async function updateCharacter(
+export async function putCharacter(
     payload: Character
 ) : Promise<characterResponse> {
     return await axios.put('/api/character', payload)
 }
 
-async function getCharacters() : Promise<charactersResponse> {
+export async function getCharacters() : Promise<charactersResponse> {
     return await axios.get('/api/character');
 }
 
-async function getCharacter(
+export async function getCharacter(
     payload: number
 ) : Promise<characterResponse> {
     return await axios.get(`/api/character/${payload}`);
 }
 
-async function deleteCharacter(
+export async function deleteCharacter(
     payload: number
 ) : Promise<deleteResponse> {
     return await axios.delete(`/api/character/${payload}`);
 }
-
-export default {postCharacter, getCharacters, getCharacter, deleteCharacter, updateCharacter}

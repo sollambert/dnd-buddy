@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { getMessages } from '../../../Redux/ActionCreators/chatgpt.action.creators';
+import { getMessages } from '../../../../Redux/ActionCreators/chatgpt.action.creators';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../../Redux/store';
-import ChatGPTResponse from '../../../Classes/ChatGPT/ChatGPTResponse/ChatGPTResponse';
+import { RootState } from '../../../../Redux/store';
+import ChatGPTResponse from '../../../../Classes/ChatGPT/ChatGPTResponse/ChatGPTResponse';
 
 function ChatGPTTable(): JSX.Element {
 

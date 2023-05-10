@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { sendPrompt, getPrompts, getMessages } from '../../../Redux/ActionCreators/chatgpt.action.creators';
-import FormInput from '../../FormInput';
+import { sendPrompt, getPrompts, getMessages } from '../../../../Redux/ActionCreators/chatgpt.action.creators';
+import FormInput from '../../../FormInput';
 
-// ChatGPT types
-import ChatGPTRequest from '../../../Classes/ChatGPT/ChatGPTRequest/ChatGPTRequest';
-import { Message } from '../../../Classes/ChatGPT/ChatGPTResponse/ChatGPTResponse';
+import ChatGPTRequest from '../../../../Classes/ChatGPT/ChatGPTRequest/ChatGPTRequest';
 
 type Props = {
     width?: string;
 };
 
 function ChatGPTForm({width}: Props): JSX.Element {
+
     const [request, setRequest] = useState<ChatGPTRequest>(
         new ChatGPTRequest('', 1.0)
     );
@@ -34,7 +33,7 @@ function ChatGPTForm({width}: Props): JSX.Element {
     useEffect(() => {
         dispatch(getMessages());
         dispatch(getPrompts());
-    }, [])
+    }, [dispatch])
 
     return (
         <div>

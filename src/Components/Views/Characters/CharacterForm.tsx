@@ -13,7 +13,7 @@ type Props = {
   editHandler?: () => void;
 }
 
-function CharacterForm({editCharacter, editing, editHandler }: Props): JSX.Element {
+function CharacterForm({ editCharacter, editing, editHandler }: Props): JSX.Element {
   // const initCharacter = new Character(0, "", 1, Race.DWARF, Profession.BARBARIAN,0,0,0,0,0,0);
   const initCharacter = new Character(0, "", 1, Race.DWARF, Profession.BARBARIAN);
   const [character, setCharacter] = useState<Character>(editCharacter ? editCharacter : initCharacter);
@@ -117,8 +117,11 @@ function CharacterForm({editCharacter, editing, editHandler }: Props): JSX.Eleme
               handleSubmit();
             }}
           >
-            CREATE
+            SUBMIT
           </button>
+          {editing ?
+            <button onClick={editHandler}>CANCEL</button>
+            : ''}
         </div>
         <div style={{
           display: "flex",
@@ -189,7 +192,6 @@ function CharacterForm({editCharacter, editing, editHandler }: Props): JSX.Eleme
           />
         </div>
       </div>
-      <button onClick={editHandler}>CANCEL</button>
     </>
   );
 }
