@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using dnd_buddy.Models;
 
 namespace dnd_buddy.Controllers
@@ -17,7 +18,11 @@ namespace dnd_buddy.Controllers
         [HttpGet]
         public IEnumerable<Campaign> GetAllCampaigns()
         {
-            return _context.Campaigns;
+            return _context.Campaigns
+            .Include(campaign => campaign.Encounters)
+            .ThenInclude(encounter => encounter.Entities)
+            .Include(campaign => campaign.Encounters).ThenInclude(encounter => encounter.Items)
+            .Include(campaign => campaign.Characters);
         }
 
         [HttpGet("{id}")]

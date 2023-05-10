@@ -9,6 +9,7 @@ export default class Encounter {
     name: string;
     description: string;
     imageUrl: string;
+    [key: string]: any;
 
     constructor(id: number, entites: Array<Entity>, items: Array<Item>, notes: Array<string>,
         cr: number, exp: number, name: string, description: string, imageUrl: string) {

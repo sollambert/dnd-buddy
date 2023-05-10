@@ -16,7 +16,6 @@ interface campaignsResponse {
 export async function postCampaign(
     payload: Campaign
 ) : Promise<campaignResponse> {
-    // console.log(payload);
     return await axios.post('/api/campaign', payload)
 }
 

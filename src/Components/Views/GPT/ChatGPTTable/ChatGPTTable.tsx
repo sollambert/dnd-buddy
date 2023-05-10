@@ -17,7 +17,7 @@ function ChatGPTTable(): JSX.Element {
     return (
         <>
             {responses?.map((response: ChatGPTResponse, i: number) => {
-                console.log(response)
+                // console.log(response)
                 return (
                     <div key={i} style={{ textAlign: "left", margin: "1em" }}>
                         <div>

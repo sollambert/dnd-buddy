@@ -8,6 +8,7 @@ export default class Campaign {
     notes: Array<string>;
     encounters: Array<Encounter>;
     characters: Array<Character>;
+    [key: string]: any;
 
     constructor(id: number, name: string, description: string, notes: Array<string>,
         encounters: Array<Encounter>, characters: Array<Character>) {
