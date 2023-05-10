@@ -1,4 +1,4 @@
-import { Character } from "../../Components/Views/Characters/CharacterForm";
+import Character from "../../Classes/Character/Character";
 
 export const GET_CHARACTER = "character/GET_CHARACTER";
 export interface GetCharacterAction {
@@ -34,6 +34,13 @@ export interface AddCharacterAction {
   callback?: () => void;
 }
 
+export const UPDATE_CHARACTER = "character/UPDATE_CHARACTER";
+export interface UpdateCharacterAction {
+  type: typeof UPDATE_CHARACTER;
+  payload: Character;
+  callback?: () => void;
+}
+
 export const CLEAR_CHARACTER = "character/CLEAR_CHARACTER";
 export interface ClearCharacterAction {
     type: typeof CLEAR_CHARACTER;
@@ -56,6 +63,7 @@ export interface DeleteCharacterAction {
 
 export type CharacterAction =
   | AddCharacterAction
+  | UpdateCharacterAction
   | GetCharacterAction
   | GetCharactersAction
   | SetCharacterAction

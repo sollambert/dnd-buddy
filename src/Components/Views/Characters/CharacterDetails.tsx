@@ -1,8 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCharacter } from "../../../Redux/ActionCreators/character.action.creators";
+import { getCharacter, deleteCharacter } from "../../../Redux/ActionCreators/character.action.creators";
 import { RootState } from "../../../Redux/store";
 import { useParams } from "react-router-dom";
+import Character from "../../../Classes/Character/Character";
+import CharacterForm from "./CharacterForm";
 
 type Params = {
     id?: string;
@@ -10,16 +12,82 @@ type Params = {
 
 function CharacterDetails(): JSX.Element {
     const dispatch = useDispatch();
-    const character = useSelector((store: RootState) => store.characterReducer);
-    const params : Params = useParams();
+    const character: Character = useSelector((store: RootState) => store.characterReducer);
+    const params: Params = useParams();
+
+    const [editing, setEditing] = useState(false);
 
     useEffect(() => {
         dispatch(getCharacter(Number(params.id)))
     }, [dispatch])
 
+    const handleEdit = () : void => {
+        setEditing(!editing);
+    }
+
+    const handleDelete = (e: any, id: number) => {
+        dispatch(deleteCharacter(id));
+    };
+
     return (
         <>
-            {JSON.stringify(character)}
+            {editing ?
+            <CharacterForm editCharacter={character} editing={true} editHandler={handleEdit} />
+            :
+            <table style={{ width: '100%' }}>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Level</th>
+                        <th>Race</th>
+                        <th>Class</th>
+                        <th>STR</th>
+                        <th>DEX</th>
+                        <th>CON</th>
+                        <th>INT</th>
+                        <th>WIS</th>
+                        <th>CHA</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{character.name}</td>
+                        <td>{character.level}</td>
+                        <td>{character.race}</td>
+                        <td>{character.profession}</td>
+                        <td>{character.strength}</td>
+                        <td>{character.dexterity}</td>
+                        <td>{character.constitution}</td>
+                        <td>{character.intelligence}</td>
+                        <td>{character.wisdom}</td>
+                        <td>{character.charisma}</td>
+                        <td>
+                            <button
+                                onClick={(e) => {
+                                    handleEdit();
+                                }}
+                            >
+                                EDIT
+                            </button>
+                        </td>
+                        <td>
+                            <button
+                                onClick={(e) => {
+                                    handleDelete(e, character.id);
+                                }}
+                            >
+                                DELETE
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colSpan={11}>
+                            {character.background}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            }
         </>);
 }
 

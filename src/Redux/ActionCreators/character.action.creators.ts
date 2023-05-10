@@ -1,4 +1,4 @@
-import { Character } from "../../Components/Views/Characters/CharacterForm";
+import Character from "../../Classes/Character/Character";
 import * as actions from "../ActionTypes/character.action.types";
 
 export function setCharacter(payload: Character): actions.SetCharacterAction {
@@ -18,6 +18,14 @@ export function setCharacters(payload: Array<Character>): actions.SetCharactersA
 export function addCharacter(payload: Character, callback?: () => void): actions.AddCharacterAction {
   return {
     type: actions.ADD_CHARACTER,
+    payload,
+    callback
+  };
+}
+
+export function updateCharacter(payload: Character, callback?: () => void): actions.UpdateCharacterAction {
+  return {
+    type: actions.UPDATE_CHARACTER,
     payload,
     callback
   };

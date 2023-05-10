@@ -15,6 +15,18 @@ function* addCharacter({ payload, callback }: ActionTypes.AddCharacterAction) {
   }
 }
 
+function* updateCharacter({ payload, callback }: ActionTypes.UpdateCharacterAction) {
+  try {
+    let { data } = yield call (CharacterServices.updateCharacter, payload);
+    yield put(ActionCreators.setCharacter(data));
+    yield put(ActionCreators.getCharacters());
+  } catch (error) {
+    console.error(error);
+  } finally {
+    yield call(() => callback?.());
+  }
+}
+
 function* getAllCharacters({ callback }: ActionTypes.GetCharactersAction) {
   try {
     let { data } = yield call (CharacterServices.getCharacters);
@@ -50,6 +62,7 @@ function* deleteCharacterById({payload, callback}: ActionTypes.DeleteCharacterAc
 
 function* watcherSaga() {
   yield takeLatest(ActionTypes.ADD_CHARACTER, addCharacter);
+  yield takeLatest(ActionTypes.UPDATE_CHARACTER, updateCharacter);
   yield takeLatest(ActionTypes.GET_CHARACTER, getCharacter);
   yield takeLatest(ActionTypes.GET_CHARACTERS, getAllCharacters);
   yield takeLatest(ActionTypes.DELETE_CHARACTER, deleteCharacterById);

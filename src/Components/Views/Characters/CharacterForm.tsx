@@ -1,16 +1,22 @@
 import React, { useState } from "react";
 import FormInput from "../../FormInput.tsx";
 import { useDispatch } from "react-redux";
-import { addCharacter } from "../../../Redux/ActionCreators/character.action.creators.ts";
+import { addCharacter, updateCharacter } from "../../../Redux/ActionCreators/character.action.creators.ts";
 import Character, {
   Race,
   Profession,
 } from "../../../Classes/Character/Character.ts";
 
-function CharacterForm(): JSX.Element {
+type Props = {
+  editCharacter?: Character;
+  editing?: boolean;
+  editHandler?: () => void;
+}
+
+function CharacterForm({editCharacter, editing, editHandler }: Props): JSX.Element {
   // const initCharacter = new Character(0, "", 1, Race.DWARF, Profession.BARBARIAN,0,0,0,0,0,0);
   const initCharacter = new Character(0, "", 1, Race.DWARF, Profession.BARBARIAN);
-  const [character, setCharacter] = useState<Character>(initCharacter);
+  const [character, setCharacter] = useState<Character>(editCharacter ? editCharacter : initCharacter);
 
   const dispatch = useDispatch();
 
@@ -24,11 +30,12 @@ function CharacterForm(): JSX.Element {
 
   const handleSubmit = (): void => {
     if (character.name !== "") {
-      dispatch(
-        addCharacter(character, () =>
-          setCharacter(initCharacter)
-        )
-      );
+      if (editing) {
+        dispatch(updateCharacter(character, editHandler))
+      }
+      else {
+        dispatch(addCharacter(character, () => setCharacter(initCharacter)))
+      }
     } else {
       alert("Add a name dingus!");
     }
@@ -178,10 +185,11 @@ function CharacterForm(): JSX.Element {
             value={character.background}
             onChange={(e) => handleInput(e, 'background')}
             rows={6}
-            style={{ width: 'stretch', resize: 'none'}}
+            style={{ width: 'stretch', resize: 'none' }}
           />
         </div>
       </div>
+      <button onClick={editHandler}>CANCEL</button>
     </>
   );
 }
