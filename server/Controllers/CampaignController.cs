@@ -20,9 +20,11 @@ namespace dnd_buddy.Controllers
         {
             return _context.Campaigns
             .Include(campaign => campaign.Encounters)
-            .ThenInclude(encounter => encounter.Entities)
-            .Include(campaign => campaign.Encounters).ThenInclude(encounter => encounter.Items)
-            .Include(campaign => campaign.Characters);
+                .ThenInclude(encounter => encounter.Entities)
+            .Include(campaign => campaign.Encounters)
+                .ThenInclude(encounter => encounter.Items)
+            .Include(campaign => campaign.Characters)
+            .AsSplitQuery();
         }
 
         [HttpGet("{id}")]

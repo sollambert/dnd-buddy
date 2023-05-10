@@ -30,7 +30,7 @@ namespace dnd_buddy
             services.AddDbContext<ApplicationContext>(options =>
                 options.UseNpgsql(connectionString)
             );
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+            services.AddMvc();
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration => {

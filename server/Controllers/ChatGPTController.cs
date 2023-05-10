@@ -93,7 +93,8 @@ namespace dnd_buddy.Controllers
             return _context.ChatGPTResponses
             .Include(response => response.request)
             .Include(response => response.choices)
-            .ThenInclude(choice => choice.message);
+            .ThenInclude(choice => choice.message)
+            .AsSplitQuery();
         }
 
         [HttpGet("response/messages")]
@@ -102,7 +103,9 @@ namespace dnd_buddy.Controllers
             // Get responses from database and attach choices and messages
             List<ChatGPTResponse> responses = await _context.ChatGPTResponses
             .Include(prop => prop.choices)
-            .ThenInclude(prop => prop.message).ToListAsync();
+            .ThenInclude(prop => prop.message)
+            .AsSplitQuery()
+            .ToListAsync();
 
             // Drill into responses to get only messages and store them into the messages list
             List<ChatGPTResponse.Message> messages = new List<ChatGPTResponse.Message>();
@@ -124,6 +127,7 @@ namespace dnd_buddy.Controllers
             List<ChatGPTResponse> responses = await _context.ChatGPTResponses
             .Include(response => response.choices)
             .ThenInclude(choice => choice.message)
+            .AsSplitQuery()
             .ToListAsync();
 
             // Drill into choices and return the message associated to given choice ID

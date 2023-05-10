@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 using dnd_buddy.Models;
 
 namespace dnd_buddy.Controllers
@@ -17,13 +19,20 @@ namespace dnd_buddy.Controllers
         [HttpGet]
         public IEnumerable<Encounter> GetAllEncounters()
         {
-            return _context.Encounters;
+            return _context.Encounters
+            .Include(e => e.Entities)
+            .Include(e => e.Items)
+            .AsSplitQuery();
         }
 
         [HttpGet("{id}")]
-        public Encounter GetEncounterById(int id)
+        public async Task<Encounter> GetEncounterById(int id)
         {
-            return _context.Encounters.Find(id);
+            return await _context.Encounters
+            .Include(e => e.Entities)
+            .Include(e => e.Items)
+            .AsSplitQuery()
+            .FirstOrDefaultAsync(e => e.Id == id);
         }
 
         [HttpPost]
