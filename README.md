@@ -91,7 +91,7 @@ To install the dependencies, make sure you're running at least version 18 of Nod
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/sollambert/cloud-quest.git
+   git clone https://github.com/sollambert/dnd-buddy.git
    ```
 2. Install NPM packages
    ```sh
