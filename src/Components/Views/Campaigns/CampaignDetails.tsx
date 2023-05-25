@@ -29,34 +29,43 @@ function CampaignDetails({
             <h2>{campaignDetails.description}</h2>
             <div style={{ display: "flex", flexDirection: "row" }}>
                 <h3>Characters:</h3>
-                <ul>
-                {campaignDetails.characters.map((character) => {
-                    return (
-                        <li key={character.id} onClick = {() => {
-                            history.push(`/characters/${character.id}`);
-                        }}>
-                            {character.name}
-                        </li>)
-                })}
+                <ul style={{ listStyle: "none" }}>
+                    {campaignDetails.characters.map((character) => {
+                        return (
+                            <li key={character.id} onClick={() => {
+                                history.push(`/characters/${character.id}`);
+                            }} style={{ textAlign: "left", border: "1px solid black" }}>
+                                {character.name}
+                            </li>)
+                    })}
                 </ul>
             </div>
             <div style={{ display: "flex", flexDirection: "row" }}>
                 <h3>Notes:</h3>
-                <div>
+                <ul style={{ listStyle: "none" }}>
                     {campaignDetails.notes.map((note) => {
-                        return note
+                        return <li style={{ textAlign: "left", border: "1px solid black" }}>{note}</li>
                     })}
-                </div>
+                </ul>
             </div>
             <div style={{ display: "flex", flexDirection: "row" }}>
                 <h3>Encounters:</h3>
-                <div>
+                <ul style={{ listStyle: "none" }}>
                     {campaignDetails.encounters.map((encounter) => {
-                        return (<div key={encounter.id}>
-                            {JSON.stringify(encounter)}
-                        </div>)
+                        return (
+                            <li key={encounter.id} onClick={() => {
+                                history.push(`/encounters/${encounter.id}`);
+                            }} style={{ textAlign: "left", border: "1px solid black" }}>
+                                <div>
+                                    {encounter.name}
+                                </div>
+                                <div>
+                                    {encounter.description}
+                                </div>
+                            </li>
+                        )
                     })}
-                </div>
+                </ul>
             </div>
         </>);
 }

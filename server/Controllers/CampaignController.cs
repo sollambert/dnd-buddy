@@ -43,9 +43,6 @@ namespace dnd_buddy.Controllers
         {
             List<Campaign> campaigns = await _context.Campaigns
             .Include(campaign => campaign.Encounters)
-                .ThenInclude(encounter => encounter.Entities)
-            .Include(campaign => campaign.Encounters)
-                .ThenInclude(encounter => encounter.Items)
             .Include(campaign => campaign.Characters).ToListAsync();
             Campaign campaign = campaigns.Find(campaign => {
                 return campaign.Id == id;
