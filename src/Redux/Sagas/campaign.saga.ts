@@ -1,7 +1,7 @@
 import { call, put, takeLatest, fork, all } from "redux-saga/effects";
 import * as ActionTypes from "../ActionTypes/campaign.action.types";
 import * as ActionCreators from "../ActionCreators/campaign.action.creators";
-import { postCampaign, getCampaigns, deleteCampaign } from '../Services/campaign.services.ts';
+import { postCampaign, getCampaigns, deleteCampaign, getCampaignInfo, getCampaignById } from '../Services/campaign.services.ts';
 
 function* addCampaign({ payload, callback }: ActionTypes.AddCampaignAction) {
     try {
@@ -26,7 +26,27 @@ function* getAllCampaigns({ callback }: ActionTypes.GetCampaignsAction) {
     }
 }
 
-function* getCampaign() { }
+function* getAllCampaignInfo({ callback }: ActionTypes.GetCampaignsAction) {
+    try {
+        let { data } = yield call(getCampaignInfo);
+        yield put(ActionCreators.setCampaignInfo(data));
+    } catch (error) {
+        console.error(error);
+    } finally {
+        yield call(() => callback?.());
+    }
+}
+
+function* getCampaign({ payload, callback }: ActionTypes.GetCampaignAction) {
+    try {
+        let { data } = yield call(getCampaignById, payload);
+        yield put(ActionCreators.setCampaign(data));
+    } catch (error) {
+        console.error(error);
+    } finally {
+        yield call(() => callback?.());
+    }
+}
 
 function* deleteCampaignById({ payload, callback }: ActionTypes.DeleteCampaignAction) {
     try {
@@ -43,6 +63,7 @@ function* watcherSaga() {
     yield takeLatest(ActionTypes.ADD_CAMPAIGN, addCampaign);
     yield takeLatest(ActionTypes.GET_CAMPAIGN, getCampaign);
     yield takeLatest(ActionTypes.GET_CAMPAIGNS, getAllCampaigns);
+    yield takeLatest(ActionTypes.GET_CAMPAIGN_INFO, getAllCampaignInfo);
     yield takeLatest(ActionTypes.DELETE_CAMPAIGN, deleteCampaignById);
 }
 

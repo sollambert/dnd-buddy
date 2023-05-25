@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 using dnd_buddy.Models;
+using System;
 
 namespace dnd_buddy.Controllers
 {
@@ -25,6 +27,15 @@ namespace dnd_buddy.Controllers
                 .ThenInclude(encounter => encounter.Items)
             .Include(campaign => campaign.Characters)
             .AsSplitQuery();
+        }
+
+        [HttpGet("info")]
+        public async Task<IEnumerable<Object>> GetAllCampaignNames() {
+            List<Object> names = new List<Object>();
+            await _context.Campaigns.ForEachAsync(campaign => {
+                names.Add(new {id = campaign.Id, name = campaign.Name});
+            });
+            return names;
         }
 
         [HttpGet("{id}")]

@@ -1,3 +1,4 @@
+import { CampaignInfo } from "../../../global";
 import Campaign from "../../Classes/Campaign/Campaign";
 import Character from "../../Classes/Character/Character";
 import Encounter from "../../Classes/Encounter/Encounter";
@@ -10,6 +11,20 @@ const initialState: Campaign = {
     notes: new Array<string>(),
     encounters: new Array<Encounter>(),
     characters: new Array<Character>()
+}
+
+export const campaignInfoReducer = (
+    state: Array<CampaignInfo> = [],
+    action: ActionTypes.CampaignAction
+) => {
+    switch (action.type) {
+        case ActionTypes.SET_CAMPAIGN_INFO:
+            return action.payload;
+        case ActionTypes.CLEAR_CAMPAIGNS:
+            return [];
+        default:
+            return state;
+    }
 }
 
 export const campaignsReducer = (

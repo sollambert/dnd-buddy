@@ -1,3 +1,4 @@
+import { CampaignInfo } from "../../../global";
 import Campaign from "../../Classes/Campaign/Campaign";
 import * as actions from "../ActionTypes/campaign.action.types";
 
@@ -33,6 +34,19 @@ export function getCampaign(payload: number): actions.GetCampaignAction {
 export function getCampaigns(): actions.GetCampaignsAction {
     return {
         type: actions.GET_CAMPAIGNS,
+    };
+}
+
+export function getCampaignInfo(): actions.GetCampaignInfoAction {
+    return {
+        type: actions.GET_CAMPAIGN_INFO,
+    };
+}
+
+export function setCampaignInfo(payload: Array<CampaignInfo>): actions.SetCampaignInfoAction {
+    return {
+        type: actions.SET_CAMPAIGN_INFO,
+        payload,
     };
 }
 

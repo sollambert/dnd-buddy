@@ -13,6 +13,10 @@ interface campaignsResponse {
     campaigns: Array<Campaign>;
 }
 
+interface campaignInfoResponse {
+    campaigns: Array<{id: number, name: string}>
+}
+
 export async function postCampaign(
     payload: Campaign
 ) : Promise<campaignResponse> {
@@ -21,6 +25,16 @@ export async function postCampaign(
 
 export async function getCampaigns() : Promise<campaignsResponse> {
     return await axios.get('/api/campaign');
+}
+
+export async function getCampaignById(
+    payload: number
+) : Promise<campaignResponse> {
+    return await axios.get(`/api/campaign/${payload}`);
+}
+
+export async function getCampaignInfo() : Promise<campaignInfoResponse> {
+    return await axios.get('/api/campaign/info');
 }
 
 export async function deleteCampaign(
