@@ -42,6 +42,7 @@ namespace dnd_buddy.Controllers
         public async Task<Campaign> GetCampaignById(int id)
         {
             List<Campaign> campaigns = await _context.Campaigns
+            .Include(campaign => campaign.Notes)
             .Include(campaign => campaign.Encounters)
             .Include(campaign => campaign.Characters).ToListAsync();
             Campaign campaign = campaigns.Find(campaign => {
@@ -50,12 +51,26 @@ namespace dnd_buddy.Controllers
             return campaign;
         }
 
+        [HttpGet("notes/{id}")]
+        public CampaignNote GetCampaignNoteById(int id)
+        {
+            return _context.CampaignNotes.Find(id);
+        }
+
         [HttpPost]
         public IActionResult PostCampaign(Campaign campaign)
         {
             _context.Add(campaign);
             _context.SaveChanges();
             return CreatedAtAction(nameof(GetCampaignById), new { id = campaign.Id }, campaign);
+        }
+
+        [HttpPost("notes")]
+        public IActionResult PostCampaignNote(CampaignNote note)
+        {
+            _context.Add(note);
+            _context.SaveChanges();
+            return CreatedAtAction(nameof(GetCampaignNoteById), new { id = note.Id }, note);
         }
 
         [HttpPut("{id}")]

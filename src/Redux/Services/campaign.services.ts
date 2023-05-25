@@ -27,7 +27,7 @@ export async function postCampaign(
 export async function postCampaignNote(
     payload: CampaignNote
 ) : Promise<campaignResponse> {
-    return await axios.post('/api/campaign/note', payload)
+    return await axios.post('/api/campaign/notes', payload)
 }
 
 export async function getCampaigns() : Promise<campaignsResponse> {

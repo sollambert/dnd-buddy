@@ -4,6 +4,6 @@ export type CampaignInfo = {
 }
 
 export type CampaignNote = {
-    id: number,
+    campaignId: number,
     note: string
 }

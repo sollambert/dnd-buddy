@@ -10,5 +10,6 @@ namespace dnd_buddy.Models
         public DbSet<ChatGPTRequest> ChatGPTRequests {get; set;}
         public DbSet<Encounter> Encounters {get; set;}
         public DbSet<Campaign> Campaigns {get; set;}
+        public DbSet<CampaignNote> CampaignNotes {get; set;}
     }
 }

@@ -18,7 +18,7 @@ function* addCampaign({ payload, callback }: ActionTypes.AddCampaignAction) {
 function* addCampaignNote({ payload, callback }: ActionTypes.AddCampaignNoteAction) {
     try {
         let { data } = yield call(postCampaignNote, payload);
-        yield put(ActionCreators.getCampaign(data.id));
+        yield put(ActionCreators.getCampaign(data.campaignId));
     } catch (error) {
         console.error(error);
     } finally {
