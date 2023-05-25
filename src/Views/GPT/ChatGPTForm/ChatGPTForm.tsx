@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { sendPrompt, getPrompts, getMessages } from '../../../Redux/ActionCreators/chatgpt.action.creators';
 import FormInput from '../../../Components/FormInput';
-
-import ChatGPTRequest from '../../../Classes/ChatGPT/ChatGPTRequest/ChatGPTRequest';
+import { ChatGPTRequest } from '../../../@types/global';
 
 type Props = {
     width?: string;
@@ -11,9 +10,9 @@ type Props = {
 
 function ChatGPTForm({width}: Props): JSX.Element {
 
-    const [request, setRequest] = useState<ChatGPTRequest>(
-        new ChatGPTRequest('', 1.0)
-    );
+    const initialState: ChatGPTRequest = {prompt: '', temperature: 1.0}
+
+    const [request, setRequest] = useState<ChatGPTRequest>(initialState);
 
     function handleInput(event: any, key: string) {
         const inputKey = key as keyof typeof request;
@@ -22,7 +21,7 @@ function ChatGPTForm({width}: Props): JSX.Element {
 
     const handleSubmit = (): void => {
         if (request.prompt !== "") {
-            dispatch(sendPrompt(request, () => setRequest(new ChatGPTRequest('', 1.0))));
+            dispatch(sendPrompt(request, () => setRequest(initialState)));
         } else {
             alert("Add a prompt dingus!");
         }

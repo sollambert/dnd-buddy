@@ -1,5 +1,4 @@
-import { CampaignNote } from '../../../global';
-import Campaign from '../../Classes/Campaign/Campaign'
+import { CampaignNote, Campaign } from '../../@types/global';
 import axios from "axios";
 
 interface campaignResponse {

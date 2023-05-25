@@ -1,5 +1,4 @@
-import ChatGPTRequest from "../../Classes/ChatGPT/ChatGPTRequest/ChatGPTRequest";
-import ChatGPTResponse, {Message} from "../../Classes/ChatGPT/ChatGPTResponse/ChatGPTResponse";
+import { ChatGPTRequest, ChatGPTResponse, Message } from "../../@types/global";
 
 export const SEND_PROMPT = "gpt/SEND_PROMPT";
 export interface SendPromptAction {

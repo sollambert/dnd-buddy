@@ -1,4 +1,4 @@
-import Encounter from "../../Classes/Encounter/Encounter";
+import { Encounter } from "../../@types/global";
 import * as actions from "../ActionTypes/encounter.action.types";
 
 export function setEncounter(payload: Encounter): actions.SetEncounterAction {

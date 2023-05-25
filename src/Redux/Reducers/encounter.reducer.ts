@@ -1,4 +1,4 @@
-import Encounter, {Entity, Item} from "../../Classes/Encounter/Encounter";
+import { Encounter, Entity, Item } from "../../@types/global";
 import * as ActionTypes from "../ActionTypes/encounter.action.types";
 
 const initialState: Encounter = {

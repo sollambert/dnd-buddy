@@ -1,14 +1,12 @@
-import { CampaignInfo } from "../../../global";
-import Campaign from "../../Classes/Campaign/Campaign";
-import Character from "../../Classes/Character/Character";
-import Encounter from "../../Classes/Encounter/Encounter";
+import { CampaignInfo, CampaignNote } from "../../@types/global";
+import { Campaign, Encounter, Character } from "../../@types/global";
 import * as ActionTypes from "../ActionTypes/campaign.action.types";
 
 const initialState: Campaign = {
     id: 0,
     name: '',
     description: '',
-    notes: new Array<string>(),
+    notes: new Array<CampaignNote>(),
     encounters: new Array<Encounter>(),
     characters: new Array<Character>()
 }

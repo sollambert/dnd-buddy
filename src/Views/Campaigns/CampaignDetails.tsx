@@ -5,6 +5,7 @@ import { RootState } from "../../Redux/store.ts";
 import { addCampaignNote, getCampaign } from "../../Redux/ActionCreators/campaign.action.creators";
 import BackButton from "../../Components/Buttons/BackButton.tsx";
 import CampaignNoteComponent from "./CampaignNoteComponent.tsx";
+import { CampaignNote, Character, Encounter } from "../../@types/global";
 
 type Props = {
 };
@@ -35,7 +36,7 @@ function CampaignDetails({}: Props): JSX.Element {
                     <div style={{ display: "flex", flexDirection: "row" }}>
                         <h3>Characters:</h3>
                         <ul style={{ listStyle: "none" }}>
-                            {campaignDetails.characters.map((character) => {
+                            {campaignDetails.characters.map((character: Character) => {
                                 return (
                                     <li key={character.id} onClick={() => {
                                         history.push(`/characters/${character.id}`);
@@ -48,7 +49,7 @@ function CampaignDetails({}: Props): JSX.Element {
                     <div style={{ display: "flex", flexDirection: "column", textAlign: "left" }}>
                         <div>
                             <h3>Notes:</h3>
-                            {campaignDetails.notes.map((note, i) => {
+                            {campaignDetails.notes.map((note: CampaignNote, i: number) => {
                                 return (
                                     <div key={i} style={{ textAlign: "left", border: "1px solid black" }}>
                                         <CampaignNoteComponent note={note}/>
@@ -76,7 +77,7 @@ function CampaignDetails({}: Props): JSX.Element {
                     <div style={{ display: "flex", flexDirection: "row" }}>
                         <h3>Encounters:</h3>
                         <ul style={{ listStyle: "none" }}>
-                            {campaignDetails.encounters.map((encounter) => {
+                            {campaignDetails.encounters.map((encounter: Encounter) => {
                                 return (
                                     <li key={encounter.id} onClick={() => {
                                         history.push(`/encounters/${encounter.id}`);

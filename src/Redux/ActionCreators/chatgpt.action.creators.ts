@@ -1,5 +1,4 @@
-import ChatGPTRequest from "../../Classes/ChatGPT/ChatGPTRequest/ChatGPTRequest";
-import ChatGPTResponse, { Message } from "../../Classes/ChatGPT/ChatGPTResponse/ChatGPTResponse";
+import { ChatGPTRequest, ChatGPTResponse, Message, Choice } from "../../@types/global";
 import * as actions from "../ActionTypes/chatgpt.action.types";
 
 export function sendPrompt(payload: ChatGPTRequest, callback?: () => void): actions.SendPromptAction {

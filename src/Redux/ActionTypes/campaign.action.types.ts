@@ -1,5 +1,4 @@
-import { CampaignInfo, CampaignNote } from "../../../global";
-import Campaign from "../../Classes/Campaign/Campaign";
+import { CampaignInfo, CampaignNote, Campaign } from "../../@types/global";
 
 export const GET_CAMPAIGN = "campaign/GET_CAMPAIGN";
 export interface GetCampaignAction {

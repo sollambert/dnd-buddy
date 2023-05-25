@@ -1,4 +1,4 @@
-import Character from "../../Classes/Character/Character";
+import { Character } from "../../@types/global";
 
 export const GET_CHARACTER = "character/GET_CHARACTER";
 export interface GetCharacterAction {

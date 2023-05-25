@@ -2,10 +2,8 @@ import React, { useState } from "react";
 import FormInput from "../../Components/FormInput.tsx";
 import { useDispatch } from "react-redux";
 import { addCharacter, updateCharacter } from "../../Redux/ActionCreators/character.action.creators.ts";
-import Character, {
-  Race,
-  Profession,
-} from "../../Classes/Character/Character.ts";
+import { Character, DraftCharacter } from "../../@types/global";
+import { Race, Profession } from "../../Constants/character.ts";
 
 type Props = {
   editCharacter?: Character;
@@ -14,8 +12,12 @@ type Props = {
 }
 
 function CharacterForm({ editCharacter, editing, editHandler }: Props): JSX.Element {
-  // const initCharacter = new Character(0, "", 1, Race.DWARF, Profession.BARBARIAN,0,0,0,0,0,0);
-  const initCharacter = new Character(0, "", 1, Race.DWARF, Profession.BARBARIAN);
+
+  const createCharacter = (draftCharacter: DraftCharacter) => {
+      return {id: 0, ...draftCharacter};
+  }
+
+  const initCharacter: Character = createCharacter({name: "", level: 1, race: Race.DWARF, profession: Profession.BARBARIAN});
   const [character, setCharacter] = useState<Character>(editCharacter ? editCharacter : initCharacter);
 
   const dispatch = useDispatch();

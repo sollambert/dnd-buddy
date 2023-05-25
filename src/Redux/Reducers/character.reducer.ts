@@ -1,4 +1,5 @@
-import Character, {Race, Profession} from "../../Classes/Character/Character";
+import { Character } from "../../@types/global";
+import { Race, Profession } from "../../Constants/character";
 import * as ActionTypes from "../ActionTypes/character.action.types";
 
 const initialState: Character = {
