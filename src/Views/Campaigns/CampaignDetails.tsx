@@ -4,6 +4,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { RootState } from "../../Redux/store.ts";
 import { addCampaignNote, getCampaign } from "../../Redux/ActionCreators/campaign.action.creators";
 import BackButton from "../../Components/Buttons/BackButton.tsx";
+import CampaignNoteComponent from "./CampaignNoteComponent.tsx";
 
 type Props = {
 };
@@ -12,8 +13,7 @@ type Params = {
     id: string;
 };
 
-function CampaignDetails({
-}: Props): JSX.Element {
+function CampaignDetails({}: Props): JSX.Element {
     const params: Params = useParams();
     const dispatch = useDispatch();
     const history = useHistory();
@@ -29,7 +29,7 @@ function CampaignDetails({
             <BackButton />
             {campaignDetails &&
                 <>
-                    {JSON.stringify(campaignDetails)}
+                    {/* {JSON.stringify(campaignDetails)} */}
                     <h1>{campaignDetails.name}</h1>
                     <h2>{campaignDetails.description}</h2>
                     <div style={{ display: "flex", flexDirection: "row" }}>
@@ -51,7 +51,7 @@ function CampaignDetails({
                             {campaignDetails.notes.map((note, i) => {
                                 return (
                                     <div key={i} style={{ textAlign: "left", border: "1px solid black" }}>
-                                        {note.note}
+                                        <CampaignNoteComponent note={note}/>
                                     </div>)
                             })}
                         </div>
@@ -71,7 +71,7 @@ function CampaignDetails({
                             }}
                             value={note}
                             placeholder={"Enter new note..."}
-                            style={{ width: "100%", height: "5em", resize: "none" }} />
+                            style={{ width: "stretch", height: "5em", resize: "none" }} />
                     </div>
                     <div style={{ display: "flex", flexDirection: "row" }}>
                         <h3>Encounters:</h3>
