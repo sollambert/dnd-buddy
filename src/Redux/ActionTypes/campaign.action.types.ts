@@ -1,4 +1,4 @@
-import { CampaignInfo } from "../../../global";
+import { CampaignInfo, CampaignNote } from "../../../global";
 import Campaign from "../../Classes/Campaign/Campaign";
 
 export const GET_CAMPAIGN = "campaign/GET_CAMPAIGN";
@@ -19,6 +19,7 @@ export interface GetCampaignInfoAction {
     type: typeof GET_CAMPAIGN_INFO;
     callback?: () => void;
 }
+
 export const SET_CAMPAIGN_INFO = "campaign/SET_CAMPAIGN_INFO";
 export interface SetCampaignInfoAction {
     type: typeof SET_CAMPAIGN_INFO;
@@ -47,6 +48,13 @@ export interface AddCampaignAction {
     callback?: () => void;
 }
 
+export const ADD_CAMPAIGN_NOTE = "campaign/ADD_CAMPAIGN_NOTE";
+export interface AddCampaignNoteAction {
+    type: typeof ADD_CAMPAIGN_NOTE;
+    payload: CampaignNote;
+    callback?: () => void;
+}
+
 export const CLEAR_CAMPAIGN = "campaign/CLEAR_CAMPAIGN";
 export interface ClearCampaignAction {
     type: typeof CLEAR_CAMPAIGN;
@@ -69,6 +77,7 @@ export interface DeleteCampaignAction {
 
 export type CampaignAction =
     | AddCampaignAction
+    | AddCampaignNoteAction
     | GetCampaignAction
     | GetCampaignInfoAction
     | SetCampaignInfoAction

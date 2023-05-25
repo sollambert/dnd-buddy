@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCharacter, deleteCharacter } from "../../../Redux/ActionCreators/character.action.creators";
-import { RootState } from "../../../Redux/store";
+import { getCharacter, deleteCharacter } from "../../Redux/ActionCreators/character.action.creators";
+import { RootState } from "../../Redux/store";
 import { useHistory, useParams } from "react-router-dom";
-import Character from "../../../Classes/Character/Character";
+import Character from "../../Classes/Character/Character";
 import CharacterForm from "./CharacterForm";
+import BackButton from "../../Components/Buttons/BackButton";
 
 type Params = {
     id?: string;
@@ -25,6 +26,9 @@ function CharacterDetails(): JSX.Element {
 
     useEffect(() => {
         document.title = character.name;
+        return () => {
+            document.title = 'D&D Buddy';
+        }
     }, [character]);
 
     const handleEdit = () : void => {
@@ -37,7 +41,7 @@ function CharacterDetails(): JSX.Element {
 
     return (
         <>
-            <button onClick={() => history.goBack()}>BACK</button>
+            <BackButton/>
             {editing ?
             <CharacterForm editCharacter={character} editing={true} editHandler={handleEdit} />
             :

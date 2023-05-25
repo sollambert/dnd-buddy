@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../Redux/store.ts";
-import { getEncounters } from "../../../Redux/ActionCreators/encounter.action.creators";
+import { RootState } from "../../Redux/store.ts";
+import { getEncounters } from "../../Redux/ActionCreators/encounter.action.creators";
 
 
 function Encounters(): JSX.Element {

@@ -1,3 +1,4 @@
+import { CampaignNote } from '../../../global';
 import Campaign from '../../Classes/Campaign/Campaign'
 import axios from "axios";
 
@@ -21,6 +22,12 @@ export async function postCampaign(
     payload: Campaign
 ) : Promise<campaignResponse> {
     return await axios.post('/api/campaign', payload)
+}
+
+export async function postCampaignNote(
+    payload: CampaignNote
+) : Promise<campaignResponse> {
+    return await axios.post('/api/campaign/note', payload)
 }
 
 export async function getCampaigns() : Promise<campaignsResponse> {

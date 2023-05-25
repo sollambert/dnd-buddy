@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import FormInput from "../../FormInput.tsx";
+import FormInput from "../../Components/FormInput.tsx";
 import { useDispatch } from "react-redux";
-import { addCharacter, updateCharacter } from "../../../Redux/ActionCreators/character.action.creators.ts";
+import { addCharacter, updateCharacter } from "../../Redux/ActionCreators/character.action.creators.ts";
 import Character, {
   Race,
   Profession,
-} from "../../../Classes/Character/Character.ts";
+} from "../../Classes/Character/Character.ts";
 
 type Props = {
   editCharacter?: Character;

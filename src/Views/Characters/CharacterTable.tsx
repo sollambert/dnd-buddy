@@ -3,10 +3,10 @@ import { useDispatch } from "react-redux";
 import {
   getCharacters,
   deleteCharacter,
-} from "../../../Redux/ActionCreators/character.action.creators.ts"
+} from "../../Redux/ActionCreators/character.action.creators.ts"
 import { useSelector } from "react-redux";
-import { RootState } from "../../../Redux/store.ts";
-import Character from "../../../Classes/Character/Character.ts";
+import { RootState } from "../../Redux/store.ts";
+import Character from "../../Classes/Character/Character.ts";
 import { useHistory } from "react-router-dom";
 
 function CharacterTable(): JSX.Element {

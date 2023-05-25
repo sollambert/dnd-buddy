@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
-import { RootState } from "../../../Redux/store.ts";
-import { getCampaign } from "../../../Redux/ActionCreators/campaign.action.creators";
+import { RootState } from "../../Redux/store.ts";
+import { addCampaignNote, getCampaign } from "../../Redux/ActionCreators/campaign.action.creators";
+import BackButton from "../../Components/Buttons/BackButton.tsx";
 
 type Props = {
 };
@@ -16,6 +17,7 @@ function CampaignDetails({
     const params: Params = useParams();
     const dispatch = useDispatch();
     const history = useHistory();
+    const [note, setNote] = useState("");
     const campaignDetails = useSelector((store: RootState) => store.campaignReducer);
 
     useEffect(() => {
@@ -23,7 +25,8 @@ function CampaignDetails({
     }, []);
 
     return (
-        <>
+        <div style={{display: "flex", flexDirection: "column"}}>
+            <BackButton/>
             {JSON.stringify(campaignDetails)}
             <h1>{campaignDetails.name}</h1>
             <h2>{campaignDetails.description}</h2>
@@ -42,6 +45,22 @@ function CampaignDetails({
             </div>
             <div style={{ display: "flex", flexDirection: "row" }}>
                 <h3>Notes:</h3>
+                <textarea
+                onChange={(e) => {
+                    setNote(e.target.value);
+                }}
+                onKeyDown={(e) => {
+                    if (e.key === "Enter" && !e.shiftKey) {
+                        dispatch(addCampaignNote({
+                            id: campaignDetails.id,
+                            note}, () => {
+                                setNote("");
+                            }));
+                    }
+                }}
+                value={note}
+                placeholder={"Enter new note..."}
+                style={{width: "100%"}}/>
                 <ul style={{ listStyle: "none" }}>
                     {campaignDetails.notes.map((note) => {
                         return <li style={{ textAlign: "left", border: "1px solid black" }}>{note}</li>
@@ -67,7 +86,7 @@ function CampaignDetails({
                     })}
                 </ul>
             </div>
-        </>);
+        </div>);
 }
 
 export default CampaignDetails;

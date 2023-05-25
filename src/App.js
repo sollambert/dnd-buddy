@@ -6,32 +6,41 @@ import {
   Route,
 } from "react-router-dom";
 
+import FourOFour from "./Components/404/404";
 import Nav from "./Components/Nav/Nav";
-import Home from "./Components/Views/Home/Home"
-import GPTHome from "./Components/Views/GPT/GPTHome"
-import Characters from "./Components/Views/Characters/Characters"
-import Resources from "./Components/Views/Resources/Resources"
-import Campaigns from "./Components/Views/Campaigns/Campaigns"
-import CampaignDetails from "./Components/Views/Campaigns/CampaignDetails"
-import Encounters from "./Components/Views/Encounters/Encounters"
-import CharacterDetails from "./Components/Views/Characters/CharacterDetails";
+import Home from "./Views/Home/Home"
+import GPTHome from "./Views/GPT/GPTHome"
+import Characters from "./Views/Characters/Characters"
+import Resources from "./Views/Resources/Resources"
+import Campaigns from "./Views/Campaigns/Campaigns"
+import CampaignDetails from "./Views/Campaigns/CampaignDetails"
+import Encounters from "./Views/Encounters/Encounters"
+import CharacterDetails from "./Views/Characters/CharacterDetails";
 
 function App() {
   return (
     <div className="App">
       <Router>
         <Switch>
+
+          {/* Redirect to home if at base url */}
           <Route path="/" exact>
             <Redirect to="/home" />
           </Route>
+
+          {/* Home Route */}
           <Route path="/home" exact>
             <Nav />
             <Home />
           </Route>
+
+          {/* GPT Route */}
           <Route path="/gpt" exact>
             <Nav />
             <GPTHome />
           </Route>
+
+          {/* Campaign Routes */}
           <Route path="/campaigns" exact>
             <Nav />
             <Campaigns />
@@ -40,10 +49,14 @@ function App() {
             <Nav />
             <CampaignDetails />
           </Route>
+
+          {/* Encounter Routes */}
           <Route path="/encounters" exact>
             <Nav />
             <Encounters />
           </Route>
+
+          {/* Character Routes */}
           <Route path="/characters" exact>
             <Nav />
             <Characters />
@@ -52,6 +65,8 @@ function App() {
             <Nav />
             <CharacterDetails />
           </Route>
+
+          {/* Resources Routes for DnD API */}
           <Route path="/resources" exact>
             <Nav />
             <Resources />
@@ -68,9 +83,11 @@ function App() {
             <Nav />
             <Resources />
           </Route>
+
+          {/* 404 Route */}
           <Route>
             <Nav />
-            <h1>404</h1>
+            <FourOFour />
           </Route>
         </Switch>
       </Router>

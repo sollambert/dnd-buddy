@@ -1,4 +1,4 @@
-import { CampaignInfo } from "../../../global";
+import { CampaignInfo, CampaignNote } from "../../../global";
 import Campaign from "../../Classes/Campaign/Campaign";
 import * as actions from "../ActionTypes/campaign.action.types";
 
@@ -19,6 +19,14 @@ export function setCampaigns(payload: Array<Campaign>): actions.SetCampaignsActi
 export function addCampaign(payload: Campaign, callback?: () => void): actions.AddCampaignAction {
     return {
         type: actions.ADD_CAMPAIGN,
+        payload,
+        callback
+    };
+}
+
+export function addCampaignNote(payload: CampaignNote, callback?: () => void): actions.AddCampaignNoteAction {
+    return {
+        type: actions.ADD_CAMPAIGN_NOTE,
         payload,
         callback
     };
