@@ -39,9 +39,18 @@ namespace dnd_buddy.Controllers
         }
 
         [HttpGet("{id}")]
-        public Campaign GetCampaignById(int id)
+        public async Task<Campaign> GetCampaignById(int id)
         {
-            return _context.Campaigns.Find(id);
+            List<Campaign> campaigns = await _context.Campaigns
+            .Include(campaign => campaign.Encounters)
+                .ThenInclude(encounter => encounter.Entities)
+            .Include(campaign => campaign.Encounters)
+                .ThenInclude(encounter => encounter.Items)
+            .Include(campaign => campaign.Characters).ToListAsync();
+            Campaign campaign = campaigns.Find(campaign => {
+                return campaign.Id == id;
+            });
+            return campaign;
         }
 
         [HttpPost]
