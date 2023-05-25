@@ -3,7 +3,7 @@ export type RequireOnly<T, P extends keyof T> =
     & Partial<Omit<T, P>>;
 
 export type Character = {
-    id?: number;
+    id: number;
     name: string;
     level: number;
     race: Race;
