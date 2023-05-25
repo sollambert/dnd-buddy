@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import BackButton from "../Buttons/BackButton";
+import BackButton from "../../Components/Buttons/BackButton";
 
 type Props = {
 };

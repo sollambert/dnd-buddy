@@ -6,7 +6,7 @@ import {
   Route,
 } from "react-router-dom";
 
-import FourOFour from "./Components/404/404";
+import FourOFour from "./Views/404/404";
 import Nav from "./Components/Nav/Nav";
 import Home from "./Views/Home/Home"
 import GPTHome from "./Views/GPT/GPTHome"
