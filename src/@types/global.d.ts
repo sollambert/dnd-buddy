@@ -3,22 +3,20 @@ export type RequireOnly<T, P extends keyof T> =
     & Partial<Omit<T, P>>;
 
 export type Character = {
-    id: number;
+    id?: number;
     name: string;
     level: number;
     race: Race;
     profession: Profession;
-    strength?: number | undefined;
-    dexterity?: number | undefined;
-    constitution?: number | undefined;
-    intelligence?: number | undefined;
-    wisdom?: number | undefined;
-    charisma?: number | undefined;
-    background?: string | undefined;
-    campaignId?: number | undefined;
+    strength?: number;
+    dexterity?: number;
+    constitution?: number;
+    intelligence?: number;
+    wisdom?: number;
+    charisma?: number;
+    background?: string;
+    campaignId?: number;
 }
-
-export type DraftCharacter = RequireOnly<Character, 'name' | 'level' | 'race' | 'profession'>;
 
 export type Campaign = {
     id: number;
@@ -27,7 +25,6 @@ export type Campaign = {
     notes: Array<CampaignNote>;
     encounters: Array<Encounter>;
     characters: Array<Character>;
-    // [key: string]: any;
 }
 
 export type ChatGPTRequest = {
@@ -64,7 +61,6 @@ export type Encounter = {
     name: string;
     description: string;
     imageUrl: string;
-    // [key: string]: any;
 }
 
 export type Entity = {

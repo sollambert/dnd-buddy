@@ -13,11 +13,7 @@ type Props = {
 
 function CharacterForm({ editCharacter, editing, editHandler }: Props): JSX.Element {
 
-  const createCharacter = (draftCharacter: DraftCharacter) => {
-      return {id: 0, ...draftCharacter};
-  }
-
-  const initCharacter: Character = createCharacter({name: "", level: 1, race: Race.DWARF, profession: Profession.BARBARIAN});
+  const initCharacter: Character = {name: "", level: 1, race: Race.DWARF, profession: Profession.BARBARIAN};
   const [character, setCharacter] = useState<Character>(editCharacter ? editCharacter : initCharacter);
 
   const dispatch = useDispatch();
