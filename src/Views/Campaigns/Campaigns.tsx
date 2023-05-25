@@ -20,7 +20,7 @@ function Campaigns(): JSX.Element {
         <div key={campaign.id} onClick={() => {
           history.push(`campaigns/${campaign.id}`)
         }}>
-          {`${campaign.id} ${campaign.name}`}
+          <h1>{campaign.name}</h1>
         </div>)
     })}
   </>);
