@@ -23,6 +23,10 @@ function CharacterDetails(): JSX.Element {
         dispatch(getCharacter(Number(params.id)))
     }, [dispatch, params])
 
+    useEffect(() => {
+        document.title = character.name;
+    }, [character]);
+
     const handleEdit = () : void => {
         setEditing(!editing);
     }
@@ -33,7 +37,7 @@ function CharacterDetails(): JSX.Element {
 
     return (
         <>
-            <button onClick={() => history.push('/characters')}>BACK</button>
+            <button onClick={() => history.goBack()}>BACK</button>
             {editing ?
             <CharacterForm editCharacter={character} editing={true} editHandler={handleEdit} />
             :

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { RootState } from "../../../Redux/store.ts";
 import { getCampaign } from "../../../Redux/ActionCreators/campaign.action.creators";
 
@@ -15,6 +15,7 @@ function CampaignDetails({
 }: Props): JSX.Element {
     const params: Params = useParams();
     const dispatch = useDispatch();
+    const history = useHistory();
     const campaignDetails = useSelector((store: RootState) => store.campaignReducer);
 
     useEffect(() => {
@@ -28,11 +29,16 @@ function CampaignDetails({
             <h2>{campaignDetails.description}</h2>
             <div style={{ display: "flex", flexDirection: "row" }}>
                 <h3>Characters:</h3>
-                <div>
-                    {campaignDetails.characters.map((character) => {
-                        return character.name
-                    })}
-                </div>
+                <ul>
+                {campaignDetails.characters.map((character) => {
+                    return (
+                        <li key={character.id} onClick = {() => {
+                            history.push(`/characters/${character.id}`);
+                        }}>
+                            {character.name}
+                        </li>)
+                })}
+                </ul>
             </div>
             <div style={{ display: "flex", flexDirection: "row" }}>
                 <h3>Notes:</h3>
