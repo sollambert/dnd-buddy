@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+
 using dnd_buddy.Models;
 
 namespace dnd_buddy.Controllers
@@ -143,10 +144,18 @@ namespace dnd_buddy.Controllers
         }
 
         [HttpGet("response/{id}")]
-        public ChatGPTResponse GetResponseById(int id)
+        public async Task<ChatGPTResponse> GetResponseById(int id)
         {
+            int[] array;
+            for (int i = 0; i < 10; i ++) {
+                Console.WriteLine(i);
+            }
+
+            List<ChatGPTResponse> responses = await _context.ChatGPTResponses
+                .Include(prop => prop.choices)
+                .Include(prop => prop.request).ToListAsync();
             // Return response associated with given ID
-            return _context.ChatGPTResponses.Find(id);
+            return responses.Find(response => response.Id == id);
         }
     }
 }
