@@ -1,11 +1,5 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using dnd_buddy.Models;
-using System;
 
 namespace dnd_buddy
 {
@@ -32,7 +26,7 @@ namespace dnd_buddy
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration => {
-                configuration.RootPath = "ClientApp/build";
+                configuration.RootPath = "client/build";
             });
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
