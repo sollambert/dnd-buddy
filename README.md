@@ -54,7 +54,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-<img src="public/favicon.ico" alt="Logo">
+<img src="https://raw.githubusercontent.com/sollambert/dnd-buddy/main/ClientApp/public/favicon.ico" alt="Logo">
 
 D&D Buddy was designed to alleviate the stress of running a campaign for the average DM. Ever spent 6 hours planning an adventure for your party and they just spend all their time in the tavern and immediately kill the nearest guard after taking one step out of the door? D&D Buddy will help alleviate the frustration by letting AI write the descriptions and conversation points for you. Got a player that won't ever stop arguing about the rules? With the 5e SRD API you can quickly find any rule in the SRD with easy to use navigation to shut them up for at least the next five minutes.
 
