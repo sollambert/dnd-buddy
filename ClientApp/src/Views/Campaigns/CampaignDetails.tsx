@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { RootState } from "../../Redux/store.ts";
 import { addCampaignNote, getCampaign } from "../../Redux/ActionCreators/campaign.action.creators";
 import BackButton from "../../Components/Buttons/BackButton.tsx";
@@ -10,19 +10,15 @@ import { CampaignNote, Character, Encounter } from "../../@types/global";
 type Props = {
 };
 
-type Params = {
-    id: string;
-};
-
 function CampaignDetails({}: Props): JSX.Element {
-    const params: Params = useParams();
+    const { id } = useParams();
     const dispatch = useDispatch();
-    const history = useHistory();
+    const navigate = useNavigate();
     const [note, setNote] = useState("");
     const campaignDetails = useSelector((store: RootState) => store.campaignReducer);
 
     useEffect(() => {
-        dispatch(getCampaign(Number(params.id)));
+        dispatch(getCampaign(Number(id)));
     }, []);
 
     return (
@@ -39,7 +35,7 @@ function CampaignDetails({}: Props): JSX.Element {
                             {campaignDetails.characters.map((character: Character) => {
                                 return (
                                     <li key={character.id} onClick={() => {
-                                        history.push(`/characters/${character.id}`);
+                                        navigate(`/characters/${character.id}`, {replace: true});
                                     }} style={{ textAlign: "left", border: "1px solid black" }}>
                                         {character.name}
                                     </li>)
@@ -80,7 +76,7 @@ function CampaignDetails({}: Props): JSX.Element {
                             {campaignDetails.encounters.map((encounter: Encounter) => {
                                 return (
                                     <li key={encounter.id} onClick={() => {
-                                        history.push(`/encounters/${encounter.id}`);
+                                        navigate(`/encounters/${encounter.id}`, {replace: true});
                                     }} style={{ textAlign: "left", border: "1px solid black" }}>
                                         <div>
                                             {encounter.name}

@@ -10,11 +10,11 @@ namespace dnd_buddy.Models
         public int Id {get; set;}
         public string Name {get; set;}
         public string Description {get; set;}
-        public List<CampaignNote> Notes {get; set;}
+        public List<CampaignNote>? Notes {get; set;}
         [ForeignKey("CampaignId")]
-        public virtual List<Encounter> Encounters {get; set;}
+        public virtual List<Encounter>? Encounters {get; set;}
         [ForeignKey("CampaignId")]
-        public List<Character> Characters {get; set;}
+        public List<Character>? Characters {get; set;}
         public Campaign() {
             this.Encounters = new List<Encounter>();
             this.Name = "New Campaign";

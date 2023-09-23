@@ -14,7 +14,7 @@ function Nav(): JSX.Element {
         marginBottom: "1em",
       }}
     >
-      <Link to="/home" className="nav-button">
+      <Link to="/" className="nav-button">
         HOME
       </Link>
       <Link to="/gpt" className="nav-button">

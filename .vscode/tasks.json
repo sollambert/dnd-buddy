@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/dnd-weekend-project.csproj",
+                "${workspaceFolder}/dnd-buddy.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/dnd-weekend-project.csproj",
+                "${workspaceFolder}/dnd-buddy.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -33,7 +33,7 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/dnd-weekend-project.csproj"
+                "${workspaceFolder}/dnd-buddy.csproj"
             ],
             "problemMatcher": "$msCompile"
         }

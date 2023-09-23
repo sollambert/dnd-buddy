@@ -1,15 +1,15 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
 };
 
 function BackButton({
 }: Props): JSX.Element {
-    const history = useHistory();
+    const navigate = useNavigate();
     return (
     <div className={"nav-button"} onClick={() => {
-        history.goBack();
+        navigate(-1);
     }}
     style={{alignSelf:"center"}}>
         BACK

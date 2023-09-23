@@ -1,45 +1,67 @@
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI;
+using Microsoft.EntityFrameworkCore;
+using dnd_buddy.Data;
+using dnd_buddy.Models;
+
 namespace dnd_buddy
 {
-    public class Program
+    class Program
     {
         public static void Main(string[] args)
         {
-            string envFilePath = Path.Combine(Directory.GetCurrentDirectory(), ".env");
-            if (File.Exists(envFilePath))
+            var builder = WebApplication.CreateBuilder(args);
+
+            // Add services to the container.
+            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+            builder.Services.AddDbContext<ApplicationContext>(options =>
+                options.UseSqlite(connectionString));
+            builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
+            // builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            //     .AddEntityFrameworkStores<ApplicationContext>();
+
+            // builder.Services.AddIdentityServer()
+            //     .AddApiAuthorization<ApplicationUser, ApplicationContext>();
+
+            // builder.Services.AddAuthentication()
+            //     .AddIdentityServerJwt();
+            builder.Services.AddAuthentication()
+                .AddIdentityCookies();
+
+            builder.Services.AddControllersWithViews();
+            builder.Services.AddRazorPages();
+
+            var app = builder.Build();
+
+            // Configure the HTTP request pipeline.
+            if (app.Environment.IsDevelopment())
             {
-                foreach (var line in File.ReadAllLines(envFilePath))
-                {
-                    string[] parts = line.Split(new[] { '=' }, 2, StringSplitOptions.RemoveEmptyEntries);
-                    if (parts.Length == 2)
-                    {
-                        Environment.SetEnvironmentVariable(parts[0], parts[1]);
-                    }
-                }
+                app.UseMigrationsEndPoint();
             }
-            // Use the environment variables in your application
-            string apiKey = Environment.GetEnvironmentVariable("OPENAI_API_KEY");
-            
-            Console.WriteLine($"API key: {apiKey}");
+            else
+            {
+                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                app.UseHsts();
+            }
 
-            // var builder = WebApplication.CreateBuilder(args);
-            // builder.Services.AddControllersWithViews();
-            // var app = builder.Build();
-            // // app.UseHttpsRedirection();
-            // app.UseStaticFiles();
-            // app.UseRouting();
-            // app.MapControllerRoute(
-            //     name: "default",
-            //     pattern: "{controller}/{action=Index}/{id?}");
-            // app.MapFallbackToFile("index.html");
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
+            app.UseRouting();
 
-            IHost app = CreateHostBuilder(args).Build();
+            app.UseAuthentication();
+            // app.UseIdentityServer();
+            app.UseAuthorization();
+
+            app.MapControllerRoute(
+                name: "default",
+                pattern: "{controller}/{action=Index}/{id?}");
+            app.MapRazorPages();
+
+            app.MapFallbackToFile("index.html");
+
             app.Run();
         }
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
     }
 }

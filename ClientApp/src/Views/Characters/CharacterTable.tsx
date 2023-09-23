@@ -6,13 +6,13 @@ import {
 } from "../../Redux/ActionCreators/character.action.creators.ts"
 import { useSelector } from "react-redux";
 import { RootState } from "../../Redux/store.ts";
-import Character from "../../Classes/Character/Character.ts";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { Character } from "../../@types/global";
 
 function CharacterTable(): JSX.Element {
   const dispatch = useDispatch();
   const characters = useSelector((store: RootState) => store.charactersReducer);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getCharacters());
@@ -54,7 +54,7 @@ function CharacterTable(): JSX.Element {
                 <td>{character.wisdom}</td>
                 <td>{character.charisma}</td>
                 <td>
-                  <button onClick={() => history.push(`characters/${character.id}`)}>DETAILS</button>
+                  <button onClick={() => navigate(`${character.id}`, {replace: true})}>DETAILS</button>
                 </td>
                 <td>
                   <button onClick={(e) => {handleDelete(e, character.id)}}>DELETE</button>

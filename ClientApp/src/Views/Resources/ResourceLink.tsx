@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import './Resources.css';
 
 type Props = {
@@ -8,12 +8,12 @@ type Props = {
 };
 
 function ResourceLink({path, label}: Props): JSX.Element {
-  const history = useHistory();
+  const navigate = useNavigate();
   return (
     <>
       <div className="resource-button"
           onClick={() => {
-            history.push(`/resources/${path}`);
+            navigate(`/resources/${path}`, {replace: true});
           }}
         >
             {label ? label: path.toUpperCase()}

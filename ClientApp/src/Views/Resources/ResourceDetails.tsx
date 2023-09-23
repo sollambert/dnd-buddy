@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ResourceItem from "./ResourceItem";
 import ResourceLink from "./ResourceLink";
 import { useEffect, useState } from "react";
@@ -14,8 +14,8 @@ type Props = {
 type Details = { [key: string]: any };
 
 function ResourceDetails({ details, direction, changeTitle, searchBar }: Props): JSX.Element {
-  // Init history hook
-  const history = useHistory();
+  // Init navigate hook
+  const navigate = useNavigate();
   const [search, setSearch] = useState('');
 
   useEffect(() => {
@@ -128,7 +128,7 @@ function ResourceDetails({ details, direction, changeTitle, searchBar }: Props):
                               }}
                                 // Click listener to open new API url
                                 onClick={() => {
-                                  history.push(details[detail].replace('/api/', '/resources/'));
+                                  navigate(details[detail].replace('/api/', '/resources/'), {replace: true});
                                 }}>
                                 {details[detail]}</div>
                               :

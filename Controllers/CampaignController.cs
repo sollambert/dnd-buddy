@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using dnd_buddy.Models;
+using dnd_buddy.Data;
 using System;
 
 namespace dnd_buddy.Controllers

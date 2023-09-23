@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
 using dnd_buddy.Models;
+using dnd_buddy.Data;
 
 namespace dnd_buddy.Controllers
 {
