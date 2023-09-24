@@ -232,3 +232,6 @@ _Pvt_Extensions
 .fake/
 
 .env
+app.db
+app.db-shm
+app.db-wal
