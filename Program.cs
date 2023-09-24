@@ -1,9 +1,7 @@
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
+using dotenv.net;
 using dnd_buddy.Data;
-using dnd_buddy.Models;
 
 namespace dnd_buddy
 {
@@ -12,6 +10,7 @@ namespace dnd_buddy
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            DotEnv.Load();
 
             // Add services to the container.
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");

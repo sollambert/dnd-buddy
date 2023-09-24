@@ -1,11 +1,7 @@
-using System;
-using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
 using dnd_buddy.Models;
@@ -62,16 +58,20 @@ namespace dnd_buddy.Controllers
             ChatGPTResponse deserialized = JsonConvert.DeserializeObject<ChatGPTResponse>(responseContent);
             deserialized.request = request;
 
-            // Print the response content to the console
-            Console.WriteLine(deserialized.ToString());
+            // Print the response content to the console            
+            Console.WriteLine(responseContent);
 
-            // Add request and deserialized response to context and save changes
-            _context.Add(request);
-            _context.Add(deserialized);
-            _context.SaveChanges();
+            if (deserialized.Error != null) {
+                return BadRequest(deserialized.Error.Message);
+            } else {
+                // Add request and deserialized response to context and save changes
+                _context.Add(request);
+                _context.Add(deserialized);
+                _context.SaveChanges();
 
-            // Return choice object from deserialized ChatGPT response
-            return CreatedAtAction(nameof(GetResponseChoicesById), deserialized.choices);
+                // Return choice object from deserialized ChatGPT response
+                return CreatedAtAction(nameof(GetResponseChoicesById), deserialized.choices);
+            }
         }
 
         [HttpGet("request")]

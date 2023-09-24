@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import ResourceItem from "./ResourceItem";
 import ResourceLink from "./ResourceLink";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 type Props = {
   details: Details;
@@ -118,19 +119,10 @@ function ResourceDetails({ details, direction, changeTitle, searchBar }: Props):
                           </>
                         ) : (
                           <>
-                            {/* Add click listeners for urls */}
                             {detail === "url" ?
-                              // Middle mouse button handler
-                              <div onAuxClick={(e) => {
-                                if (e.button === 1) {
-                                  window.open(details[detail].replace('/api/', '/resources/'));
-                                }
-                              }}
-                                // Click listener to open new API url
-                                onClick={() => {
-                                  navigate(details[detail].replace('/api/', '/resources/'), {replace: true});
-                                }}>
-                                {details[detail]}</div>
+                              <Link to={details[detail].replace('/api/', '/resources/')}>
+                                {details[detail]}
+                              </Link>
                               :
                               details[detail]}
                           </>

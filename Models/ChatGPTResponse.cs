@@ -1,6 +1,4 @@
-using System;
 using System.ComponentModel.DataAnnotations;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using Newtonsoft.Json;
 
@@ -22,6 +20,7 @@ namespace dnd_buddy.Models
         public virtual List<Choice> choices { get; set; }
         [ForeignKey("ChatGPTRequestId")]
         public virtual ChatGPTRequest request {get; set; }
+        public GPTError? Error {get; set;}
         public class Choice
         {
             public int Id { get; set; }
@@ -42,6 +41,14 @@ namespace dnd_buddy.Models
             public int prompt_tokens { get; set; }
             public int completion_tokens { get; set; }
             public int total_tokens { get; set; }
+        }
+        public class GPTError
+        {
+            public int Id {get; set;}
+            public string? Message {get; set;}
+            public string? Type {get; set;}
+            public string? Param {get; set;}
+            public string? Code {get; set;}
         }
     }
 }
