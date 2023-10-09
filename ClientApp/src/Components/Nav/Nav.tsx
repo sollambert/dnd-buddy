@@ -1,37 +1,28 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./Nav.css";
+import NavLink from "./NavLink";
 
 function Nav(): JSX.Element {
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "space-evenly",
-        alignContent: "center",
-        marginTop: "1em",
-        marginBottom: "1em",
-      }}
-    >
-      <Link to="/" className="nav-button">
+    <div className="w-full h-12 flex flex-row justify-evenly items-center bg-white dark:bg-black text-gray-800 dark:text-gray-100">
+      <NavLink to="/">
         HOME
-      </Link>
-      <Link to="/gpt" className="nav-button">
+      </NavLink>
+      <NavLink to="/gpt">
         GPT
-      </Link>
-      <Link to="/characters" className="nav-button">
+      </NavLink>
+      <NavLink to="/characters">
         CHARACTERS
-      </Link>
-      <Link to="/encounters" className="nav-button">
+      </NavLink>
+      <NavLink to="/encounters">
         ENCOUNTERS
-      </Link>
-      <Link to="/campaigns" className="nav-button">
+      </NavLink>
+      <NavLink to="/campaigns">
         CAMPAIGNS
-      </Link>
-      <Link to="/resources" className="nav-button">
+      </NavLink>
+      <NavLink to="/resources">
         RESOURCES
-      </Link>
+      </NavLink>
     </div>
   );
 }
