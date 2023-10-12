@@ -1,6 +1,7 @@
 import React from "react";
 
 type Props = {
+  className?: string;
   name: string;
   display: string;
   value: any;
@@ -10,6 +11,7 @@ type Props = {
 };
 
 function FormInput({
+  className,
   name,
   display,
   value,
@@ -19,8 +21,9 @@ function FormInput({
 }: Props): JSX.Element {
   return (
     <>
-      <label htmlFor={name}>{display}</label>
+      <label className="mr-2" htmlFor={name}>{display}</label>
       <input
+        className={className}
         style={{width}}
         name={name}
         type={type}
