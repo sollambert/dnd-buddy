@@ -1,22 +1,35 @@
-import React, { useState } from "react";
+import React, { PropsWithChildren, useState } from "react";
 import FormInput from "../../Components/FormInput.tsx";
 import { useDispatch } from "react-redux";
-import { addCharacter, updateCharacter } from "../../Redux/ActionCreators/character.action.creators.ts";
 import { Character } from "../../@types/global";
-import { Race, Profession } from "../../Constants/character.ts";
+import { addCharacter, updateCharacter } from "../../Redux/ActionCreators/character.action.creators.ts";
+
 
 type Props = {
-  editCharacter?: Character;
+  character?: Character;
   editing?: boolean;
-  editHandler?: () => void;
 }
 
-function CharacterForm({ editCharacter, editing, editHandler }: Props): JSX.Element {
+const newCharacter : Character = {id: 0, name: "New Character"};
 
-  const initCharacter: Character = {id: 0, name: "", level: 1, race: Race.DWARF, profession: Profession.BARBARIAN};
-  const [character, setCharacter] = useState<Character>(editCharacter ? editCharacter : initCharacter);
+function CharacterForm(props : PropsWithChildren<Props>): JSX.Element {
 
+  const [character, setCharacter] = useState<Character>(props.character ? props.character : newCharacter);
   const dispatch = useDispatch();
+
+
+  const submitHandler = (character: Character, cb?: () => void): void => {
+    if (character.name !== "") {
+      if (character.id) {
+        dispatch(updateCharacter(character))
+      }
+      else {
+        dispatch(addCharacter(character, cb))
+      }
+    } else {
+      alert("Add a name dingus!");
+    }
+  };
 
   function handleInput(event: any, key: string) {
     if (key === "level") {
@@ -25,19 +38,6 @@ function CharacterForm({ editCharacter, editing, editHandler }: Props): JSX.Elem
     const inputKey = key as keyof typeof character;
     setCharacter({ ...character, [inputKey]: event.target.value });
   }
-
-  const handleSubmit = (): void => {
-    if (character.name !== "") {
-      if (editing) {
-        dispatch(updateCharacter(character, editHandler))
-      }
-      else {
-        dispatch(addCharacter(character, () => setCharacter(initCharacter)))
-      }
-    } else {
-      alert("Add a name dingus!");
-    }
-  };
 
   return (
     <>
@@ -64,42 +64,6 @@ function CharacterForm({ editCharacter, editing, editHandler }: Props): JSX.Elem
             flexDirection: "row",
             justifyContent: "space-evenly",
           }}>
-            <select
-              onChange={(e: any) => handleInput(e, "race")}
-              value={character.race}
-            >
-              {(
-                Object.values(Race).filter(
-                  (value) => typeof value === "string"
-                ) as string[]
-              ).map((race: string, i: number) => {
-                if (typeof race === "string") {
-                  return (
-                    <option value={race} key={i}>
-                      {race}
-                    </option>
-                  );
-                } return null;
-              })}
-            </select>
-            <select
-              onChange={(e: any) => handleInput(e, "profession")}
-              value={character.profession}
-            >
-              {(
-                Object.values(Profession).filter(
-                  (value) => typeof value === "string"
-                ) as string[]
-              ).map((profession: string, i: number) => {
-                if (typeof profession === "string") {
-                  return (
-                    <option value={profession} key={i}>
-                      {profession}
-                    </option>
-                  );
-                } return null;
-              })}
-            </select>
           </div>
           <div>
             <FormInput
@@ -112,14 +76,11 @@ function CharacterForm({ editCharacter, editing, editHandler }: Props): JSX.Elem
           </div>
           <button
             onClick={() => {
-              handleSubmit();
+              submitHandler(character);
             }}
           >
-            SUBMIT
+            SAVE
           </button>
-          {editing ?
-            <button onClick={editHandler}>CANCEL</button>
-            : ''}
         </div>
         <div style={{
           display: "flex",

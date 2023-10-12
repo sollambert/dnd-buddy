@@ -25,10 +25,6 @@ function CharacterDetails(): JSX.Element {
         }
     }, [character]);
 
-    const handleEdit = () : void => {
-        setEditing(!editing);
-    }
-
     const handleDelete = (e: any, id: number) => {
         dispatch(deleteCharacter(id));
     };
@@ -36,63 +32,7 @@ function CharacterDetails(): JSX.Element {
     return (
         <>
             <BackButton/>
-            {editing ?
-            <CharacterForm editCharacter={character} editing={true} editHandler={handleEdit} />
-            :
-            <table style={{ width: '100%', border: "1px solid black" }}>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Level</th>
-                        <th>Race</th>
-                        <th>Class</th>
-                        <th>STR</th>
-                        <th>DEX</th>
-                        <th>CON</th>
-                        <th>INT</th>
-                        <th>WIS</th>
-                        <th>CHA</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>{character.name}</td>
-                        <td>{character.level}</td>
-                        <td>{character.race}</td>
-                        <td>{character.profession}</td>
-                        <td>{character.strength}</td>
-                        <td>{character.dexterity}</td>
-                        <td>{character.constitution}</td>
-                        <td>{character.intelligence}</td>
-                        <td>{character.wisdom}</td>
-                        <td>{character.charisma}</td>
-                        <td>
-                            <button
-                                onClick={(e) => {
-                                    handleEdit();
-                                }}
-                            >
-                                EDIT
-                            </button>
-                        </td>
-                        <td>
-                            <button
-                                onClick={(e) => {
-                                    handleDelete(e, character.id);
-                                }}
-                            >
-                                DELETE
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colSpan={12}>
-                            {character.background}
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            }
+            <CharacterForm character={character} editing={true} />
         </>);
 }
 

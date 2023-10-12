@@ -1,4 +1,4 @@
-import Character from '../../Classes/Character/Character'
+import { Character } from "../../@types/global";
 import axios from "axios";
 
 interface characterResponse {

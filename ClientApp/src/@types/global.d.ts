@@ -5,9 +5,9 @@ export type RequireOnly<T, P extends keyof T> =
 export type Character = {
     id: number;
     name: string;
-    level: number;
-    race: Race;
-    profession: Profession;
+    level?: number;
+    race?: string;
+    profession?: string;
     strength?: number;
     dexterity?: number;
     constitution?: number;

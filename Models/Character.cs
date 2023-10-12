@@ -7,9 +7,6 @@ using Microsoft.EntityFrameworkCore;
 namespace dnd_buddy.Models
 {
     [JsonConverter(typeof(JsonStringEnumConverter))]
-    public enum Races { DWARF, ELF, GNOME, HALF_ORC, HALF_ELF, HALFLING, HUMAN, TIEFLING };
-    [JsonConverter(typeof(JsonStringEnumConverter))]
-    public enum Professions {BARBARIAN, BARD, CLERIC, DRUID, FIGHTER, MONK, PALADIN, RANGER, ROGUE, SORCEROR, WARLOCK, WIZARD }
     public class Character
     {
         public int Id { get; set; }
@@ -24,8 +21,8 @@ namespace dnd_buddy.Models
         public byte Wisdom { get; set; }
         public byte Charisma { get; set; }
         public string Background {get; set; } = "";
-        public Races Race { get; set; } = Races.DWARF;
-        public Professions Profession { get; set; } = Professions.BARBARIAN;
+        public string Race { get; set; } = "Dwarf";
+        public string Profession { get; set; } = "Paladin";
         public Character() {
             this.Strength = RollStat();
             this.Dexterity = RollStat();
