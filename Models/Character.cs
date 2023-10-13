@@ -20,8 +20,8 @@ namespace dnd_buddy.Models
         public byte Wisdom { get; set; }
         public byte Charisma { get; set; }
         public string Background {get; set; } = "";
-        public string Race { get; set; } = "Dwarf";
-        public string Profession { get; set; } = "Paladin";
+        public string Race { get; set; } = "";
+        public string Profession { get; set; } = "";
         public string Player {get; set; } = "";
         public int Experience {get; set; } = 0;
         public byte Inspiration {get; set; } = 0;
