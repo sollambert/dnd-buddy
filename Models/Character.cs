@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace dnd_buddy.Models
 {
     [JsonConverter(typeof(JsonStringEnumConverter))]
+    public enum Alignments {LG,NG,CG,LN,TN,CN,LE,NE,CE}
     public class Character
     {
         public int Id { get; set; }
@@ -23,6 +24,9 @@ namespace dnd_buddy.Models
         public string Background {get; set; } = "";
         public string Race { get; set; } = "Dwarf";
         public string Profession { get; set; } = "Paladin";
+        public string Player {get; set; } = "";
+        public int Experience {get; set; } = 0;
+        public Alignments Alignment {get; set; } = Alignments.TN;
         public Character() {
             this.Strength = RollStat();
             this.Dexterity = RollStat();

@@ -30,12 +30,6 @@ function CharacterTable(): JSX.Element {
           <th>Level</th>
           <th>Race</th>
           <th>Class</th>
-          <th>STR</th>
-          <th>DEX</th>
-          <th>CON</th>
-          <th>INT</th>
-          <th>WIS</th>
-          <th>CHA</th>
         </tr>
       </thead>
       <tbody>
@@ -47,12 +41,6 @@ function CharacterTable(): JSX.Element {
                 <td>{character.level}</td>
                 <td>{character.race}</td>
                 <td>{character.profession}</td>
-                <td>{character.strength}</td>
-                <td>{character.dexterity}</td>
-                <td>{character.constitution}</td>
-                <td>{character.intelligence}</td>
-                <td>{character.wisdom}</td>
-                <td>{character.charisma}</td>
                 <td>
                   <button onClick={() => navigate(`${character.id}`, {replace: true})}>DETAILS</button>
                 </td>

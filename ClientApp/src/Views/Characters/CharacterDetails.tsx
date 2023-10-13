@@ -12,8 +12,6 @@ function CharacterDetails(): JSX.Element {
     const character: Character = useSelector((store: RootState) => store.characterReducer);
     const {id} = useParams();
 
-    const [editing, setEditing] = useState(false);
-
     useEffect(() => {
         dispatch(getCharacter(Number(id)))
     }, [dispatch])
@@ -24,10 +22,6 @@ function CharacterDetails(): JSX.Element {
             document.title = 'D&D Buddy';
         }
     }, [character]);
-
-    const handleDelete = (e: any, id: number) => {
-        dispatch(deleteCharacter(id));
-    };
 
     return (
         <>

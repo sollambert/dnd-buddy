@@ -15,7 +15,10 @@ export type Character = {
     wisdom?: number;
     charisma?: number;
     background?: string;
+    experience?: number;
+    alignment?: Alignment;
     campaignId?: number;
+    player?: string;
 }
 
 export type Campaign = {

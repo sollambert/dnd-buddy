@@ -2,6 +2,7 @@ import React, { Dispatch, PropsWithChildren, SetStateAction } from "react";
 import { Character } from "../../@types/global";
 import FormInput from "../FormInput";
 import CSAbilityInput from "./CSAbilityInput";
+import { Alignment } from "../../Constants/character";
 
 type Props = {
     character: Character,
@@ -13,7 +14,7 @@ export default function CSHeader(props: PropsWithChildren<Props>): JSX.Element {
     return (
         <div className="flex flex-row">
             <div className="flex flex-col items-center">
-                <div className="flex flex-row items-center">
+                <div className="flex flex-row items-center m-2">
                     <FormInput
                         className="w-48 px-2 mr-4"
                         name="name"
@@ -33,22 +34,22 @@ export default function CSHeader(props: PropsWithChildren<Props>): JSX.Element {
                         name="background"
                         display="Background"
                         handler={props.inputHandler}
-                        value={undefined}
+                        value={props.character.background}
                     />
                     <FormInput
                         className="w-48 px-2 mr-4"
                         name="player"
-                        display="Player Name"
+                        display="Player"
                         handler={props.inputHandler}
-                        value={undefined}
+                        value={props.character.player}
                     />
                 </div>
-                <div className="flex flex-row items-center">
+                <div className="flex flex-row items-center m-2">
                     <FormInput
                         className="w-14 px-2 mr-4"
                         type="number"
                         name="level"
-                        display="Level"
+                        display="Total Level"
                         handler={props.inputHandler}
                         value={props.character.level}
                     />
@@ -59,20 +60,38 @@ export default function CSHeader(props: PropsWithChildren<Props>): JSX.Element {
                         handler={props.inputHandler}
                         value={props.character.race}
                     />
-                    <FormInput
-                        className="w-12 px-2 mr-4"
-                        name="alignment"
-                        display="Alignment"
-                        handler={props.inputHandler}
-                        value={undefined}
-                    />
+                    <div>
+                        <label className="mr-2" htmlFor="alignment">
+                            Alignment
+                        </label>
+                        <select
+                            name="alignment"
+                            className="w-12 mr-4 px-1"
+                            onChange={(e: any) => props.inputHandler(e, "alignment")}
+                            value={props.character.alignment}
+                        >
+                            {(
+                                Object.values(Alignment).filter(
+                                    (value) => typeof value === "string"
+                                ) as string[]
+                            ).map((alignment: string, i: number) => {
+                                if (typeof alignment === "string") {
+                                    return (
+                                        <option value={alignment} key={i}>
+                                            {alignment}
+                                        </option>
+                                    );
+                                } return null;
+                            })}
+                        </select>
+                    </div>
                     <FormInput
                         className="w-48 px-2 mr-4"
                         type="number"
                         name="experience"
                         display="Experience"
                         handler={props.inputHandler}
-                        value={undefined}
+                        value={props.character.experience}
                     />
                 </div>
             </div>
