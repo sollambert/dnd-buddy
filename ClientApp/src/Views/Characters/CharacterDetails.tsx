@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCharacter, deleteCharacter } from "../../Redux/ActionCreators/character.action.creators";
+import { addCharacter, getCharacter, updateCharacter } from "../../Redux/ActionCreators/character.action.creators";
 import { RootState } from "../../Redux/store";
 import { Character } from "../../@types/global";
 import CharacterForm from "./CharacterForm";
-import BackButton from "../../Components/Buttons/BackButton";
 import { useParams } from "react-router-dom";
 
 function CharacterDetails(): JSX.Element {
     const dispatch = useDispatch();
-    const character: Character = useSelector((store: RootState) => store.characterReducer);
-    const {id} = useParams();
+    const [character, setCharacter] = useState<Character>(useSelector((store: RootState) => store.characterReducer));
+    const { id } = useParams();
 
     useEffect(() => {
         dispatch(getCharacter(Number(id)))
@@ -23,10 +22,28 @@ function CharacterDetails(): JSX.Element {
         }
     }, [character]);
 
+
+    const submitHandler = (character: Character, cb?: () => void): void => {
+        if (character.name !== "") {
+            if (character.id) {
+                dispatch(updateCharacter(character))
+            }
+        } else {
+            character.name="Dingus";
+            dispatch(updateCharacter(character))
+        }
+    };
+
     return (
         <>
-            <BackButton/>
-            <CharacterForm character={character} editing={true} />
+            <button
+                onClick={() => {
+                    submitHandler(character);
+                }}
+            >
+                SAVE
+            </button>
+            <CharacterForm character={character} setCharacter={setCharacter} editing={true} />
         </>);
 }
 

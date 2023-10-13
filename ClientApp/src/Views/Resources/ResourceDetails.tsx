@@ -56,6 +56,10 @@ function ResourceDetails({ details, direction, changeTitle, searchBar }: Props):
         {details.image ? <img style={{ width: "20vw" }} src={`https://www.dnd5eapi.co${details.image}`} alt="" /> : ''}
         {/* Iterate through details object and display the inner content */}
         {Object.keys(details).map((detail, i) => {
+          if (detail === "option_set_type"
+          || detail === "option_type") {
+            return;
+          }
           // Display further details if search is empty or detail is included within search
           if (search === '' || detail.includes(search)) {
             // Filter keys that need to be displayed as links
@@ -119,7 +123,7 @@ function ResourceDetails({ details, direction, changeTitle, searchBar }: Props):
                           </>
                         ) : (
                           <>
-                            {detail === "url" ?
+                            {detail === "url" || detail === "resource_list_url" ?
                               <Link to={details[detail].replace('/api/', '/resources/')}>
                                 {details[detail]}
                               </Link>
