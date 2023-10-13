@@ -97,7 +97,7 @@ export default function CSSkills(props: PropsWithChildren<Props>): JSX.Element {
             newChecked.push(skill.proficiency);
         });
         setChecked(newChecked);
-    }, []);
+    }, [character]);
 
     console.log(checked)
     return (
