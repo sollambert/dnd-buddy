@@ -1,32 +1,29 @@
-import { Dispatch, PropsWithChildren, SetStateAction } from "react";
-import { Character } from "../../@types/global";
 import CSAbilities from "../../Components/CharacterSheet/CSAbilities";
 import CSHeader from "../../Components/CharacterSheet/CSHeader";
 import CSInspiration from "../../Components/CharacterSheet/CSInspiration";
 import {CSProficiency} from "../../Components/CharacterSheet/CSProficiency";
 import CSSavingThrows from "../../Components/CharacterSheet/CSSavingThrows";
 import CSSkills from "../../Components/CharacterSheet/CSSkills";
+import * as ActionCreators from "../../Redux/ActionCreators/character.action.creators";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { RootState } from "../../Redux/store";
 
-
-type Props = {
-  character: Character;
-  setCharacter: Dispatch<SetStateAction<Character>>;
-  editing?: boolean;
-}
-
-function CharacterForm(props: PropsWithChildren<Props>): JSX.Element {
+function CharacterForm(): JSX.Element {
+  const dispatch = useDispatch();
+  const character = useSelector((store: RootState) => store.characterReducer);
 
 
   function handleInput(event: any, key: string) {
     if (key === "level") {
       event.target.value = Math.max(1, Math.min(event.target.value, 20));
     }
-    const inputKey = key as keyof typeof props.character;
+    const inputKey = key as keyof typeof character;
     if (event.target.value === "savingthrow") {
-      props.setCharacter({ ...props.character, [inputKey]: !props.character[inputKey] });
+      dispatch(ActionCreators.setCharacter({ ...character, [inputKey]: !character[inputKey] }));
       return;
     }
-    props.setCharacter({ ...props.character, [inputKey]: event.target.value });
+    dispatch(ActionCreators.setCharacter({ ...character, [inputKey]: event.target.value }));
   }
 
   return (

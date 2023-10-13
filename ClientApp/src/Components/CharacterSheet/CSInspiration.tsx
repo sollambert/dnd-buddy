@@ -1,6 +1,4 @@
 import { PropsWithChildren } from "react";
-import { Character } from "../../@types/global";
-import FormInput from "../FormInput";
 import { useSelector } from "react-redux";
 import { RootState } from "../../Redux/store";
 

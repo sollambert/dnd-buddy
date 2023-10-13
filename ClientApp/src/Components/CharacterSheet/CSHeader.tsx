@@ -1,5 +1,4 @@
 import { PropsWithChildren } from "react";
-import { Character } from "../../@types/global";
 import FormInput from "../FormInput";
 import { Alignment } from "../../Constants/character";
 import { levelFromExperience } from "./CharacterUtils";

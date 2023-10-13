@@ -1,5 +1,4 @@
-import { Dispatch, PropsWithChildren, SetStateAction, useEffect } from "react"
-import { Character } from "../../@types/global"
+import { PropsWithChildren } from "react";
 import CSSavingThrowInput from "./CSSavingThrowInput";
 import { calcProficiency } from "./CSProficiency";
 import { useSelector } from "react-redux";

@@ -87,18 +87,23 @@ export default function CSSkills(props: PropsWithChildren<Props>): JSX.Element {
 
     return (
         <div className="flex flex-col items-start border p-1">
-            <div className="flex flex-row w-12 justify-evenly">
-                <p>N</p>
-                <p>P</p>
-                <p>E</p>
+            <div className="flex flex-row items-center">
+                <div className="flex flex-row w-12 justify-evenly">
+                    <p>N</p>
+                    <p>P</p>
+                    <p>E</p>
+                </div>
+                <p className="mx-2 text-sm">{"(None, Proficient, Expert)"}</p>
             </div>
             <div>
                 {character.skills?.map((skill, i) => {
                     let bonus = calcSkillBonus(character, skill);
+                    console.log(skill.proficiency);
                     return (
                         <div key={skill.skill} className="flex flex-row items-center">
                             <div className="flex flex-row w-12 justify-evenly">
                                 <input
+                                    key={`${skill.skill}-${SkillProficiency.NONE}`}
                                     className="w-3"
                                     type="radio"
                                     onChange={() => inputHandler(character, i, SkillProficiency.NONE)}
@@ -106,6 +111,7 @@ export default function CSSkills(props: PropsWithChildren<Props>): JSX.Element {
                                     name={`PROF-${skill.skill.toLocaleString()}`}
                                 />
                                 <input
+                                    key={`${skill.skill}-${SkillProficiency.PROFICIENT}`}
                                     className="w-3"
                                     type="radio"
                                     onChange={() => inputHandler(character, i, SkillProficiency.PROFICIENT)}
@@ -113,6 +119,7 @@ export default function CSSkills(props: PropsWithChildren<Props>): JSX.Element {
                                     name={`PROF-${skill.skill.toLocaleString()}`}
                                 />
                                 <input
+                                    key={`${skill.skill}-${SkillProficiency.EXPERT}`}
                                     className="w-3"
                                     type="radio"
                                     onChange={() => inputHandler(character, i, SkillProficiency.EXPERT)}

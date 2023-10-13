@@ -56,7 +56,7 @@ function CharacterDetails(): JSX.Element {
             >
                 SAVE
             </button>
-            <CharacterForm character={character} setCharacter={setCharacter} editing={true} />
+            <CharacterForm />
         </>);
 }
 

@@ -1,5 +1,4 @@
-import { Dispatch, PropsWithChildren, SetStateAction } from "react";
-import { Character } from "../../@types/global";
+import { PropsWithChildren } from "react";
 
 type Props = {
     name: string,

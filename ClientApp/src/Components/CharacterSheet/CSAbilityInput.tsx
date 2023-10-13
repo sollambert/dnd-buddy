@@ -1,9 +1,7 @@
 import { PropsWithChildren } from "react";
-import { Character } from "../../@types/global";
 
 type Props = {
     name: string,
-    character: Character,
     value: number | undefined,
     inputHandler: (event: any, key: string) => void
 }
