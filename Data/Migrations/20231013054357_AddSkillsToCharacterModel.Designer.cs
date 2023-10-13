@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using dnd_buddy.Data;
 
@@ -10,9 +11,11 @@ using dnd_buddy.Data;
 namespace dnd_buddy.Data.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231013054357_AddSkillsToCharacterModel")]
+    partial class AddSkillsToCharacterModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.9");
@@ -476,7 +479,7 @@ namespace dnd_buddy.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("CharacterId")
+                    b.Property<int?>("CharacterId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("Proficiency")
@@ -800,13 +803,9 @@ namespace dnd_buddy.Data.Migrations
 
             modelBuilder.Entity("dnd_buddy.Models.Character+CharacterSkill", b =>
                 {
-                    b.HasOne("dnd_buddy.Models.Character", "Character")
+                    b.HasOne("dnd_buddy.Models.Character", null)
                         .WithMany("Skills")
-                        .HasForeignKey("CharacterId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Character");
+                        .HasForeignKey("CharacterId");
                 });
 
             modelBuilder.Entity("dnd_buddy.Models.ChatGPTResponse", b =>

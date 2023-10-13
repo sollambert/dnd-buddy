@@ -1,9 +1,12 @@
+import { SkillTuple } from "../Components/CharacterSheet/CharacterUtils";
+
 export type RequireOnly<T, P extends keyof T> =
     Pick<T, P>
     & Partial<Omit<T, P>>;
 
 export type NewCharacter = {
     name: string;
+    skills?: Array<CharacterSkill>;
 }
 
 export type Character = {
@@ -30,6 +33,7 @@ export type Character = {
     intProf?: bool;
     wisProf?: bool;
     chaProf?: bool;
+    skills?: Array<CharacterSkill>;
 }
 
 export type Campaign = {

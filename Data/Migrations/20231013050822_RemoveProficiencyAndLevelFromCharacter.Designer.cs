@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using dnd_buddy.Data;
 
@@ -10,9 +11,11 @@ using dnd_buddy.Data;
 namespace dnd_buddy.Data.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231013050822_RemoveProficiencyAndLevelFromCharacter")]
+    partial class RemoveProficiencyAndLevelFromCharacter
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.9");
@@ -470,28 +473,6 @@ namespace dnd_buddy.Data.Migrations
                     b.ToTable("Characters");
                 });
 
-            modelBuilder.Entity("dnd_buddy.Models.Character+CharacterSkill", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("CharacterId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("Proficiency")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("Skill")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CharacterId");
-
-                    b.ToTable("CharacterSkill");
-                });
-
             modelBuilder.Entity("dnd_buddy.Models.ChatGPTRequest", b =>
                 {
                     b.Property<int>("Id")
@@ -798,17 +779,6 @@ namespace dnd_buddy.Data.Migrations
                         .HasForeignKey("CampaignId");
                 });
 
-            modelBuilder.Entity("dnd_buddy.Models.Character+CharacterSkill", b =>
-                {
-                    b.HasOne("dnd_buddy.Models.Character", "Character")
-                        .WithMany("Skills")
-                        .HasForeignKey("CharacterId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Character");
-                });
-
             modelBuilder.Entity("dnd_buddy.Models.ChatGPTResponse", b =>
                 {
                     b.HasOne("dnd_buddy.Models.ChatGPTRequest", "request")
@@ -877,11 +847,6 @@ namespace dnd_buddy.Data.Migrations
                     b.Navigation("Encounters");
 
                     b.Navigation("Notes");
-                });
-
-            modelBuilder.Entity("dnd_buddy.Models.Character", b =>
-                {
-                    b.Navigation("Skills");
                 });
 
             modelBuilder.Entity("dnd_buddy.Models.ChatGPTResponse", b =>

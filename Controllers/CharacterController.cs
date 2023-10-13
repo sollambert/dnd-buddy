@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using dnd_buddy.Models;
 using dnd_buddy.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace dnd_buddy.Controllers
 {
@@ -24,7 +25,10 @@ namespace dnd_buddy.Controllers
         [HttpGet("{id}")]
         public Character GetCharacterById(int id)
         {
-            return _context.Characters.Find(id);
+            IEnumerable<Character> characters = _context.Characters
+                .Include(character => character.Skills)
+                .AsSplitQuery();
+            return characters.FirstOrDefault(character => character.Id == id);
         }
 
         [HttpPost]
@@ -38,6 +42,9 @@ namespace dnd_buddy.Controllers
         [HttpPut]
         public IActionResult UpdateCharacter(Character character)
         {
+            foreach(var skill in character.Skills) {
+                Console.WriteLine(skill.Proficiency);
+            }
             _context.Update(character);
             _context.SaveChanges();
             return Ok(character);

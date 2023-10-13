@@ -5,6 +5,7 @@ import CSHeader from "../../Components/CharacterSheet/CSHeader";
 import CSInspiration from "../../Components/CharacterSheet/CSInspiration";
 import {CSProficiency} from "../../Components/CharacterSheet/CSProficiency";
 import CSSavingThrows from "../../Components/CharacterSheet/CSSavingThrows";
+import CSSkills from "../../Components/CharacterSheet/CSSkills";
 
 
 type Props = {
@@ -58,6 +59,11 @@ function CharacterForm(props: PropsWithChildren<Props>): JSX.Element {
               className="border p-2 mb-2 flex flex-col items-start"
               character={props.character}
               inputHandler={handleInput}
+              setCharacter={props.setCharacter}
+            />
+            <CSSkills
+              className="border p-2 mb-2 flex flex-col items-start"
+              character={props.character}
               setCharacter={props.setCharacter}
             />
           </div>
