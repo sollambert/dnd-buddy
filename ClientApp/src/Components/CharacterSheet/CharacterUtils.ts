@@ -1,3 +1,28 @@
+export enum SkillProficiency {NONE = "NONE", PROFICIENT = "PROFICIENT", EXPERT = "EXPERT"}
+
+export enum Skill {
+    ACROBATICS,
+    ANIMAL_HANDLING,
+    ARCANA,
+    ATHLETICS,
+    DECEPTION,
+    HISTORY,
+    INSIGHT,
+    INTIMIDATION,
+    INVESTIGATION,
+    MEDICINE,
+    NATURE,
+    PERCEPTION,
+    PERFORMANCE,
+    PERSUASION,
+    RELIGION,
+    SLEIGHT_OF_HAND,
+    STEALTH,
+    SURVIVAL
+}
+
+export type CharacterSkill = {id?: number, characterId: number, skill: Skill, proficiency: SkillProficiency}
+
 export function levelFromExperience(experience : number) {
     return experience < 300 ? 1 :
         experience < 900 ? 2 :

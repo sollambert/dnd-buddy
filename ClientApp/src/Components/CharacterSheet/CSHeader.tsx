@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from "react";
+import { PropsWithChildren } from "react";
 import { Character } from "../../@types/global";
 import FormInput from "../FormInput";
 import { Alignment } from "../../Constants/character";
@@ -47,7 +47,7 @@ export default function CSHeader(props: PropsWithChildren<Props>): JSX.Element {
                 <div className="flex flex-row items-center m-2">
                     <FormInput
                         readOnly
-                        className="w-14 px-2 mr-4"
+                        className="w-8 mr-4 text-center"
                         type="text"
                         name="level"
                         display="Total Level"
