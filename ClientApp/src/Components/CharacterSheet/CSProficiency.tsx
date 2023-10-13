@@ -1,11 +1,9 @@
-import { Dispatch, PropsWithChildren, SetStateAction } from "react";
+import { PropsWithChildren } from "react";
 import { Character } from "../../@types/global";
-import FormInput from "../FormInput";
 
 type Props = {
     character: Character,
-    inputHandler: (event: any, key: string) => void,
-    setCharacter: Dispatch<SetStateAction<Character>>
+    inputHandler: (event: any, key: string) => void
 }
 
 export default function CSProficiency(props: PropsWithChildren<Props>): JSX.Element {
@@ -16,7 +14,7 @@ export default function CSProficiency(props: PropsWithChildren<Props>): JSX.Elem
                 type="number"
                 name="proficiency"
                 onChange={e => props.inputHandler(e, "proficiency")}
-                value={props.character.proficiency}
+                value={props.character.proficiency ? props.character.proficiency : 0}
             />
             <label htmlFor="proficiency">Proficiency Bonus</label>
         </div>

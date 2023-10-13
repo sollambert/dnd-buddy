@@ -1,12 +1,11 @@
-import { Dispatch, PropsWithChildren, SetStateAction } from "react";
+import { PropsWithChildren } from "react";
 import { Character } from "../../@types/global";
 
 type Props = {
     name: string,
     character: Character,
     value: number | undefined,
-    inputHandler: (event: any, key: string) => void,
-    setCharacter: Dispatch<SetStateAction<Character>>
+    inputHandler: (event: any, key: string) => void
 }
 
 export default function CSAbilityInput(props: PropsWithChildren<Props>) {
@@ -27,7 +26,7 @@ export default function CSAbilityInput(props: PropsWithChildren<Props>) {
                     className="w-14 mr-1 px-1"
                     name={props.name}
                     type="number"
-                    value={props.value}
+                    value={props.value ? props.value : 0}
                     onInput={e=>props.inputHandler(e, props.name)}
                 />
                 <p className="mr-1">{getBonus(props.value)}</p>

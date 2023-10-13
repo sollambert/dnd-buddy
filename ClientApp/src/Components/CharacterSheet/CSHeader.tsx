@@ -1,13 +1,11 @@
-import React, { Dispatch, PropsWithChildren, SetStateAction } from "react";
+import React, { PropsWithChildren } from "react";
 import { Character } from "../../@types/global";
 import FormInput from "../FormInput";
-import CSAbilityInput from "./CSAbilityInput";
 import { Alignment } from "../../Constants/character";
 
 type Props = {
     character: Character,
     inputHandler: (event: any, key: string) => void,
-    setCharacter: Dispatch<SetStateAction<Character>>
 }
 
 export default function CSHeader(props: PropsWithChildren<Props>): JSX.Element {
@@ -20,28 +18,28 @@ export default function CSHeader(props: PropsWithChildren<Props>): JSX.Element {
                         name="name"
                         display="Name"
                         handler={props.inputHandler}
-                        value={props.character.name}
+                        value={props.character.name ? props.character.name : ""}
                     />
                     <FormInput
                         className="w-48 px-2 mr-4"
                         name="profession"
                         display="Class"
                         handler={props.inputHandler}
-                        value={props.character.profession}
+                        value={props.character.profession ? props.character.profession : ""}
                     />
                     <FormInput
                         className="w-48 px-2 mr-4"
                         name="background"
                         display="Background"
                         handler={props.inputHandler}
-                        value={props.character.background}
+                        value={props.character.background ? props.character.background : ""}
                     />
                     <FormInput
                         className="w-48 px-2 mr-4"
                         name="player"
                         display="Player"
                         handler={props.inputHandler}
-                        value={props.character.player}
+                        value={props.character.player ? props.character.player : ""}
                     />
                 </div>
                 <div className="flex flex-row items-center m-2">
@@ -51,14 +49,14 @@ export default function CSHeader(props: PropsWithChildren<Props>): JSX.Element {
                         name="level"
                         display="Total Level"
                         handler={props.inputHandler}
-                        value={props.character.level}
+                        value={props.character.level ? props.character.level : 1}
                     />
                     <FormInput
                         className="w-48 px-2 mr-4"
                         name="race"
                         display="Race"
                         handler={props.inputHandler}
-                        value={props.character.race}
+                        value={props.character.race ? props.character.race : ""}
                     />
                     <div>
                         <label className="mr-2" htmlFor="alignment">
@@ -68,7 +66,7 @@ export default function CSHeader(props: PropsWithChildren<Props>): JSX.Element {
                             name="alignment"
                             className="w-12 mr-4 px-1"
                             onChange={(e: any) => props.inputHandler(e, "alignment")}
-                            value={props.character.alignment}
+                            value={props.character.alignment ? props.character.alignment : Alignment.TN}
                         >
                             {(
                                 Object.values(Alignment).filter(
@@ -91,7 +89,7 @@ export default function CSHeader(props: PropsWithChildren<Props>): JSX.Element {
                         name="experience"
                         display="Experience"
                         handler={props.inputHandler}
-                        value={props.character.experience}
+                        value={props.character.experience ? props.character.experience : 0}
                     />
                 </div>
             </div>

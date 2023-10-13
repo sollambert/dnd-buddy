@@ -29,6 +29,7 @@ function CharacterDetails(): JSX.Element {
 
 
     const submitHandler = (character: Character, cb?: () => void): void => {
+        console.log(character)
         if (character.name !== "") {
             if (character.id) {
                 dispatch(updateCharacter(character))

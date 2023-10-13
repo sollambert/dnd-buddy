@@ -1,11 +1,10 @@
-import { Dispatch, PropsWithChildren, SetStateAction } from "react";
+import { PropsWithChildren } from "react";
 import { Character } from "../../@types/global";
 import FormInput from "../FormInput";
 
 type Props = {
     character: Character,
-    inputHandler: (event: any, key: string) => void,
-    setCharacter: Dispatch<SetStateAction<Character>>
+    inputHandler: (event: any, key: string) => void
 }
 
 export default function CSInspiration(props: PropsWithChildren<Props>): JSX.Element {
@@ -16,7 +15,7 @@ export default function CSInspiration(props: PropsWithChildren<Props>): JSX.Elem
                 type="number"
                 name="inspiration"
                 onChange={e => props.inputHandler(e, "inspiration")}
-                value={props.character.inspiration}
+                value={props.character.inspiration ? props.character.inspiration : 0}
             />
             <label htmlFor="inspiration">Inspiration</label>
         </div>
