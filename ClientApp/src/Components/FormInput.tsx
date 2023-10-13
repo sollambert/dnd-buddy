@@ -21,7 +21,6 @@ function FormInput(props: Props): JSX.Element {
         style={{width: props.width}}
         name={props.name}
         type={props.type}
-        // defaultValue={type == 'number' ? 0 : ''}
         onChange={(e) => props.handler(e, props.name)}
         value={props.value}
         placeholder={props.type ? props.value : `Enter ${props.name}...`}

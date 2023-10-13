@@ -1,51 +1,53 @@
 import React, { Dispatch, PropsWithChildren, SetStateAction } from "react";
 import { Character } from "../../@types/global";
 import CSAbilityInput from "./CSAbilityInput";
+import { useSelector } from "react-redux";
+import { RootState } from "../../Redux/store";
 
 type Props = {
-    character: Character,
     className?: string,
     inputHandler: (event: any, key: string) => void
 }
 
 export default function CSAbilities(props : PropsWithChildren<Props>) : JSX.Element {
 
+    const character = useSelector((store: RootState) => store.characterReducer);
     return (
         <div className="m-2 flex flex-col w-24 h-full items-center text-sm">
             <CSAbilityInput
                 name="strength"
-                character={props.character}
-                value={props.character.strength}
+                character={character}
+                value={character.strength}
                 inputHandler={props.inputHandler}
             />
             <CSAbilityInput
                 name="dexterity"
-                character={props.character}
-                value={props.character.dexterity}
+                character={character}
+                value={character.dexterity}
                 inputHandler={props.inputHandler}
             />
             <CSAbilityInput
                 name="constitution"
-                character={props.character}
-                value={props.character.constitution}
+                character={character}
+                value={character.constitution}
                 inputHandler={props.inputHandler}
             />
             <CSAbilityInput
                 name="intelligence"
-                character={props.character}
-                value={props.character.intelligence}
+                character={character}
+                value={character.intelligence}
                 inputHandler={props.inputHandler}
             />
             <CSAbilityInput
                 name="wisdom"
-                character={props.character}
-                value={props.character.wisdom}
+                character={character}
+                value={character.wisdom}
                 inputHandler={props.inputHandler}
             />
             <CSAbilityInput
                 name="charisma"
-                character={props.character}
-                value={props.character.charisma}
+                character={character}
+                value={character.charisma}
                 inputHandler={props.inputHandler}
             />
         </div>

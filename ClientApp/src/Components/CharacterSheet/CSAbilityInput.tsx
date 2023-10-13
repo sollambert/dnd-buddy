@@ -8,15 +8,15 @@ type Props = {
     inputHandler: (event: any, key: string) => void
 }
 
-export default function CSAbilityInput(props: PropsWithChildren<Props>) {
-
-    const getBonus = (abilityScore: number | undefined) => {
-        if (abilityScore) {
-            let bonus = Math.floor((abilityScore - 10) / 2);
-            return bonus >= 0 ? `+${bonus}` : bonus
-        }
-        return "-"
+export const getBonus = (abilityScore: number | undefined) => {
+    if (abilityScore) {
+        let bonus = Math.floor((abilityScore - 10) / 2);
+        return bonus >= 0 ? `+${bonus}` : bonus
     }
+    return "-"
+}
+
+export default function CSAbilityInput(props: PropsWithChildren<Props>) {
 
     return (
         <div className="mt-2 border">

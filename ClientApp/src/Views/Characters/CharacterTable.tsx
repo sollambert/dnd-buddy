@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../Redux/store.ts";
 import { useNavigate } from "react-router-dom";
 import { Character } from "../../@types/global";
+import { levelFromExperience } from "../../Components/CharacterSheet/CharacterUtils.ts";
 
 function CharacterTable(): JSX.Element {
   const dispatch = useDispatch();
@@ -38,7 +39,7 @@ function CharacterTable(): JSX.Element {
             <React.Fragment key={i} >
               <tr>
                 <td>{character.name}</td>
-                <td>{character.level}</td>
+                <td>{levelFromExperience(character.experience ? character.experience : 0)}</td>
                 <td>{character.race}</td>
                 <td>{character.profession}</td>
                 <td>

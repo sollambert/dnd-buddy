@@ -4,6 +4,7 @@ import { getCharacter, updateCharacter } from "../../Redux/ActionCreators/charac
 import { RootState } from "../../Redux/store";
 import { Character } from "../../@types/global";
 import CharacterForm from "./CharacterSheet";
+import * as ActionCreators from "../../Redux/ActionCreators/character.action.creators";
 import { useParams } from "react-router-dom";
 
 function CharacterDetails(): JSX.Element {
@@ -26,6 +27,12 @@ function CharacterDetails(): JSX.Element {
             document.title = 'D&D Buddy';
         }
     }, [character]);
+
+    useEffect(() => {
+        return () => {
+            dispatch(ActionCreators.clearCharacter());
+        }
+    }, [])
 
 
     const submitHandler = (character: Character, cb?: () => void): void => {

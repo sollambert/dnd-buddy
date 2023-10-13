@@ -1,10 +1,14 @@
 import { Character, NewCharacter } from "../../@types/global";
 import * as actions from "../ActionTypes/character.action.types";
 
-export function setCharacter(payload: Character): actions.SetCharacterAction {
+export function clearCharacter(): actions.ClearCharacterAction {
   return {
-    type: actions.SET_CHARACTER,
-    payload,
+    type: actions.CLEAR_CHARACTER
+  };
+}
+export function clearCharacters(): actions.ClearCharactersAction {
+  return {
+    type: actions.CLEAR_CHARACTERS,
   };
 }
 
@@ -15,6 +19,12 @@ export function setCharacters(payload: Array<Character>): actions.SetCharactersA
   };
 }
 
+export function setCharacter(payload: Character): actions.SetCharacterAction {
+  return {
+    type: actions.SET_CHARACTER,
+    payload,
+  };
+}
 export function addCharacter(payload: Character, callback?: () => void): actions.AddCharacterAction {
   return {
     type: actions.ADD_CHARACTER,

@@ -18,8 +18,6 @@ function CharacterForm(props: PropsWithChildren<Props>): JSX.Element {
 
 
   function handleInput(event: any, key: string) {
-    console.log(event.target);
-    console.log(key);
     if (key === "level") {
       event.target.value = Math.max(1, Math.min(event.target.value, 20));
     }
@@ -36,36 +34,26 @@ function CharacterForm(props: PropsWithChildren<Props>): JSX.Element {
       <div className="flex flex-col m-4">
         <CSHeader
           className="mx-3 flex flex-row"
-          character={props.character}
           inputHandler={handleInput}
         />
         <div className="flex flex-row w-full">
           <CSAbilities
-            character={props.character}
             inputHandler={handleInput}
           />
           <div className="flex flex-col m-2 mt-4">
             <CSInspiration
               className="border p-2 mb-2 flex items-center"
-              character={props.character}
               inputHandler={handleInput}
             />
             <CSProficiency
               className="border p-2 mb-2 flex items-center"
-              character={props.character}
               inputHandler={handleInput}
             />
             <CSSavingThrows
               className="border p-2 mb-2 flex flex-col items-start"
-              character={props.character}
               inputHandler={handleInput}
-              setCharacter={props.setCharacter}
             />
-            <CSSkills
-              className="border p-2 mb-2 flex flex-col items-start"
-              character={props.character}
-              setCharacter={props.setCharacter}
-            />
+            <CSSkills className="border p-2 mb-2 flex flex-col items-start" />
           </div>
         </div>
       </div>
