@@ -1,7 +1,7 @@
 import React from 'react';
-import { Login } from './Login'
-import { Logout } from './Logout'
-import { ApplicationPaths, LoginActions, LogoutActions } from './ApiAuthorizationConstants';
+import { Login } from './Login.js'
+import { Logout } from './Logout.js'
+import { ApplicationPaths, LoginActions, LogoutActions } from './ApiAuthorizationConstants.js';
 
 const ApiAuthorizationRoutes = [
   {

@@ -4,12 +4,9 @@ import {
   Routes,
 } from "react-router-dom";
 
-import FourOFour from "./Views/404/404";
-import Nav from "./Components/Nav/Nav";
-
 import AuthorizeRoute from "./Components/api-authorization/AuthorizeRoute"
 import AppRoutes from "./AppRoutes";
-import { Layout } from "./Components/Layout";
+import Layout from "./Components/Layout.tsx";
 
 function App() {
   return (

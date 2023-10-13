@@ -13,10 +13,7 @@ type Props = {
   editing?: boolean;
 }
 
-const newCharacter: Character = { id: 0, name: "New Character" };
-
 function CharacterForm(props: PropsWithChildren<Props>): JSX.Element {
-  const dispatch = useDispatch();
 
 
   function handleInput(event: any, key: string) {

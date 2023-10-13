@@ -1,18 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component, PropsWithChildren } from 'react';
 import { Container } from 'reactstrap';
 import Nav from './Nav/Nav';
 
-export class Layout extends Component {
-  static displayName = Layout.name;
+export default function Layout(props : PropsWithChildren) {
+  const displayName = Layout.name;
 
-  render() {
     return (
       <div>
         <Nav />
         <Container tag="main">
-          {this.props.children}
+          {props.children}
         </Container>
       </div>
     );
-  }
 }
