@@ -21,6 +21,12 @@ export type Character = {
     player?: string;
     inspiration?: number;
     proficiency?: number;
+    strProf?: bool;
+    dexProf?: bool;
+    conProf?: bool;
+    intProf?: bool;
+    wisProf?: bool;
+    chaProf?: bool;
 }
 
 export type Campaign = {

@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
 
 namespace dnd_buddy.Models
 {
@@ -26,6 +27,12 @@ namespace dnd_buddy.Models
         public byte Inspiration {get; set; } = 0;
         public byte Proficiency {get; set; } = 0;
         public Alignments Alignment {get; set; } = Alignments.TN;
+        public bool StrProf {get; set;} = false;
+        public bool DexProf {get; set;} = false;
+        public bool ConProf {get; set;} = false;
+        public bool IntProf {get; set;} = false;
+        public bool WisProf {get; set;} = false;
+        public bool ChaProf {get; set;} = false;
         public Character() {
             this.Strength = RollStat();
             this.Dexterity = RollStat();

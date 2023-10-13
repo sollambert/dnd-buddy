@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using dnd_buddy.Data;
 
@@ -10,9 +11,11 @@ using dnd_buddy.Data;
 namespace dnd_buddy.Data.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231013022520_AddAbilityProfsAndProficiency")]
+    partial class AddAbilityProfsAndProficiency
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.9");
@@ -405,19 +408,10 @@ namespace dnd_buddy.Data.Migrations
                     b.Property<int?>("CampaignId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<bool>("ChaProf")
-                        .HasColumnType("INTEGER");
-
                     b.Property<byte>("Charisma")
                         .HasColumnType("INTEGER");
 
-                    b.Property<bool>("ConProf")
-                        .HasColumnType("INTEGER");
-
                     b.Property<byte>("Constitution")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("DexProf")
                         .HasColumnType("INTEGER");
 
                     b.Property<byte>("Dexterity")
@@ -427,9 +421,6 @@ namespace dnd_buddy.Data.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<byte>("Inspiration")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("IntProf")
                         .HasColumnType("INTEGER");
 
                     b.Property<byte>("Intelligence")
@@ -457,16 +448,28 @@ namespace dnd_buddy.Data.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<bool>("StrProf")
-                        .HasColumnType("INTEGER");
-
                     b.Property<byte>("Strength")
                         .HasColumnType("INTEGER");
 
-                    b.Property<bool>("WisProf")
+                    b.Property<byte>("Wisdom")
                         .HasColumnType("INTEGER");
 
-                    b.Property<byte>("Wisdom")
+                    b.Property<bool>("chaProf")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("conProf")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("dexProf")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("intProf")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("strProf")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("wisProf")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
