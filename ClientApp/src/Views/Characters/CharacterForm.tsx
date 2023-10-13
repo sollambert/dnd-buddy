@@ -6,6 +6,7 @@ import { addCharacter, updateCharacter } from "../../Redux/ActionCreators/charac
 import CSAbilities from "../../Components/CharacterSheet/CSAbilities.tsx";
 import CSHeader from "../../Components/CharacterSheet/CSHeader.tsx";
 import CSInspiration from "../../Components/CharacterSheet/CSInspiration.tsx";
+import CSProficiency from "../../Components/CharacterSheet/CSProficiency.tsx";
 
 
 type Props = {
@@ -41,11 +42,18 @@ function CharacterForm(props: PropsWithChildren<Props>): JSX.Element {
             inputHandler={handleInput}
             setCharacter={props.setCharacter}
           />
-          <CSInspiration
-            character={props.character}
-            inputHandler={handleInput}
-            setCharacter={props.setCharacter}
-          />
+          <div className="flex flex-col">
+            <CSInspiration
+              character={props.character}
+              inputHandler={handleInput}
+              setCharacter={props.setCharacter}
+            />
+            <CSProficiency
+              character={props.character}
+              inputHandler={handleInput}
+              setCharacter={props.setCharacter}
+            />
+          </div>
         </div>
       </div>
     </>

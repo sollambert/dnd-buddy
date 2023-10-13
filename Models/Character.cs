@@ -1,8 +1,5 @@
 using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
-using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
 
 namespace dnd_buddy.Models
 {
@@ -26,6 +23,8 @@ namespace dnd_buddy.Models
         public string Profession { get; set; } = "Paladin";
         public string Player {get; set; } = "";
         public int Experience {get; set; } = 0;
+        public byte Inspiration {get; set; } = 0;
+        public byte Proficiency {get; set; } = 0;
         public Alignments Alignment {get; set; } = Alignments.TN;
         public Character() {
             this.Strength = RollStat();

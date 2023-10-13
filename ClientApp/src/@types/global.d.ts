@@ -20,6 +20,7 @@ export type Character = {
     campaignId?: number;
     player?: string;
     inspiration?: number;
+    proficiency?: number;
 }
 
 export type Campaign = {

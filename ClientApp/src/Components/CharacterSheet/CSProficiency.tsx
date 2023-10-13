@@ -8,17 +8,17 @@ type Props = {
     setCharacter: Dispatch<SetStateAction<Character>>
 }
 
-export default function CSInspiration(props: PropsWithChildren<Props>): JSX.Element {
+export default function CSProficiency(props: PropsWithChildren<Props>): JSX.Element {
     return (
         <div className="border p-2 flex items-center">
             <input
                 className="w-14 h-8 mr-2 px-2"
                 type="number"
-                name="inspiration"
-                onChange={e => props.inputHandler(e, "inspiration")}
-                value={props.character.inspiration}
+                name="proficiency"
+                onChange={e => props.inputHandler(e, "proficiency")}
+                value={props.character.proficiency}
             />
-            <label htmlFor="inspiration">Inspiration</label>
+            <label htmlFor="proficiency">Proficiency Bonus</label>
         </div>
     )
 }
