@@ -1,4 +1,4 @@
-import { PropsWithChildren } from "react";
+import { PropsWithChildren, useEffect, useState } from "react";
 import { Character } from "../../@types/global";
 import { screamingSnakeToReadable } from "../../Utils/global";
 import { CharacterSkill, Skill, SkillProficiency } from "./CharacterUtils";
@@ -18,9 +18,11 @@ function calcSkillBonus(character: Character, skill: CharacterSkill) {
     switch (skill.proficiency) {
         case "PROFICIENT": {
             abilityBonus[1] += profBonus;
+            break;
         }
         case "EXPERT": {
             abilityBonus[1] += profBonus * 2;
+            break;
         }
     }
     return abilityBonus;
@@ -81,12 +83,26 @@ export default function CSSkills(props: PropsWithChildren<Props>): JSX.Element {
         console.log(character);
         if (character.skills) {
             character.skills[index].proficiency = proficiency;
+            setChecked(character.skills.map((skill) => {
+                return skill.proficiency;
+            }));
         }
         dispatch(ActionCreators.setCharacter(character));
     }
+    
+    const [checked, setChecked] = useState(new Array<SkillProficiency>);
+    useEffect(() => {
+        let newChecked: Array<SkillProficiency> = []
+        character.skills?.forEach((skill, i) => {
+            newChecked.push(skill.proficiency);
+        });
+        setChecked(newChecked);
+    }, []);
 
+    console.log(checked)
     return (
         <div className="flex flex-col items-start border p-1">
+            <div className="text-lg m-1">Skills</div>
             <div className="flex flex-row items-center">
                 <div className="flex flex-row w-12 justify-evenly">
                     <p>N</p>
@@ -95,10 +111,9 @@ export default function CSSkills(props: PropsWithChildren<Props>): JSX.Element {
                 </div>
                 <p className="mx-2 text-sm">{"(None, Proficient, Expert)"}</p>
             </div>
-            <div>
+            <div key="skills-map">
                 {character.skills?.map((skill, i) => {
                     let bonus = calcSkillBonus(character, skill);
-                    console.log(skill.proficiency);
                     return (
                         <div key={skill.skill} className="flex flex-row items-center">
                             <div className="flex flex-row w-12 justify-evenly">
@@ -107,7 +122,7 @@ export default function CSSkills(props: PropsWithChildren<Props>): JSX.Element {
                                     className="w-3"
                                     type="radio"
                                     onChange={() => inputHandler(character, i, SkillProficiency.NONE)}
-                                    checked={skill.proficiency === SkillProficiency.NONE}
+                                    checked={checked[i] === SkillProficiency.NONE}
                                     name={`PROF-${skill.skill.toLocaleString()}`}
                                 />
                                 <input
@@ -115,7 +130,7 @@ export default function CSSkills(props: PropsWithChildren<Props>): JSX.Element {
                                     className="w-3"
                                     type="radio"
                                     onChange={() => inputHandler(character, i, SkillProficiency.PROFICIENT)}
-                                    checked={skill.proficiency === SkillProficiency.PROFICIENT}
+                                    checked={checked[i] === SkillProficiency.PROFICIENT}
                                     name={`PROF-${skill.skill.toLocaleString()}`}
                                 />
                                 <input
@@ -123,7 +138,7 @@ export default function CSSkills(props: PropsWithChildren<Props>): JSX.Element {
                                     className="w-3"
                                     type="radio"
                                     onChange={() => inputHandler(character, i, SkillProficiency.EXPERT)}
-                                    checked={skill.proficiency === SkillProficiency.EXPERT}
+                                    checked={checked[i] === SkillProficiency.EXPERT}
                                     name={`PROF-${skill.skill.toLocaleString()}`}
                                 />
                             </div>
