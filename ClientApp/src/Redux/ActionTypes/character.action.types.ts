@@ -1,4 +1,4 @@
-import { Character } from "../../@types/global";
+import { Character, NewCharacter } from "../../@types/global";
 
 export const GET_CHARACTER = "character/GET_CHARACTER";
 export interface GetCharacterAction {
@@ -31,6 +31,14 @@ export const ADD_CHARACTER = "character/ADD_CHARACTER";
 export interface AddCharacterAction {
   type: typeof ADD_CHARACTER;
   payload: Character;
+  callback?: () => void;
+}
+
+export const NEW_CHARACTER = "character/NEW_CHARACTER";
+export interface NewCharacterAction {
+  type: typeof NEW_CHARACTER;
+  payload: NewCharacter;
+  navigate: (id: number) => void;
   callback?: () => void;
 }
 

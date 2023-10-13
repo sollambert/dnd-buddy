@@ -1,4 +1,4 @@
-import { Character } from "../../@types/global";
+import { Character, NewCharacter } from "../../@types/global";
 import * as actions from "../ActionTypes/character.action.types";
 
 export function setCharacter(payload: Character): actions.SetCharacterAction {
@@ -19,6 +19,15 @@ export function addCharacter(payload: Character, callback?: () => void): actions
   return {
     type: actions.ADD_CHARACTER,
     payload,
+    callback
+  };
+}
+
+export function addNewCharacter(payload: NewCharacter, navigate : (id: number) => void, callback?: () => void): actions.NewCharacterAction {
+  return {
+    type: actions.NEW_CHARACTER,
+    payload,
+    navigate,
     callback
   };
 }

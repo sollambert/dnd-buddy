@@ -2,6 +2,10 @@ export type RequireOnly<T, P extends keyof T> =
     Pick<T, P>
     & Partial<Omit<T, P>>;
 
+export type NewCharacter = {
+    name: string;
+}
+
 export type Character = {
     id: number;
     name: string;

@@ -1,4 +1,4 @@
-import { Character } from "../../@types/global";
+import { Character, NewCharacter } from "../../@types/global";
 import axios from "axios";
 
 interface characterResponse {
@@ -11,6 +11,12 @@ interface deleteResponse {
 
 interface charactersResponse {
     characters: Array<Character>;
+}
+
+export async function postNewCharacter(
+    payload: NewCharacter
+) : Promise<characterResponse> {
+    return await axios.post('/api/character', payload)
 }
 
 export async function postCharacter(

@@ -1,7 +1,21 @@
 import { call, put, takeLatest } from "redux-saga/effects";
 import * as ActionTypes from "../ActionTypes/character.action.types";
 import * as ActionCreators from "../ActionCreators/character.action.creators";
-import {postCharacter, putCharacter, getCharacter, getCharacters, deleteCharacter} from '../Services/character.services.ts';
+import {postCharacter, putCharacter, getCharacter, getCharacters, deleteCharacter, postNewCharacter} from '../Services/character.services.ts';
+
+function* newCharacter({ payload, navigate, callback }: ActionTypes.NewCharacterAction) {
+  try {
+    let { data } = yield call (postNewCharacter, payload);
+    console.log(data);
+    yield put(ActionCreators.setCharacter(data));
+    yield put(ActionCreators.getCharacters());
+    navigate(data.id);
+  } catch (error) {
+    console.error(error);
+  } finally {
+    yield call(() => callback?.());
+  }
+}
 
 function* addCharacter({ payload, callback }: ActionTypes.AddCharacterAction) {
   try {
@@ -62,6 +76,7 @@ function* deleteCharacterById({payload, callback}: ActionTypes.DeleteCharacterAc
 
 function* watcherSaga() {
   yield takeLatest(ActionTypes.ADD_CHARACTER, addCharacter);
+  yield takeLatest(ActionTypes.NEW_CHARACTER, newCharacter);
   yield takeLatest(ActionTypes.UPDATE_CHARACTER, updateCharacter);
   yield takeLatest(ActionTypes.GET_CHARACTER, getCharacterById);
   yield takeLatest(ActionTypes.GET_CHARACTERS, getAllCharacters);
