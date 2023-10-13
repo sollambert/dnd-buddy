@@ -1,10 +1,10 @@
 import { Dispatch, PropsWithChildren, SetStateAction } from "react";
 import { Character } from "../../@types/global";
-import CSAbilities from "../../Components/CharacterSheet/CSAbilities.tsx";
-import CSHeader from "../../Components/CharacterSheet/CSHeader.tsx";
-import CSInspiration from "../../Components/CharacterSheet/CSInspiration.tsx";
-import CSProficiency from "../../Components/CharacterSheet/CSProficiency.tsx";
-import CSSavingThrows from "../../Components/CharacterSheet/CSSavingThrows.tsx";
+import CSAbilities from "../../Components/CharacterSheet/CSAbilities";
+import CSHeader from "../../Components/CharacterSheet/CSHeader";
+import CSInspiration from "../../Components/CharacterSheet/CSInspiration";
+import {CSProficiency} from "../../Components/CharacterSheet/CSProficiency";
+import CSSavingThrows from "../../Components/CharacterSheet/CSSavingThrows";
 
 
 type Props = {
@@ -32,8 +32,9 @@ function CharacterForm(props: PropsWithChildren<Props>): JSX.Element {
 
   return (
     <>
-      <div className="flex flex-col m-4 w-full">
+      <div className="flex flex-col m-4">
         <CSHeader
+          className="mx-3 flex flex-row"
           character={props.character}
           inputHandler={handleInput}
         />
@@ -42,16 +43,19 @@ function CharacterForm(props: PropsWithChildren<Props>): JSX.Element {
             character={props.character}
             inputHandler={handleInput}
           />
-          <div className="flex flex-col m-2">
+          <div className="flex flex-col m-2 mt-4">
             <CSInspiration
+              className="border p-2 mb-2 flex items-center"
               character={props.character}
               inputHandler={handleInput}
             />
             <CSProficiency
+              className="border p-2 mb-2 flex items-center"
               character={props.character}
               inputHandler={handleInput}
             />
             <CSSavingThrows
+              className="border p-2 mb-2 flex flex-col items-start"
               character={props.character}
               inputHandler={handleInput}
               setCharacter={props.setCharacter}

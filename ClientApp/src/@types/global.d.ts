@@ -9,7 +9,6 @@ export type NewCharacter = {
 export type Character = {
     id: number;
     name: string;
-    level?: number;
     race?: string;
     profession?: string;
     strength?: number;

@@ -4,12 +4,13 @@ import FormInput from "../FormInput";
 
 type Props = {
     character: Character,
+    className?: string,
     inputHandler: (event: any, key: string) => void
 }
 
 export default function CSInspiration(props: PropsWithChildren<Props>): JSX.Element {
     return (
-        <div className="border p-2 flex items-center">
+        <div className={props.className}>
             <input
                 className="w-14 h-8 mr-2 px-2"
                 type="number"

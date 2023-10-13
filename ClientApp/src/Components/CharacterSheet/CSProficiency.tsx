@@ -1,22 +1,29 @@
 import { PropsWithChildren } from "react";
 import { Character } from "../../@types/global";
+import { levelFromExperience } from "./CharacterUtils";
 
 type Props = {
     character: Character,
+    className?: string,
     inputHandler: (event: any, key: string) => void
 }
 
-export default function CSProficiency(props: PropsWithChildren<Props>): JSX.Element {
+export function CSProficiency(props: PropsWithChildren<Props>): JSX.Element {
     return (
-        <div className="border p-2 flex items-center">
+        <div className={props.className}>
             <input
-                className="w-14 h-8 mr-2 px-2"
-                type="number"
+                readOnly
+                className="w-6 h-8 mr-2 text-center"
                 name="proficiency"
                 onChange={e => props.inputHandler(e, "proficiency")}
-                value={props.character.proficiency ? props.character.proficiency : 0}
+                value={calcProficiency(props.character)}
             />
             <label htmlFor="proficiency">Proficiency Bonus</label>
         </div>
     )
+}
+
+export function calcProficiency(character: Character) {
+    let level = levelFromExperience(character.experience ? character.experience : 1);
+    return  Math.floor((level - 1) / 4) + 2
 }

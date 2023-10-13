@@ -11,8 +11,6 @@ namespace dnd_buddy.Models
         public int Id { get; set; }
         [Required]
         public string Name { get; set; } = "";
-        [Required]
-        public byte Level { get; set; } = 1;
         public byte Strength { get; set; }
         public byte Dexterity { get; set; }
         public byte Constitution { get; set; }
@@ -25,7 +23,6 @@ namespace dnd_buddy.Models
         public string Player {get; set; } = "";
         public int Experience {get; set; } = 0;
         public byte Inspiration {get; set; } = 0;
-        public byte Proficiency {get; set; } = 0;
         public Alignments Alignment {get; set; } = Alignments.TN;
         public bool StrProf {get; set;} = false;
         public bool DexProf {get; set;} = false;

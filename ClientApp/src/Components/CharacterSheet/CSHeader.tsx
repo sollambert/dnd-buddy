@@ -2,16 +2,18 @@ import React, { PropsWithChildren } from "react";
 import { Character } from "../../@types/global";
 import FormInput from "../FormInput";
 import { Alignment } from "../../Constants/character";
+import { levelFromExperience } from "./CharacterUtils";
 
 type Props = {
     character: Character,
+    className?: string,
     inputHandler: (event: any, key: string) => void,
 }
 
 export default function CSHeader(props: PropsWithChildren<Props>): JSX.Element {
     return (
-        <div className="flex flex-row w-full justify-center">
-            <div className="flex flex-col items-center">
+        <div className={props.className}>
+            <div className="flex flex-col items-center border">
                 <div className="flex flex-row items-center m-2">
                     <FormInput
                         className="w-48 px-2 mr-4"
@@ -35,7 +37,7 @@ export default function CSHeader(props: PropsWithChildren<Props>): JSX.Element {
                         value={props.character.background ? props.character.background : ""}
                     />
                     <FormInput
-                        className="w-48 px-2 mr-4"
+                        className="w-48 px-2"
                         name="player"
                         display="Player"
                         handler={props.inputHandler}
@@ -44,12 +46,13 @@ export default function CSHeader(props: PropsWithChildren<Props>): JSX.Element {
                 </div>
                 <div className="flex flex-row items-center m-2">
                     <FormInput
+                        readOnly
                         className="w-14 px-2 mr-4"
-                        type="number"
+                        type="text"
                         name="level"
                         display="Total Level"
                         handler={props.inputHandler}
-                        value={props.character.level ? props.character.level : 1}
+                        value={levelFromExperience(props.character.experience ? props.character.experience : 0)}
                     />
                     <FormInput
                         className="w-48 px-2 mr-4"
@@ -84,7 +87,7 @@ export default function CSHeader(props: PropsWithChildren<Props>): JSX.Element {
                         </select>
                     </div>
                     <FormInput
-                        className="w-48 px-2 mr-4"
+                        className="w-48 px-2"
                         type="number"
                         name="experience"
                         display="Experience"

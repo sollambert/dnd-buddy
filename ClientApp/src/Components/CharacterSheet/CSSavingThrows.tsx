@@ -1,9 +1,11 @@
 import { Dispatch, PropsWithChildren, SetStateAction, useEffect } from "react"
 import { Character } from "../../@types/global"
 import CSSavingThrowInput from "./CSSavingThrowInput";
+import { calcProficiency } from "./CSProficiency";
 
 type Props = {
     character: Character,
+    className?: string,
     inputHandler: (event: any, key: string) => void
     setCharacter: Dispatch<SetStateAction<Character>>;
 }
@@ -16,14 +18,14 @@ export default function CSSavingThrows(props: PropsWithChildren<Props>): JSX.Ele
     }, [props.character])
 
     return (
-        <div className="border p-2 flex flex-col items-start">
+        <div className={props.className}>
             <h1>Saving Throws</h1>
             <CSSavingThrowInput 
                 name="strProf"
                 display="Strength"
                 value={props.character.strProf}
                 abilityScore={props.character.strength}
-                profBonus={props.character.proficiency}
+                profBonus={calcProficiency(props.character)}
                 inputHandler={props.inputHandler}
             />
             <CSSavingThrowInput 
@@ -31,7 +33,7 @@ export default function CSSavingThrows(props: PropsWithChildren<Props>): JSX.Ele
                 display="Dexterity"
                 value={props.character.dexProf}
                 abilityScore={props.character.dexterity}
-                profBonus={props.character.proficiency}
+                profBonus={calcProficiency(props.character)}
                 inputHandler={props.inputHandler}
             />
             <CSSavingThrowInput 
@@ -39,7 +41,7 @@ export default function CSSavingThrows(props: PropsWithChildren<Props>): JSX.Ele
                 display="Constitution"
                 value={props.character.conProf}
                 abilityScore={props.character.constitution}
-                profBonus={props.character.proficiency}
+                profBonus={calcProficiency(props.character)}
                 inputHandler={props.inputHandler}
             />
             <CSSavingThrowInput 
@@ -47,7 +49,7 @@ export default function CSSavingThrows(props: PropsWithChildren<Props>): JSX.Ele
                 display="Intelligence"
                 value={props.character.intProf}
                 abilityScore={props.character.intelligence}
-                profBonus={props.character.proficiency}
+                profBonus={calcProficiency(props.character)}
                 inputHandler={props.inputHandler}
             />
             <CSSavingThrowInput 
@@ -55,7 +57,7 @@ export default function CSSavingThrows(props: PropsWithChildren<Props>): JSX.Ele
                 display="Wisdom"
                 value={props.character.wisProf}
                 abilityScore={props.character.wisdom}
-                profBonus={props.character.proficiency}
+                profBonus={calcProficiency(props.character)}
                 inputHandler={props.inputHandler}
             />
             <CSSavingThrowInput 
@@ -63,7 +65,7 @@ export default function CSSavingThrows(props: PropsWithChildren<Props>): JSX.Ele
                 display="Charisma"
                 value={props.character.chaProf}
                 abilityScore={props.character.charisma}
-                profBonus={props.character.proficiency}
+                profBonus={calcProficiency(props.character)}
                 inputHandler={props.inputHandler}
             />
         </div>

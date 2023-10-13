@@ -4,6 +4,7 @@ import CSAbilityInput from "./CSAbilityInput";
 
 type Props = {
     character: Character,
+    className?: string,
     inputHandler: (event: any, key: string) => void
 }
 
