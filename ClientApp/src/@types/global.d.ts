@@ -19,6 +19,7 @@ export type Character = {
     alignment?: Alignment;
     campaignId?: number;
     player?: string;
+    inspiration?: number;
 }
 
 export type Campaign = {

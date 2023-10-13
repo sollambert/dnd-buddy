@@ -20,8 +20,7 @@ export default function CSAbilities(props : PropsWithChildren<Props>) : JSX.Elem
     }
 
     return (
-        <div className="m-2 flex flex-col w-16">
-            <label htmlFor="strength">Strength</label>
+        <div className="m-2 flex flex-col w-24 h-full items-center text-sm">
             <CSAbilityInput
                 name="strength"
                 character={props.character}
