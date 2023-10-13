@@ -1,5 +1,6 @@
 import { Dispatch, PropsWithChildren, SetStateAction, useEffect } from "react"
 import { Character } from "../../@types/global"
+import CSSavingThrowInput from "./CSSavingThrowInput";
 
 type Props = {
     character: Character,
@@ -9,16 +10,6 @@ type Props = {
 
 export default function CSSavingThrows(props: PropsWithChildren<Props>): JSX.Element {
 
-    function calcSaveBonus(proficiency: boolean, abilityScore: number | undefined, profBonus: number | undefined) {
-        if (abilityScore) {
-            let bonus = Math.floor((abilityScore - 10) / 2);
-            if (proficiency && profBonus) {
-                bonus += Number(profBonus);
-            }
-            return bonus >= 0 ? `+${bonus}` : bonus
-        }
-        return "-"
-    }
 
     useEffect(() => {
         console.log(props.character)
@@ -27,19 +18,54 @@ export default function CSSavingThrows(props: PropsWithChildren<Props>): JSX.Ele
     return (
         <div className="border p-2 flex flex-col items-start">
             <h1>Saving Throws</h1>
-            <div key="strsave" className="flex">
-                <input
-                    name="strprof"
-                    type="checkbox"
-                    onChange={e => props.inputHandler(e, "strProf")}
-                    value={"savingthrow"}
-                    checked={!!Boolean(props.character.strProf)}
-                />
-                <p className="mx-2">
-                    {calcSaveBonus(props.character.strProf, props.character.strength, props.character.proficiency)}
-                </p>
-                <label htmlFor="strprof">Strength</label>
-            </div>
+            <CSSavingThrowInput 
+                name="strProf"
+                display="Strength"
+                value={props.character.strProf}
+                abilityScore={props.character.strength}
+                profBonus={props.character.proficiency}
+                inputHandler={props.inputHandler}
+            />
+            <CSSavingThrowInput 
+                name="dexProf"
+                display="Dexterity"
+                value={props.character.dexProf}
+                abilityScore={props.character.dexterity}
+                profBonus={props.character.proficiency}
+                inputHandler={props.inputHandler}
+            />
+            <CSSavingThrowInput 
+                name="conProf"
+                display="Constitution"
+                value={props.character.conProf}
+                abilityScore={props.character.constitution}
+                profBonus={props.character.proficiency}
+                inputHandler={props.inputHandler}
+            />
+            <CSSavingThrowInput 
+                name="intProf"
+                display="Intelligence"
+                value={props.character.intProf}
+                abilityScore={props.character.intelligence}
+                profBonus={props.character.proficiency}
+                inputHandler={props.inputHandler}
+            />
+            <CSSavingThrowInput 
+                name="wisProf"
+                display="Wisdom"
+                value={props.character.wisProf}
+                abilityScore={props.character.wisdom}
+                profBonus={props.character.proficiency}
+                inputHandler={props.inputHandler}
+            />
+            <CSSavingThrowInput 
+                name="chaProf"
+                display="Charisma"
+                value={props.character.chaProf}
+                abilityScore={props.character.charisma}
+                profBonus={props.character.proficiency}
+                inputHandler={props.inputHandler}
+            />
         </div>
     )
 }

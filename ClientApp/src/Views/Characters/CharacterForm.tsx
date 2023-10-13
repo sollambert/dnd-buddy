@@ -42,7 +42,7 @@ function CharacterForm(props: PropsWithChildren<Props>): JSX.Element {
             character={props.character}
             inputHandler={handleInput}
           />
-          <div className="flex flex-col">
+          <div className="flex flex-col m-2">
             <CSInspiration
               character={props.character}
               inputHandler={handleInput}
