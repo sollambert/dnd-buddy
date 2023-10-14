@@ -57,6 +57,7 @@ export type Character = {
     weight?: number,
     skin?: string,
     hair?: string,
+    initMod?: number,
 }
 
 export type Campaign = {

@@ -12,6 +12,7 @@ import CSCoinage from "../../Components/CharacterSheet/CSCoinage";
 import CSHitPoints from "../../Components/CharacterSheet/CSHitPoints";
 import CSDeathSaves from "../../Components/CharacterSheet/CSDeathSaves";
 import CSDescription from "../../Components/CharacterSheet/CSDescription";
+import CSInititative from "../../Components/CharacterSheet/CSInitiative";
 
 function CharacterSheet(): JSX.Element {
   const dispatch = useDispatch();
@@ -34,12 +35,17 @@ function CharacterSheet(): JSX.Element {
     <>
       <div className="flex flex-col m-4">
         <CSHeader
-          className="mx-3 flex flex-row"
+          className="mx-2 flex flex-row"
           inputHandler={handleInput}
         />
         <div className="flex flex-row w-full">
           <div className="flex flex-col">
             <CSAbilities
+              className="m-2 px-2 flex flex-col items-start text-sm border"
+              inputHandler={handleInput}
+            />
+            <CSInititative
+              className="m-2 p-2 flex flex-col border items-start"
               inputHandler={handleInput}
             />
             <CSCoinage />
