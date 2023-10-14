@@ -57,6 +57,10 @@ namespace dnd_buddy.Models
         public bool ChaProf { get; set; } = false;
         public List<CharacterSkill>? Skills { get; set; }
         public Coinage? Coins {get; set;}
+        public int? MaxHitpoints {get; set;}
+        public int? Hitpoints {get; set;}
+        public int? TempHitpoints {get; set;}
+        public string? HitDice {get; set;}
         public Character()
         {
             this.Strength = RollStat();
