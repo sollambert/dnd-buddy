@@ -55,7 +55,8 @@ namespace dnd_buddy.Models
         public bool IntProf { get; set; } = false;
         public bool WisProf { get; set; } = false;
         public bool ChaProf { get; set; } = false;
-        public List<CharacterSkill> Skills { get; set; }
+        public List<CharacterSkill>? Skills { get; set; }
+        public Coinage? Coins {get; set;}
         public Character()
         {
             this.Strength = RollStat();
@@ -64,26 +65,6 @@ namespace dnd_buddy.Models
             this.Intelligence = RollStat();
             this.Wisdom = RollStat();
             this.Charisma = RollStat();
-            // this.Skills = new List<CharacterSkill> {
-            // new(Skill.ACROBATICS, SkillProficiency.NONE),
-            // new(Skill.ANIMAL_HANDLING, SkillProficiency.NONE),
-            // new(Skill.ARCANA, SkillProficiency.NONE),
-            // new(Skill.ATHLETICS, SkillProficiency.NONE),
-            // new(Skill.DECEPTION, SkillProficiency.NONE),
-            // new(Skill.HISTORY, SkillProficiency.NONE),
-            // new(Skill.INSIGHT, SkillProficiency.NONE),
-            // new(Skill.INTIMIDATION, SkillProficiency.NONE),
-            // new(Skill.INVESTIGATION, SkillProficiency.NONE),
-            // new(Skill.MEDICINE, SkillProficiency.NONE),
-            // new(Skill.NATURE, SkillProficiency.NONE),
-            // new(Skill.PERCEPTION, SkillProficiency.NONE),
-            // new(Skill.PERFORMANCE, SkillProficiency.NONE),
-            // new(Skill.PERSUASION, SkillProficiency.NONE),
-            // new(Skill.RELIGION, SkillProficiency.NONE),
-            // new(Skill.SLEIGHT_OF_HAND, SkillProficiency.NONE),
-            // new(Skill.STEALTH, SkillProficiency.NONE),
-            // new(Skill.SURVIVAL, SkillProficiency.NONE)
-        //};
         }
         public byte RollStat()
         {
@@ -98,7 +79,15 @@ namespace dnd_buddy.Models
             byte stat = (byte)(rolls[2] + rolls[3] + rolls[4]);
             return stat;
         }
-
+        public class Coinage
+        {
+            public int Id {get; set;}
+            public int Copper {get; set;}
+            public int Silver {get; set;}
+            public int Electrum {get; set;}
+            public int Gold {get; set;}
+            public int Platinum {get; set;}
+        }
         public class CharacterSkill
         {
             public int Id { get; set; }

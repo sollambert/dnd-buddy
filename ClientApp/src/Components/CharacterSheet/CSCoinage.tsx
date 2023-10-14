@@ -61,11 +61,12 @@ export default function CSCoinage(props: Props) {
     }
 
     return (
-        <div className="flex flex-col border m-2">
+        <div className="flex flex-col border m-2 p-2">
+            <h1>Coins</h1>
             <div>
                 <label htmlFor="copper">CP</label>
                 <input
-                    className="m-2 w-12"
+                    className="my-2 ml-2 w-14"
                     name="copper"
                     type="number"
                     min="0"
@@ -76,7 +77,7 @@ export default function CSCoinage(props: Props) {
             <div>
                 <label htmlFor="silver">SP</label>
                 <input
-                    className="m-2 w-12"
+                    className="my-2 ml-2 w-14"
                     name="silver"
                     type="number"
                     min="0"
@@ -87,7 +88,7 @@ export default function CSCoinage(props: Props) {
             <div>
                 <label htmlFor="electrum">EP</label>
                 <input
-                    className="m-2 w-12"
+                    className="my-2 ml-2 w-14"
                     name="electrum"
                     type="number"
                     min="0"
@@ -98,7 +99,7 @@ export default function CSCoinage(props: Props) {
             <div>
                 <label htmlFor="gold">GP</label>
                 <input
-                    className="m-2 w-12"
+                    className="my-2 ml-2 w-14"
                     name="gold"
                     type="number"
                     min="0"
@@ -109,7 +110,7 @@ export default function CSCoinage(props: Props) {
             <div>
                 <label htmlFor="platinum">PP</label>
                 <input
-                    className="m-2 w-12"
+                    className="my-2 ml-2 w-14"
                     name="platinum"
                     type="number"
                     min="0"

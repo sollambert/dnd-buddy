@@ -27,6 +27,7 @@ namespace dnd_buddy.Controllers
         {
             IEnumerable<Character> characters = _context.Characters
                 .Include(character => character.Skills)
+                .Include(character => character.Coins)
                 .AsSplitQuery();
             return characters.FirstOrDefault(character => character.Id == id);
         }
@@ -42,9 +43,6 @@ namespace dnd_buddy.Controllers
         [HttpPut]
         public IActionResult UpdateCharacter(Character character)
         {
-            foreach(var skill in character.Skills) {
-                Console.WriteLine(skill.Proficiency);
-            }
             _context.Update(character);
             _context.SaveChanges();
             return Ok(character);
