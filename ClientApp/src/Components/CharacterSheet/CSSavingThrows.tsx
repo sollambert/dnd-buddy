@@ -14,7 +14,7 @@ export default function CSSavingThrows(props: PropsWithChildren<Props>): JSX.Ele
     const character = useSelector((store: RootState) => store.characterReducer);
     return (
         <div className={props.className}>
-            <h1>Saving Throws</h1>
+            <h1 className="text-xl">Saving Throws</h1>
             <CSSavingThrowInput 
                 name="strProf"
                 display="Strength"

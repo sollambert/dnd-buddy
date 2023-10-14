@@ -21,7 +21,7 @@ export function CSProficiency(props: PropsWithChildren<Props>): JSX.Element {
                 onChange={e => props.inputHandler(e, "proficiency")}
                 value={calcProficiency(character)}
             />
-            <label htmlFor="proficiency">Proficiency Bonus</label>
+            <label className="text-xl" htmlFor="proficiency">Proficiency Bonus</label>
         </div>
     )
 }

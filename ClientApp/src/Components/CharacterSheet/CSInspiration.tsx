@@ -18,7 +18,7 @@ export default function CSInspiration(props: PropsWithChildren<Props>): JSX.Elem
                 onChange={e => props.inputHandler(e, "inspiration")}
                 value={character.inspiration ? character.inspiration : 0}
             />
-            <label htmlFor="inspiration">Inspiration</label>
+            <label className="text-xl" htmlFor="inspiration">Inspiration</label>
         </div>
     )
 }

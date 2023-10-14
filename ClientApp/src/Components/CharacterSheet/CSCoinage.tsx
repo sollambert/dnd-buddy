@@ -60,7 +60,7 @@ export default function CSCoinage(props: Props) {
 
     return (
         <div className="flex flex-col border m-2 p-2">
-            <h1>Coins</h1>
+            <h1 className="text-xl">Coins</h1>
             <div>
                 <label htmlFor="copper">CP</label>
                 <input

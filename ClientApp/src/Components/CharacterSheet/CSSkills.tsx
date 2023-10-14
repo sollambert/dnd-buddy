@@ -101,7 +101,7 @@ export default function CSSkills(props: PropsWithChildren<Props>): JSX.Element {
 
     return (
         <div className="flex flex-col items-start border p-1">
-            <div className="text-lg m-1">Skills</div>
+            <h1 className="text-xl m-1">Skills</h1>
             <div className="flex flex-row items-center">
                 <div className="flex flex-row w-12 justify-evenly">
                     <p>N</p>

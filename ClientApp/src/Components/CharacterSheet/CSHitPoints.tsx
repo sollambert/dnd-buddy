@@ -23,7 +23,7 @@ export default function CSHitPoints(props: Props): JSX.Element {
 
     return (
         <div className={props.className}>
-            <h1>Hit Points</h1>
+            <h1 className="text-xl">Hit Points</h1>
             <div className="flex flex-row">
                 <div className="flex flex-col w-20 mr-1">
                     <label htmlFor="max-hitpoints">Maximum</label>
