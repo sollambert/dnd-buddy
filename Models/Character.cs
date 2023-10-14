@@ -63,6 +63,12 @@ namespace dnd_buddy.Models
         public string? HitDice {get; set;}
         public byte DeathSuccesses {get; set;}
         public byte DeathFailures {get; set;}
+        public int? Age {get; set;}
+        public string? Eyes {get; set;}
+        public string? Height {get; set;}
+        public int? Weight {get; set;}
+        public string? Skin {get; set;}
+        public string? Hair {get; set;}
         public Character()
         {
             this.Strength = RollStat();

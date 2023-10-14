@@ -62,7 +62,10 @@ export default function CSDescription(props: Props): JSX.Element {
                 </div>
                 <div className="flex flex-col w-20 text-center mr-1">
                     <label htmlFor="weight">Weight</label>
-                    <input className="text-center" name="weight" type="number" value={data.weight} onChange={e => props.inputHandler(e, "weight")} />
+                    <div className="flex flex-row items-center">
+                        <input className="text-center w-16" name="weight" type="number" value={data.weight} onChange={e => props.inputHandler(e, "weight")} />
+                        <p className="ml-1">lb</p>
+                    </div>
                 </div>
             </div>
             <div className="flex flex-row">
