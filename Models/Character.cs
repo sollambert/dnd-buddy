@@ -69,6 +69,7 @@ namespace dnd_buddy.Models
         public int? Weight {get; set;}
         public string? Skin {get; set;}
         public string? Hair {get; set;}
+        public int? InitMod {get; set;}
         public Character()
         {
             this.Strength = RollStat();

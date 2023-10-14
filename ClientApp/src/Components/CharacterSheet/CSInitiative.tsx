@@ -49,7 +49,7 @@ export default function CSInititative(props: Props) {
                 </div>
                 <div className="flex flex-col">
                     <label className="text-sm" htmlFor="initiative">BONUS</label>
-                    <input className="w-12 text-center" type="number" onChange={e => props.inputHandler(e, "initMod")}/>
+                    <input className="w-12 text-center" type="number" value={data.initMod} onChange={e => props.inputHandler(e, "initMod")}/>
                 </div>
             </div>
         </div>
