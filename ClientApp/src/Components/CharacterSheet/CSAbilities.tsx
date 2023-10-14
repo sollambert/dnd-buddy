@@ -12,7 +12,8 @@ export default function CSAbilities(props : PropsWithChildren<Props>) : JSX.Elem
 
     const character = useSelector((store: RootState) => store.characterReducer);
     return (
-        <div className="m-2 flex flex-col w-24 h-full items-center text-sm">
+        <div className={props.className}>
+            <h1 className="text-xl">Abilities</h1>
             <CSAbilityInput
                 name="strength"
                 value={character.strength}
