@@ -99,7 +99,6 @@ export default function CSSkills(props: PropsWithChildren<Props>): JSX.Element {
         setChecked(newChecked);
     }, [character]);
 
-    console.log(checked)
     return (
         <div className="flex flex-col items-start border p-1">
             <div className="text-lg m-1">Skills</div>

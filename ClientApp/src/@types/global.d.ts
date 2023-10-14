@@ -9,6 +9,14 @@ export type NewCharacter = {
     skills?: Array<CharacterSkill>;
 }
 
+export type Coinage = {
+    copper: number,
+    silver: number,
+    electrum: number,
+    gold: number,
+    platinum: number
+}
+
 export type Character = {
     id: number;
     name: string;
@@ -34,6 +42,7 @@ export type Character = {
     wisProf?: bool;
     chaProf?: bool;
     skills?: Array<CharacterSkill>;
+    coins?: Coinage;
 }
 
 export type Campaign = {

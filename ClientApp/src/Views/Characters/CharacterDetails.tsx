@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCharacter, updateCharacter } from "../../Redux/ActionCreators/character.action.creators";
 import { RootState } from "../../Redux/store";
 import { Character } from "../../@types/global";
-import CharacterForm from "./CharacterSheet";
+import CharacterSheet from "./CharacterSheet";
 import * as ActionCreators from "../../Redux/ActionCreators/character.action.creators";
 import { useParams } from "react-router-dom";
 
@@ -56,7 +56,7 @@ function CharacterDetails(): JSX.Element {
             >
                 SAVE
             </button>
-            <CharacterForm />
+            <CharacterSheet />
         </>);
 }
 

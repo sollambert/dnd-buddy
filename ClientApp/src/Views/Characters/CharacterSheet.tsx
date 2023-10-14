@@ -1,15 +1,16 @@
 import CSAbilities from "../../Components/CharacterSheet/CSAbilities";
 import CSHeader from "../../Components/CharacterSheet/CSHeader";
 import CSInspiration from "../../Components/CharacterSheet/CSInspiration";
-import {CSProficiency} from "../../Components/CharacterSheet/CSProficiency";
+import { CSProficiency } from "../../Components/CharacterSheet/CSProficiency";
 import CSSavingThrows from "../../Components/CharacterSheet/CSSavingThrows";
 import CSSkills from "../../Components/CharacterSheet/CSSkills";
 import * as ActionCreators from "../../Redux/ActionCreators/character.action.creators";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { RootState } from "../../Redux/store";
+import CSCoinage from "../../Components/CharacterSheet/CSCoinage";
 
-function CharacterForm(): JSX.Element {
+function CharacterSheet(): JSX.Element {
   const dispatch = useDispatch();
   const character = useSelector((store: RootState) => store.characterReducer);
 
@@ -34,9 +35,12 @@ function CharacterForm(): JSX.Element {
           inputHandler={handleInput}
         />
         <div className="flex flex-row w-full">
-          <CSAbilities
-            inputHandler={handleInput}
-          />
+          <div className="flex flex-col">
+            <CSAbilities
+              inputHandler={handleInput}
+            />
+            <CSCoinage />
+          </div>
           <div className="flex flex-col m-2 mt-4">
             <CSInspiration
               className="border p-2 mb-2 flex items-center"
@@ -58,4 +62,4 @@ function CharacterForm(): JSX.Element {
   );
 }
 
-export default CharacterForm;
+export default CharacterSheet;
