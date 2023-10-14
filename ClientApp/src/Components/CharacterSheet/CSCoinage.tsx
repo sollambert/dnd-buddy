@@ -21,9 +21,7 @@ export default function CSCoinage(props: Props) {
     });
 
     useEffect(() => {
-        console.log(character.coins)
         if (character.coins) {
-            console.log("coins")
             setCoins(character.coins);
         }
     }, [character])
