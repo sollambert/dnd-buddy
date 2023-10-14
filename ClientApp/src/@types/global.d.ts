@@ -51,6 +51,12 @@ export type Character = {
     hitDice?: string;
     deathSuccesses?: number;
     deathFailures?: number;
+    age?: number
+    eyes?: string,
+    height?: string,
+    weight?: number,
+    skin?: string,
+    hair?: string,
 }
 
 export type Campaign = {
