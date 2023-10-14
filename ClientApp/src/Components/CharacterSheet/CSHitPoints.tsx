@@ -2,7 +2,8 @@ import { useDispatch } from "react-redux";
 import { calcAbilityBonus, calcMaxHP, parseDice } from "../../Utils/global"
 import { useSelector } from "react-redux";
 import { RootState } from "../../Redux/store";
-import * as ActionCreators from "../../Redux/ActionCreators/character.action.creators";
+import { useEffect, useState } from "react";
+import { setCharacter } from "../../Redux/ActionCreators/character.action.creators";
 
 type Props = {
     className?: string,
@@ -12,14 +13,26 @@ type Props = {
 export default function CSHitPoints(props: Props): JSX.Element {
     const dispatch = useDispatch();
     const character = useSelector((store: RootState) => store.characterReducer);
+    const [data, setData] = useState({hitpoints: 0, maxHitpoints: 0, tempHitpoints: 0, hitDice: ""});
 
     function handleCalcMaxHP() {
         if (character.hitDice && character.constitution) {
             let dice = parseDice(character.hitDice);
             let bonus = calcAbilityBonus(character.constitution);
-            dispatch(ActionCreators.setCharacter({...character, maxHitpoints: calcMaxHP(dice, bonus)}));
+            dispatch(setCharacter({...character, maxHitpoints: calcMaxHP(dice, bonus)}));
         }
     }
+
+    useEffect(() => {
+        if (character.hitpoints == undefined
+            || character.maxHitpoints == undefined
+            || character.tempHitpoints == undefined
+            || character.hitDice == undefined){
+            dispatch(setCharacter({...character, hitpoints: 0, maxHitpoints: 0, tempHitpoints: 0, hitDice: ""}));
+        } else {
+            setData({hitpoints: character.hitpoints, maxHitpoints: character.maxHitpoints, tempHitpoints: character.tempHitpoints, hitDice: character.hitDice})
+        }
+    }, [character])
 
     return (
         <div className={props.className}>
@@ -32,7 +45,7 @@ export default function CSHitPoints(props: Props): JSX.Element {
                         className="text-center text-xl"
                         type="number"
                         min="0"
-                        value={character.maxHitpoints}
+                        value={data.maxHitpoints}
                         onChange={e => props.inputHandler(e, "maxHitpoints")}
                     />
                 </div>
@@ -43,8 +56,8 @@ export default function CSHitPoints(props: Props): JSX.Element {
                         className="text-center text-xl"
                         type="number"
                         min="0"
-                        max={character.maxHitpoints}
-                        value={character.hitpoints}
+                        max={data.maxHitpoints}
+                        value={data.hitpoints}
                         onChange={e => props.inputHandler(e, "hitpoints")}
                     />
                 </div>
@@ -55,7 +68,7 @@ export default function CSHitPoints(props: Props): JSX.Element {
                         className="text-center text-xl"
                         type="number"
                         min="0"
-                        value={character.tempHitpoints}
+                        value={data.tempHitpoints}
                         onChange={e => props.inputHandler(e, "tempHitpoints")}
                     />
                 </div>

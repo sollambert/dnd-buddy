@@ -15,7 +15,8 @@ export default function CSDeathSaves(props: Props) {
     const [saves, setSaves] = useState({successes: 0, failures: 0});
 
     useEffect(() => {
-        if (!character.deathSuccesses || !character.deathFailures){
+        if (character.deathSuccesses == undefined
+            || character.deathFailures == undefined) {
             dispatch(setCharacter({...character, deathSuccesses: 0, deathFailures: 0}));
         } else {
             setSaves({successes: character.deathSuccesses, failures: character.deathFailures})

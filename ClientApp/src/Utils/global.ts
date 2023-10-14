@@ -47,12 +47,10 @@ export function rollDice(dice: Dice, bonus?: number) {
 
 export function calcMaxHP(dice: Dice, bonus: number) {
     let total = dice[0].sides + bonus;
-    console.log(total)
     for (let i = 0; i < dice.length; i ++) {
         for (let j = 0; j < dice[i].quantity; j++) {
             if (i != 0 || j != 0) {
                 total += Math.floor((dice[i].sides) / 2) + 1 + bonus;
-                console.log(total);
             }
         }
     }
