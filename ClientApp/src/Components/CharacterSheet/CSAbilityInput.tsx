@@ -1,4 +1,5 @@
 import { PropsWithChildren } from "react";
+import { calcAbilityBonus } from "../../Utils/global";
 
 type Props = {
     name: string,
@@ -6,16 +7,9 @@ type Props = {
     inputHandler: (event: any, key: string) => void
 }
 
-export const getBonus = (abilityScore: number | undefined) => {
-    if (abilityScore) {
-        let bonus = Math.floor((abilityScore - 10) / 2);
-        return bonus >= 0 ? `+${bonus}` : bonus
-    }
-    return "-"
-}
-
 export default function CSAbilityInput(props: PropsWithChildren<Props>) {
-
+    let bonus = props.value ? calcAbilityBonus(props.value) : 0;
+    let bonusDisplay= bonus >= 0 ? `+${bonus}` : bonus;
     return (
         <div className="mt-2 border">
             <label htmlFor={props.name}>{props.name.toLocaleUpperCase()}</label>
@@ -27,7 +21,7 @@ export default function CSAbilityInput(props: PropsWithChildren<Props>) {
                     value={props.value ? props.value : 0}
                     onInput={e=>props.inputHandler(e, props.name)}
                 />
-                <p className="mr-1">{getBonus(props.value)}</p>
+                <p className="mr-1">{bonusDisplay}</p>
             </div>
         </div>
     )

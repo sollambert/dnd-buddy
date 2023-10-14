@@ -9,6 +9,8 @@ export type NewCharacter = {
     skills?: Array<CharacterSkill>;
 }
 
+export type Dice = Array<{quantity: number, sides: number}>
+
 export type Coinage = {
     copper: number,
     silver: number,
@@ -43,6 +45,10 @@ export type Character = {
     chaProf?: bool;
     skills?: Array<CharacterSkill>;
     coins?: Coinage;
+    maxHitpoints?: number;
+    hitpoints?: number;
+    tempHitpoints?: number;
+    hitDice?: string;
 }
 
 export type Campaign = {
