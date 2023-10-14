@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../Redux/store";
 import CSCoinage from "../../Components/CharacterSheet/CSCoinage";
 import CSHitPoints from "../../Components/CharacterSheet/CSHitPoints";
+import CSDeathSaves from "../../Components/CharacterSheet/CSDeathSaves";
 
 function CharacterSheet(): JSX.Element {
   const dispatch = useDispatch();
@@ -59,6 +60,10 @@ function CharacterSheet(): JSX.Element {
           </div>
           <div className="flex flex-col m-2 mt-4">
             <CSHitPoints
+              className="border p-2 mb-2 flex flex-col items-start"
+              inputHandler={handleInput}
+            />
+            <CSDeathSaves
               className="border p-2 mb-2 flex flex-col items-start"
               inputHandler={handleInput}
             />

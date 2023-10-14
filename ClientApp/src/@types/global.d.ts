@@ -49,6 +49,8 @@ export type Character = {
     hitpoints?: number;
     tempHitpoints?: number;
     hitDice?: string;
+    deathSuccesses?: number;
+    deathFailures?: number;
 }
 
 export type Campaign = {
