@@ -79,7 +79,7 @@ export default function CSHitPoints(props: Props): JSX.Element {
                     name="hit-dice"
                     className="text-center text-xl"
                     type="text"
-                    value={character.hitDice}
+                    value={data.hitDice}
                     onChange={e => props.inputHandler(e, "hitDice")}
                 />
             </div>
