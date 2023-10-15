@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { RootState } from "../../Redux/store";
 import { useEffect, useState } from "react";
 import { setCharacter } from "../../Redux/ActionCreators/character.action.creators";
+import "./CSDeathSaves.css"
 
 type Props = {
     className?: string;
@@ -26,14 +27,14 @@ export default function CSDeathSaves(props: Props) {
     return (
         <div className={props.className}>
             <h1 className="text-xl">Death Saves</h1>
-            <div className="flex flex-row">
+            <div className="flex flex-row items-center">
                 <div className="flex flex-col m-1">
                     <label className="my-1" htmlFor="death-successes">Successes</label>
                     <label className="my-1" htmlFor="death-failures">Failures</label>
                 </div>
-                <div className="flex flex-col m-1">
-                    <input className="my-1" type="range" min="0" max="3" value={saves.successes} onChange={e => props.inputHandler(e, "deathSuccesses")} />
-                    <input className="my-1" type="range" min="0" max="3" value={saves.failures} onChange={e => props.inputHandler(e, "deathFailures")} />
+                <div className="flex flex-col m-1 h-full justify-evenly">
+                    <input className="mb-1 death-save-slider death-successes" type="range" min="0" max="3" value={saves.successes} onChange={e => props.inputHandler(e, "deathSuccesses")} />
+                    <input className="mt-1 death-save-slider death-failures" type="range" min="0" max="3" value={saves.failures} onChange={e => props.inputHandler(e, "deathFailures")} />
                 </div>
                 <div className="flex flex-col w-8 m-1">
                     <input className="my-1 text-center" readOnly type="text" min="0" max="3" value={saves.successes} />
