@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../Redux/store";
 import * as ActionCreators from "../../Redux/ActionCreators/character.action.creators";
 import { useEffect, useState } from "react";
+import Button from "../Buttons/Button";
 
 type Props = {
     className?: string,
@@ -59,7 +60,7 @@ export default function CSCoinage(props: Props) {
     }
 
     return (
-        <div className="flex flex-col border m-2 p-2">
+        <div className={props.className}>
             <h1 className="text-xl">Coins</h1>
             <div>
                 <label htmlFor="copper">CP</label>
@@ -116,7 +117,10 @@ export default function CSCoinage(props: Props) {
                     onChange={(e) => inputHandler(Number(e.target.value), "platinum")}
                 />
             </div>
-            <button onClick={() => {reduceCoins(character)}}>Reduce</button>
+            <Button
+                className="w-full mt-2"
+                onClick={() => {reduceCoins(character)}}
+            >Reduce</Button>
         </div>
     )
 }

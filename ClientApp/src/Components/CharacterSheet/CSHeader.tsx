@@ -4,6 +4,10 @@ import { Alignment } from "../../Constants/character";
 import { levelFromExperience } from "./CharacterUtils";
 import { useSelector } from "react-redux";
 import { RootState } from "../../Redux/store";
+import { Character } from "../../@types/global";
+import { useDispatch } from "react-redux";
+import { updateCharacter } from "../../Redux/ActionCreators/character.action.creators";
+import Button from "../Buttons/Button";
 
 type Props = {
     className?: string,
@@ -11,7 +15,21 @@ type Props = {
 }
 
 export default function CSHeader(props: PropsWithChildren<Props>): JSX.Element {
+    const dispatch = useDispatch();
     const character = useSelector((store: RootState) => store.characterReducer);
+
+
+    const submitHandler = (character: Character, cb?: () => void): void => {
+        console.log(character)
+        if (character.name !== "") {
+            if (character.id) {
+                dispatch(updateCharacter(character))
+            }
+        } else {
+            character.name="Dingus";
+            dispatch(updateCharacter(character))
+        }
+    };
     return (
         <div className={props.className}>
             <div className="flex flex-col items-center border">
@@ -46,6 +64,14 @@ export default function CSHeader(props: PropsWithChildren<Props>): JSX.Element {
                     />
                 </div>
                 <div className="flex flex-row items-center m-2">
+                    <Button
+                        className="mx-4 w-24"
+                        onClick={() => {
+                            submitHandler(character);
+                        }}
+                    >
+                        Save
+                    </Button>
                     <FormInput
                         readOnly
                         className="w-8 mr-4 text-center"

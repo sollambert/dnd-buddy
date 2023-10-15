@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../Redux/store";
 import { useEffect, useState } from "react";
 import { setCharacter } from "../../Redux/ActionCreators/character.action.creators";
+import Button from "../Buttons/Button";
 
 type Props = {
     className?: string,
@@ -83,10 +84,10 @@ export default function CSHitPoints(props: Props): JSX.Element {
                     onChange={e => props.inputHandler(e, "hitDice")}
                 />
             </div>
-            <button
-                className="m-2"
+            <Button
+                className="mt-2"
                 onClick={handleCalcMaxHP}
-            >Calc Max</button>
+            >Calc Max</Button>
         </div>
     )
 }

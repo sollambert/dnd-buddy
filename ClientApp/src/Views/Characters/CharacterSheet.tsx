@@ -39,16 +39,18 @@ function CharacterSheet(): JSX.Element {
           inputHandler={handleInput}
         />
         <div className="flex flex-row w-full">
-          <div className="flex flex-col">
+          <div className="flex flex-col m-2 mt-4">
             <CSAbilities
-              className="m-2 px-2 flex flex-col items-start text-sm border"
+              className="mb-2 px-2 flex flex-col items-start text-sm border"
               inputHandler={handleInput}
             />
             <CSInititative
-              className="m-2 p-2 flex flex-col border items-start"
+              className="mb-2 p-2 flex flex-col border items-start"
               inputHandler={handleInput}
             />
-            <CSCoinage />
+            <CSCoinage
+              className="mb-2 p-2 flex flex-col border"
+            />
           </div>
           <div className="flex flex-col m-2 mt-4">
             <CSInspiration
